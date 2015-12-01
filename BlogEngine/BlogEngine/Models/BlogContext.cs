@@ -21,10 +21,7 @@ namespace BlogEngine.Models
         public DbSet<Post> Posts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<Comment> Comments { get; set; }        
-        public DbSet<CategoryToPost> PostCategory { get; set; }
-        public DbSet<TagToPost> PostTags { get; set; }
-
+        public DbSet<Comment> Comments { get; set; }
         //többesszám
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -11,6 +11,7 @@ namespace BlogEngine.Models
         public string Description { get; set; }
         public string Title { get; set; }
         public string UrlOpt { get; set; }
+        public string Body { get; set; }
         public DateTime PostedOn { get; set; }
         public DateTime? Modified { get; set; }
         public Post Post { get; set; }

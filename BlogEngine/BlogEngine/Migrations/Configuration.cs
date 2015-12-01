@@ -1,4 +1,4 @@
-namespace BlogEngine.Migrations.BlogContext
+namespace BlogEngine.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -9,8 +9,7 @@ namespace BlogEngine.Migrations.BlogContext
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            MigrationsDirectory = @"Migrations\BlogContext";
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(BlogEngine.Models.BlogContext context)

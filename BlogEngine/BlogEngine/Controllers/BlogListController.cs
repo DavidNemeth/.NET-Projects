@@ -28,29 +28,11 @@ namespace BlogEngine.Controllers
         #region main
         public ActionResult Index()
         {
+            Posts();
             return View();
         }
         public ActionResult Posts()
-        {
-            postList.Clear();
-            var posts = blogRepository.GetPosts();
-            foreach (var post in posts)
-            {
-                var postcat = GetPostCategory(post);
-                var posttag = GetPostTag(post);
-                postList.Add(new BlogListViewModel()
-                {
-                    Post = post,
-                    Modified = post.Modified,
-                    Title = post.Tittle,
-                    Description = post.Description,
-                    PostedOn = post.PostedDate,
-                    Id = post.Id,
-                    PostCategory = postcat,
-                    PostTag = posttag,
-                    UrlOpt = post.UrlOpt
-                });                
-            }
+        {            
             return PartialView("Posts");
         }
         #endregion main
@@ -63,14 +45,14 @@ namespace BlogEngine.Controllers
         {
             return blogRepository.GetPosts();
         }
-        public IList<Category> GetPostCategory(Post post)
-        {
-            return blogRepository.GetPostCategory(post);
-        }
-        public IList<Tag> GetPostTag(Post post)
-        {
-            return blogRepository.GetPostTags(post);
-        }
+        //public IList<Category> GetPostCategory(Post post)
+        //{
+        //    return blogRepository.GetPostCategory(post);
+        //}
+        //public IList<Tag> GetPostTag(Post post)
+        //{
+        //    return blogRepository.GetPostTags(post);
+        //}
 
         #endregion helpers
     }
