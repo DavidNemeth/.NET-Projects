@@ -18,10 +18,10 @@ namespace BlogEngine.DAL
         {
             return context.Posts.ToList();
         }
-        //public IList<Category> GetPostCategory(Post post)
+        //public IList<Category> GetCategory(Post post)
         //{            
         //}
-        //public IList<Tag> GetPostTags(Post post)
+        //public IList<Tag> GetTags(Post post)
         //{            
         //}
 
