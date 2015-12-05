@@ -1,0 +1,21 @@
+﻿
+@model BlogEngine.Models.Post
+
+<div class="post">
+    <div class="post-meta">
+        <div class="row">
+
+        </div>
+
+        <div class="row"> 
+            <!--Posted date-->
+            <div class="posted-date">
+                @Model.PostedDate.ToShortDateString()
+            </div>
+            <div class="posted-date">
+                @Model.Body.ToString()
+            </div>
+        </div>
+
+    </div>    
+</div>

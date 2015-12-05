@@ -11,6 +11,10 @@ namespace BlogEngine.Controllers
     public class BlogController : Controller
     {
         private readonly IBlogRepository context;
+        public BlogController()
+        {
+            context = new BlogRepository(new BlogContext());
+        }
         public BlogController(IBlogRepository _context)
         {
             context = _context;
@@ -22,13 +26,12 @@ namespace BlogEngine.Controllers
         public ViewResult Posts()
         {
             var posts = context.GetPosts();
-            var BlogListViewModel = new BlogListViewModel(context)
-            {
-                Posts = posts
-            };
-            ViewBag.Title = "Posts";
-
-            return View("List", BlogListViewModel);
+            var model = new BlogListViewModel(context);
+            return View("Posts", model);
+        }
+        public ActionResult Admin()
+        {
+            return View();
         }
     }
 }
