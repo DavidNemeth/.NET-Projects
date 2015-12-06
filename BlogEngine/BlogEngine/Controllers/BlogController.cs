@@ -25,7 +25,7 @@ namespace BlogEngine.Controllers
         }
         public ViewResult Posts()
         {
-            var posts = context.GetPosts();
+            var posts = context.GetPosts();            
             var model = new BlogListViewModel(context);
             return View("Posts", model);
         }

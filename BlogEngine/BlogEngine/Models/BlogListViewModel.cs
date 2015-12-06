@@ -12,6 +12,8 @@ namespace BlogEngine.Models
         {
             Posts = blogRepository.GetPosts();            
         }
-        public IList<Post> Posts { get; set; }
+        public IList<Post> Posts { get; set; }      
+        public Category Category { get; set; }
+        public Tag Tag { get; set; }
     }
 }

@@ -169,8 +169,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="DAL\BlogRepository.cs" />
     <Compile Include="DAL\IBlogRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,6 +182,10 @@
     <Compile Include="Migrations\201512010411497_BlogContext.cs" />
     <Compile Include="Migrations\201512010411497_BlogContext.Designer.cs">
       <DependentUpon>201512010411497_BlogContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512060439082_BlogContext1.cs" />
+    <Compile Include="Migrations\201512060439082_BlogContext1.Designer.cs">
+      <DependentUpon>201512060439082_BlogContext1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -247,6 +254,21 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Blog\Posts.cshtml" />
     <Content Include="Views\Shared\_PostView.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Posts\Create.cshtml" />
+    <Content Include="Views\Posts\Delete.cshtml" />
+    <Content Include="Views\Posts\Details.cshtml" />
+    <Content Include="Views\Posts\Edit.cshtml" />
+    <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Tags\Create.cshtml" />
+    <Content Include="Views\Tags\Delete.cshtml" />
+    <Content Include="Views\Tags\Details.cshtml" />
+    <Content Include="Views\Tags\Edit.cshtml" />
+    <Content Include="Views\Tags\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -262,6 +284,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201512010411497_BlogContext.resx">
       <DependentUpon>201512010411497_BlogContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512060439082_BlogContext1.resx">
+      <DependentUpon>201512060439082_BlogContext1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
