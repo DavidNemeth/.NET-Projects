@@ -8,12 +8,14 @@ namespace BlogEngine.Models
 {
     public class BlogListViewModel
     {
-        public BlogListViewModel(IBlogRepository blogRepository)
-        {
-            Posts = blogRepository.GetPosts();            
-        }
-        public IList<Post> Posts { get; set; }      
-        public Category Category { get; set; }
-        public Tag Tag { get; set; }
+        public int Id { get; set; }
+        public string Tittle { get; set; }
+        public string Description { get; set; }
+        public string Body { get; set; }
+        public string UrlOpt { get; set; }
+        public DateTime PostedDate { get; set; }
+        public IList<Category> Category { get; set; }
+        public IList<Tag> Tags { get; set; }
+        public Post Post { get; set; }
     }
 }

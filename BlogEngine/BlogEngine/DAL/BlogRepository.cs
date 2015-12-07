@@ -42,7 +42,10 @@ namespace BlogEngine.DAL
         }
 
 
-
+        public int TotalPosts()
+        {
+            return context.Posts.Count();
+        }
 
 
         #region Dispose

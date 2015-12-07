@@ -27,5 +27,7 @@ namespace BlogEngine.Models
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<BlogEngine.Models.BlogListViewModel> BlogListViewModels { get; set; }
     }    
 }
