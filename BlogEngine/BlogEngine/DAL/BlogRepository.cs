@@ -13,6 +13,10 @@ namespace BlogEngine.DAL
         {
             context = _context;
         }
+        public Post GetPost(int postid)
+        {
+            return context.Posts.Find(postid);
+        }
 
         public IList<Post> GetPosts()
         {
@@ -39,8 +43,7 @@ namespace BlogEngine.DAL
                 tags.Add(context.Tags.Where(p => p.Id == tag).FirstOrDefault());
             }
             return tags;
-        }
-
+        }      
 
         public int TotalPosts()
         {

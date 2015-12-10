@@ -69,6 +69,5 @@ namespace BlogEngine.Models //TODO: reply? like? video? pic?
         [Required]
         public DateTime CommentDate { get; set; }
         public ICollection<Post> Posts { get; set; }
-    }
-    //csatolások    
+    }      
 }

@@ -9,9 +9,10 @@ namespace BlogEngine.DAL
 {
     public interface IBlogRepository : IDisposable
     {
+        Post GetPost(int PostId);
         IList<Post> GetPosts();
         IList<Tag> GetTags(Post post);
-        IList<Category> GetCategory(Post post);
+        IList<Category> GetCategory(Post post);        
         int TotalPosts();
     }
 }

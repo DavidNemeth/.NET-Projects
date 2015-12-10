@@ -1,0 +1,29 @@
+﻿@model BlogEngine.Models.BlogListViewModel
+@using BlogEngine.Controllers
+@{
+    BlogController bc = new BlogController();
+}
+
+@foreach (var post in BlogController.PostList)
+{    
+    <div>
+       <h1>@post.Tittle.ToString()</h1>
+    </div>
+    <div>
+        @post.PostedDate.ToShortDateString()
+    </div>
+    <div>
+        <label>Category: </label>
+        @{              
+            foreach (var cat in post.Category)
+            {
+             @cat.Name;
+            }
+        }
+    </div>
+    <div>        
+        @post.Description.ToString()
+        @Html.ActionLink("Tovább..","Post","Blog", new { PostId = @post.Id}, null)
+    </div>    
+}
+

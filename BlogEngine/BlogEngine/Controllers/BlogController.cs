@@ -22,9 +22,10 @@ namespace BlogEngine.Controllers
         }
         public ActionResult Index()
         {
+            Posts();
             return View();
         }
-        public ViewResult Posts()
+        public ActionResult Posts()
         {
             PostList.Clear();
             var posts = context.GetPosts();
@@ -34,16 +35,32 @@ namespace BlogEngine.Controllers
                 var tags = GetTags(post);
                 PostList.Add(new BlogListViewModel()
                 {
+                    Description = post.Description,
                     Body = post.Body,
                     Tittle = post.Tittle,
-                    Description = post.Description,
                     Id = post.Id,
                     PostedDate = post.PostedDate,
                     UrlOpt = post.UrlOpt,
-                    Post = post
+                    Post = post,
+                    Category = categories                    
                 });                
             }
-            return View("Posts");
+            return PartialView("Posts");
+        }
+        public ActionResult Post(int PostId)
+        {
+            PostList.Clear();
+            var post = context.GetPost(PostId);
+            var categories = GetCategories(post);
+            BlogListViewModel viewmodel = new BlogListViewModel();
+            viewmodel.Id = post.Id;
+            viewmodel.PostedDate = post.PostedDate;
+            viewmodel.Tittle = post.Tittle;
+            viewmodel.Body = post.Body;
+            viewmodel.Category = categories;
+            
+            return View(viewmodel);
+
         }
         public ActionResult Admin()
         {

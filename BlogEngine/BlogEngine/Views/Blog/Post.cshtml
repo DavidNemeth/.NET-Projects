@@ -1,0 +1,26 @@
+﻿@model BlogEngine.Models.BlogListViewModel
+@using BlogEngine.Controllers
+
+@{
+    BlogController bc = new BlogController();
+}
+
+
+<div>
+    <h1>@Model.Tittle.ToString()</h1>
+</div>
+<div>
+    @Model.PostedDate.ToShortDateString()
+</div>
+<div>
+    <label>Category: </label>
+    @{        
+        foreach (var cat in Model.Category)
+        {
+            @cat.Name;
+        }
+    }
+</div>
+<div>
+    @Model.Body
+</div>
