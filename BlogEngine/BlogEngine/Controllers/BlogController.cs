@@ -50,25 +50,39 @@ namespace BlogEngine.Controllers
         }
         public ActionResult Post(int PostId)
         {
-            PostList.Clear();
-            var post = context.GetPost(PostId);
-            var categories = GetCategories(post);
-            var tags = GetTags(post);
-            BlogListViewModel viewmodel = new BlogListViewModel();
-            viewmodel.Id = post.Id;
-            viewmodel.PostedDate = post.PostedDate;
-            viewmodel.Tittle = post.Tittle;
-            viewmodel.Body = post.Body;
-            viewmodel.Category = categories;
-            viewmodel.Tags = tags;
-            return View(viewmodel);
+            PostList.Clear();            
+            var model = NewPost(PostId);
+            return View(model);
 
         }
         public ActionResult Admin()
         {
             return View();
         }
-
+        public ActionResult AddPost()
+        {
+            List<int> ids = new List<int>();
+            int id = 0;          
+            var posts = context.GetPosts();
+            if (posts.Count != 0)
+            {
+                foreach (var post in posts)
+                {
+                    ids.Add(post.Id);
+                }
+                ids.Sort();
+                id = ids.Last();
+                id++;
+            }
+            else
+            {
+                id = 1;
+            }
+            BlogListViewModel model = new BlogListViewModel();
+            model.Id = id;
+            return View(model);
+            
+        }
 
 
 
@@ -86,6 +100,21 @@ namespace BlogEngine.Controllers
         public IList<Tag> GetTags(Post post)
         {
             return context.GetTags(post);
+        }
+        public BlogListViewModel NewPost (int PostId)
+        {
+            BlogListViewModel model = new BlogListViewModel();            
+            var post = context.GetPost(PostId);
+            var categories = GetCategories(post);
+            var tags = GetTags(post);
+            model.Id = PostId;
+            model.Tittle = post.Tittle;
+            model.Description = post.Description;
+            model.PostedDate = post.PostedDate;
+            model.Category = categories;
+            model.Tags = tags;
+            model.Body = post.Body;
+            return model;
         }
         #endregion
     }
