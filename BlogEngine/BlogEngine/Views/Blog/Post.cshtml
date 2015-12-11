@@ -24,3 +24,11 @@
 <div>
     @Model.Body
 </div>
+<div>
+    @{
+        foreach (var tag in Model.Tags)
+        {
+            <lavel>@tag.Name</lavel>
+        }
+    }
+</div>

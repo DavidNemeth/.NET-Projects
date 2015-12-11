@@ -42,7 +42,8 @@ namespace BlogEngine.Controllers
                     PostedDate = post.PostedDate,
                     UrlOpt = post.UrlOpt,
                     Post = post,
-                    Category = categories                    
+                    Category = categories,
+                    Tags = tags        
                 });                
             }
             return PartialView("Posts");
@@ -52,13 +53,14 @@ namespace BlogEngine.Controllers
             PostList.Clear();
             var post = context.GetPost(PostId);
             var categories = GetCategories(post);
+            var tags = GetTags(post);
             BlogListViewModel viewmodel = new BlogListViewModel();
             viewmodel.Id = post.Id;
             viewmodel.PostedDate = post.PostedDate;
             viewmodel.Tittle = post.Tittle;
             viewmodel.Body = post.Body;
             viewmodel.Category = categories;
-            
+            viewmodel.Tags = tags;
             return View(viewmodel);
 
         }

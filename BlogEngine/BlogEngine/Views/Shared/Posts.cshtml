@@ -25,5 +25,13 @@
         @post.Description.ToString()
         @Html.ActionLink("Tovább..","Post","Blog", new { PostId = @post.Id}, null)
     </div>    
+    <div>
+        @{ 
+            foreach (var tag in post.Tags)
+            {
+                <lavel>@tag.Name</lavel>
+            }
+        }        
+    </div>
 }
 
