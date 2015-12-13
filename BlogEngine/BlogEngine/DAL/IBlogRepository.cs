@@ -14,5 +14,6 @@ namespace BlogEngine.DAL
         IList<Tag> GetTags(Post post);
         IList<Category> GetCategory(Post post);        
         int TotalPosts();
+        void AddPost(Post psot);
     }
 }

@@ -83,7 +83,24 @@ namespace BlogEngine.Controllers
             return View(model);
             
         }
-
+        [HttpPost]
+        public ActionResult AddPost(BlogListViewModel model)
+        {
+            var post = new Post
+            {
+                Id = model.Id,
+                Tittle = model.Tittle,
+                Description = model.Description,
+                Body = model.Body,
+                UrlOpt = model.UrlOpt,
+                PostedDate = DateTime.Now,
+                Published = true,
+                Meta = "test",
+                                
+            };
+            context.AddPost(post);
+            return RedirectToAction("Index", "Blog", new { Url = model.UrlOpt });
+        }
 
 
 

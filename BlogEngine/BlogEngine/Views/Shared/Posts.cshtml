@@ -4,6 +4,11 @@
     BlogController bc = new BlogController();
 }
 
+<table class="pull-right">
+    <tr>
+        <td>@Html.ActionLink("Új post", "AddPost", "Blog")</td>
+    </tr>    
+</table>
 @foreach (var post in BlogController.PostList)
 {    
     <div>
@@ -34,4 +39,5 @@
         }        
     </div>
 }
+
 

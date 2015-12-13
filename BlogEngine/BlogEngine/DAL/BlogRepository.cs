@@ -49,7 +49,15 @@ namespace BlogEngine.DAL
         {
             return context.Posts.Count();
         }
-
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+        public void AddPost(Post post)
+        {
+            context.Posts.Add(post);
+            Save();
+        }
 
         #region Dispose
         private bool disposed = false;
