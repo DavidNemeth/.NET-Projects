@@ -10,7 +10,7 @@ namespace BlogEngine.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly IBlogRepository context;
+        private readonly IBlogRepository context;        
         public static List<BlogListViewModel> PostList = new List<BlogListViewModel>();
         public BlogController()
         {
@@ -99,10 +99,30 @@ namespace BlogEngine.Controllers
         }
         public ActionResult Edit(int PostId)
         {
-            var model = EditPost(PostId);
+            var model = EditPost(PostId);            
             return View(model);
         }
+        public ActionResult Update(int? id,string tittle,string body,string desc, DateTime datetime,string tags)
+        {
+            Post post = GetPost(id);
+            post.Tittle = tittle;
+            post.Body = body;
+            post.Description = desc;
+            post.PostedDate = datetime;
+            post.Tags.Clear();
 
+            tags = tags ?? string.Empty;
+            string[] tagNames = tags.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string tagname in tagNames)
+            {
+                post.Tags.Add(GetTag(tagname));
+            }
+            if (!id.HasValue)
+            {
+                context.AddPost(post);
+            }
+            return RedirectToAction("Details", new { id = post.Id });
+        }
 
 
         #region helper
@@ -146,6 +166,14 @@ namespace BlogEngine.Controllers
             model.Tags = context.GetTags(post).ToList();
             model.Category = context.GetCategory(post).ToList();
             return model;
+        }        
+        private Post GetPost(int? id)
+        {
+            return context.GetPost(id);
+        }
+        private Tag GetTag(string tagname)
+        {
+            return context.GetTag(tagname);
         }
         #endregion
     }

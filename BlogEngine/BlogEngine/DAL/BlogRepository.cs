@@ -24,7 +24,7 @@ namespace BlogEngine.DAL
         }
         public IList<Category> GetCategory(Post post)
         {
-            var catid = context.Categories.Where(p => p.Id == post.Id)
+            var catid = context.Categories.Where(p => p.Id == post.)
                 .Select(p => p.Id).ToList();
             List<Category> cats = new List<Category>();
             foreach (var cat in catid)
@@ -48,6 +48,14 @@ namespace BlogEngine.DAL
         public int TotalPosts()
         {
             return context.Posts.Count();
+        }
+        public Tag GetTag(string tagname)
+        {
+            return context.Tags.Where(x => x.Name == tagname).FirstOrDefault() ?? new Tag() { Name = tagname };
+        }
+        private Post GetPost(int? id)
+        {
+            return id.HasValue ? context.Posts.Where(x => x.Id == id).First() : new Post() { Id = -1 };
         }
         public void Save()
         {

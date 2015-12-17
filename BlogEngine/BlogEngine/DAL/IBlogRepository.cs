@@ -15,5 +15,7 @@ namespace BlogEngine.DAL
         IList<Category> GetCategory(Post post);        
         int TotalPosts();
         void AddPost(Post psot);
+        Tag GetTag(string tagname);
+        Post GetPost(int? id);
     }
 }
