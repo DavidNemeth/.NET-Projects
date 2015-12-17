@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201512170035247_fix.Designer.cs">
       <DependentUpon>201512170035247_fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512170448301_fix2.cs" />
+    <Compile Include="Migrations\201512170448301_fix2.Designer.cs">
+      <DependentUpon>201512170448301_fix2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogContext.cs" />
@@ -287,6 +291,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201512170035247_fix.resx">
       <DependentUpon>201512170035247_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512170448301_fix2.resx">
+      <DependentUpon>201512170448301_fix2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

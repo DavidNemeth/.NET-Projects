@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BlogEngine.Models;
+using System.Text;
 
 namespace BlogEngine.Controllers
 {
@@ -99,30 +100,22 @@ namespace BlogEngine.Controllers
         }
         public ActionResult Edit(int PostId)
         {
-            var model = EditPost(PostId);            
-            return View(model);
-        }
-        public ActionResult Update(int? id,string tittle,string body,string desc, DateTime datetime,string tags)
-        {
-            Post post = GetPost(id);
-            post.Tittle = tittle;
-            post.Body = body;
-            post.Description = desc;
-            post.PostedDate = datetime;
-            post.Tags.Clear();
+            var model = EditPost(PostId);
+            StringBuilder taglist = new StringBuilder();
+            foreach (var tag in model.Tags)
+            {
+                taglist.AppendFormat("{0} ", tag.Name);
+            }
+            ViewBag.Tags = taglist.ToString();
 
-            tags = tags ?? string.Empty;
-            string[] tagNames = tags.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string tagname in tagNames)
-            {
-                post.Tags.Add(GetTag(tagname));
-            }
-            if (!id.HasValue)
-            {
-                context.AddPost(post);
-            }
-            return RedirectToAction("Details", new { id = post.Id });
-        }
+            return View(model);
+        }        
+        //[HttpPost]
+        //public ActionResult Edit()
+        //{
+           
+        //    return RedirectToAction("Index","Blog", new { id = post.Id });
+        //}
 
 
         #region helper
@@ -174,7 +167,7 @@ namespace BlogEngine.Controllers
         private Tag GetTag(string tagname)
         {
             return context.GetTag(tagname);
-        }
+        }        
         #endregion
     }
 }

@@ -24,7 +24,7 @@ namespace BlogEngine.DAL
         }
         public IList<Category> GetCategory(Post post)
         {
-            var catid = context.Categories.Where(p => p.Id == post.)
+            var catid = context.Categories.Where(p => p.Id == post.Id)
                 .Select(p => p.Id).ToList();
             List<Category> cats = new List<Category>();
             foreach (var cat in catid)
@@ -53,7 +53,7 @@ namespace BlogEngine.DAL
         {
             return context.Tags.Where(x => x.Name == tagname).FirstOrDefault() ?? new Tag() { Name = tagname };
         }
-        private Post GetPost(int? id)
+        public Post GetPost(int? id)
         {
             return id.HasValue ? context.Posts.Where(x => x.Id == id).First() : new Post() { Id = -1 };
         }
@@ -66,6 +66,7 @@ namespace BlogEngine.DAL
             context.Posts.Add(post);
             Save();
         }
+        
 
         #region Dispose
         private bool disposed = false;

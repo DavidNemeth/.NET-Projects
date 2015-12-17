@@ -3,36 +3,22 @@
 @{
     ViewBag.Title = "Edit";
 }
-
-<h2>EditPost</h2>
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Blog", FormMethod.Post, new { role = "form" }))
 {
-    @Html.AntiForgeryToken()
-
     <div>
-        <table>
-            <tr>
-                <td>Id: </td>
-                <td colspan="2">@Html.TextBoxFor(m => m.Id, new { @readonly = "readonly" })</td>
-            </tr>
-            <tr>
-                <td>Title :</td>
-                <td colspan="2" class="editPostTitle">@Html.TextBoxFor(m => m.Tittle)</td>
-            </tr>            
+        id:<input type="text" name="tags" value="@Model.Id" /><br>
+        Tags: <input type="text" name="tags" value="@ViewBag.Tags" /><br>
+        Title: <input type="text" name="tags" value="@Model.Tittle" /><br>
+        Description: <input type="text" name="tags" value="@Model.Description" /><br>
+        Body: <input type="text" name="tags" value="@Model.Body" /><br>
+        Modified: <input type="text" name="tags" value="@Model.Modified" /><br>
+        posted: <input type="text" name="tags" value="@Model.PostedDate" /><br>
+        <div>
+            <table>
                 <tr>
-                   <td>Category:</td>
-                    @foreach (var cat in Model.Category)
-                    {
-                        <td colspan="2">@Html.TextBoxFor(m => cat)</td>
-                    }                    
+                    <td colspan="3"><input class="btn-default" type="submit" /></td>
                 </tr>
-            
-        </table>
+            </table>
+        </div>
     </div>
-
 }
-
-<div>
-    @Html.ActionLink("Vissza", "Index")
-</div>
