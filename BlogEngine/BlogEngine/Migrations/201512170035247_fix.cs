@@ -3,7 +3,7 @@ namespace BlogEngine.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class BlogContext : DbMigration
+    public partial class fix : DbMigration
     {
         public override void Up()
         {
@@ -12,8 +12,7 @@ namespace BlogEngine.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        UrlOpt = c.String(),
+                        Name = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -22,11 +21,9 @@ namespace BlogEngine.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Tittle = c.String(),
-                        Description = c.String(),
-                        Body = c.String(),
-                        Meta = c.String(),
-                        UrlOpt = c.String(),
+                        Tittle = c.String(nullable: false),
+                        Description = c.String(nullable: false),
+                        Body = c.String(nullable: false),
                         Published = c.Boolean(nullable: false),
                         PostedDate = c.DateTime(nullable: false),
                         Modified = c.DateTime(),
@@ -44,8 +41,7 @@ namespace BlogEngine.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        UrlOpt = c.String(),
+                        Name = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -54,9 +50,8 @@ namespace BlogEngine.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        UrlOpt = c.String(),
-                        Body = c.String(),
-                        UserName = c.String(),
+                        Body = c.String(nullable: false),
+                        UserName = c.String(nullable: false),
                         CommentDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

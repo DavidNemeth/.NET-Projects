@@ -28,7 +28,7 @@
     </div>
     <div>        
         @post.Description.ToString()
-        @Html.ActionLink("Tovább..","Post","Blog", new { PostId = @post.Id}, null)
+        @Html.ActionLink("Tovább..","Post","Blog", new { PostId = @post.Id},null)
     </div>    
     <div>
         @{ 
@@ -38,6 +38,7 @@
             }
         }        
     </div>
+    @Html.ActionLink("Edit", "Edit", "Blog" , new { PostId = @post.Id },null);
 }
 
 

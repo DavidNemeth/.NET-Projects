@@ -39,8 +39,7 @@ namespace BlogEngine.Controllers
                     Body = post.Body,
                     Tittle = post.Tittle,
                     Id = post.Id,
-                    PostedDate = post.PostedDate,
-                    UrlOpt = post.UrlOpt,
+                    PostedDate = post.PostedDate,                    
                     Post = post,
                     Category = categories,
                     Tags = tags        
@@ -62,7 +61,7 @@ namespace BlogEngine.Controllers
         public ActionResult AddPost()
         {
             List<int> ids = new List<int>();
-            int id = 0;          
+            int id = 0;
             var posts = context.GetPosts();
             if (posts.Count != 0)
             {
@@ -85,23 +84,24 @@ namespace BlogEngine.Controllers
         }
         [HttpPost]
         public ActionResult AddPost(BlogListViewModel model)
-        {
+        {            
             var post = new Post
             {
                 Id = model.Id,
                 Tittle = model.Tittle,
                 Description = model.Description,
-                Body = model.Body,
-                UrlOpt = model.UrlOpt,
+                Body = model.Body,                
                 PostedDate = DateTime.Now,
-                Published = true,
-                Meta = "test",
-                                
-            };
+                Published = true,                                                                         
+            };            
             context.AddPost(post);
             return RedirectToAction("Index", "Blog", new { Url = model.UrlOpt });
         }
-
+        public ActionResult Edit(int PostId)
+        {
+            var model = EditPost(PostId);
+            return View(model);
+        }
 
 
 
@@ -131,6 +131,20 @@ namespace BlogEngine.Controllers
             model.Category = categories;
             model.Tags = tags;
             model.Body = post.Body;
+            return model;
+        }        
+        public EditPostViewModel EditPost(int PostId)
+        {
+            EditPostViewModel model = new EditPostViewModel();
+            var post = context.GetPost(PostId);
+            model.Id = post.Id;
+            model.Tittle = post.Tittle;
+            model.Description = post.Description;
+            model.Body = post.Body;
+            model.PostedDate = post.PostedDate;
+            model.Modified = DateTime.Now;
+            model.Tags = context.GetTags(post).ToList();
+            model.Category = context.GetCategory(post).ToList();
             return model;
         }
         #endregion

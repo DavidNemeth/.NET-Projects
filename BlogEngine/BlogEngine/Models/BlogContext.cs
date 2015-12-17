@@ -26,8 +26,6 @@ namespace BlogEngine.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        }
-
-        public System.Data.Entity.DbSet<BlogEngine.Models.BlogListViewModel> BlogListViewModels { get; set; }
+        }        
     }    
 }

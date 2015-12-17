@@ -4,7 +4,7 @@
     ViewBag.Title = "AddPost";
 }
 @using (Html.BeginForm("AddPost", "Blog", FormMethod.Post, new { role = "form" }))
-{
+{   
 <div>
     <table>
         <tr >
@@ -34,14 +34,6 @@
         <tr>
             <td>Poszt: </td>
             <td colspan="2">@Html.TextBoxFor(m => m.Body)</td>
-        </tr>
-    </table>
-</div>
-<div>
-    <table>
-        <tr>
-            <td>Url cím (keresés optimalizáláshoz): </td>
-            <td colspan="2">@Html.TextBoxFor(m => m.UrlOpt)</td>
         </tr>
     </table>
 </div>

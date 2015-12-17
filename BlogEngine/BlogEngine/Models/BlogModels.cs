@@ -24,11 +24,7 @@ namespace BlogEngine.Models //TODO: reply? like? video? pic?
         public string Description { get; set; }
         [Required]
         public string Body { get; set; }
-        [Required]
-        public string Meta { get; set; }
-        [Required]
-        public string UrlOpt { get; set; }
-        [Required]
+        [Required]        
         public bool Published { get; set; }
         [Required]
         public DateTime PostedDate { get; set; }
@@ -41,9 +37,7 @@ namespace BlogEngine.Models //TODO: reply? like? video? pic?
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
-        [Required]
-        public string UrlOpt { get; set; }
+        public string Name { get; set; }        
         public ICollection<Post> Posts { get; set; }
     }
     public class Tag
@@ -51,18 +45,14 @@ namespace BlogEngine.Models //TODO: reply? like? video? pic?
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
-        [Required]
-        public string UrlOpt { get; set; }
+        public string Name { get; set; }        
         public ICollection<Post> Posts { get; set; }
     }
     public class Comment
     {
         [Key]
         public int Id { get; set; }
-        [Required]
-        public string UrlOpt { get; set; }
-        [Required]
+        [Required]        
         public string Body { get; set; }
         [Required]
         public string UserName { get; set; }

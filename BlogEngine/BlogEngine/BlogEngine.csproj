@@ -179,27 +179,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512010411497_BlogContext.cs" />
-    <Compile Include="Migrations\201512010411497_BlogContext.Designer.cs">
-      <DependentUpon>201512010411497_BlogContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512060439082_BlogContext1.cs" />
-    <Compile Include="Migrations\201512060439082_BlogContext1.Designer.cs">
-      <DependentUpon>201512060439082_BlogContext1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512070319429_update1.cs" />
-    <Compile Include="Migrations\201512070319429_update1.Designer.cs">
-      <DependentUpon>201512070319429_update1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512070327484_update2.cs" />
-    <Compile Include="Migrations\201512070327484_update2.Designer.cs">
-      <DependentUpon>201512070327484_update2.cs</DependentUpon>
+    <Compile Include="Migrations\201512170035247_fix.cs" />
+    <Compile Include="Migrations\201512170035247_fix.Designer.cs">
+      <DependentUpon>201512170035247_fix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogContext.cs" />
     <Compile Include="Models\BlogListViewModel.cs" />
     <Compile Include="Models\BlogModels.cs" />
+    <Compile Include="Models\EditPostViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -281,6 +270,7 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\Post.cshtml" />
     <Content Include="Views\Blog\AddPost.cshtml" />
+    <Content Include="Views\Blog\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -295,17 +285,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512010411497_BlogContext.resx">
-      <DependentUpon>201512010411497_BlogContext.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512060439082_BlogContext1.resx">
-      <DependentUpon>201512060439082_BlogContext1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512070319429_update1.resx">
-      <DependentUpon>201512070319429_update1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512070327484_update2.resx">
-      <DependentUpon>201512070327484_update2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512170035247_fix.resx">
+      <DependentUpon>201512170035247_fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
