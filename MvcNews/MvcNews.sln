@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcNews", "MvcNews\MvcNews.csproj", "{C2AB2CFD-7DF7-4A76-A7A6-D5F1E9E47DDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{6CE5C9C9-FB4C-4BF3-B742-990B0B631055}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2AB2CFD-7DF7-4A76-A7A6-D5F1E9E47DDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2AB2CFD-7DF7-4A76-A7A6-D5F1E9E47DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2AB2CFD-7DF7-4A76-A7A6-D5F1E9E47DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2AB2CFD-7DF7-4A76-A7A6-D5F1E9E47DDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CE5C9C9-FB4C-4BF3-B742-990B0B631055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE5C9C9-FB4C-4BF3-B742-990B0B631055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE5C9C9-FB4C-4BF3-B742-990B0B631055}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE5C9C9-FB4C-4BF3-B742-990B0B631055}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
