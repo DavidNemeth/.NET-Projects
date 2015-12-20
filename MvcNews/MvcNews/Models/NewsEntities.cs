@@ -29,9 +29,10 @@ namespace MvcNews.Models
         public DateTime PostedDate { get; set; }
         public DateTime? Modified { get; set; }
         public Category Category { get; set; }
-        public ICollection<PostTag> PostTags { get; set; }
+        public int CategoryID { get; set; }
+        public ICollection<NewsTag> NewsTags { get; set; }
     }
-    public class PostTag
+    public class NewsTag
     {
         [Key]
         public int Id { get; set; }

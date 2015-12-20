@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClassLibrary1
+namespace NewsDbModel
 {
     using System;
     using System.Data.Entity;
@@ -28,6 +28,6 @@ namespace ClassLibrary1
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<News> News { get; set; }
-        public virtual DbSet<PostTag> PostTags { get; set; }
+        public virtual DbSet<NewsTag> NewsTags { get; set; }
     }
 }

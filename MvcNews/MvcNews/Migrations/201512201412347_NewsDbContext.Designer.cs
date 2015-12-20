@@ -7,13 +7,13 @@ namespace MvcNews.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class firstmig : IMigrationMetadata
+    public sealed partial class NewsDbContext : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(firstmig));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NewsDbContext));
         
         string IMigrationMetadata.Id
         {
-            get { return "201512201318331_firstmig"; }
+            get { return "201512201412347_NewsDbContext"; }
         }
         
         string IMigrationMetadata.Source

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClassLibrary1
+namespace NewsDbModel
 {
     using System;
     using System.Collections.Generic;

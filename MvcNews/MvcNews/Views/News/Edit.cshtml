@@ -1,0 +1,57 @@
+﻿@model MvcNews.Models.NewsViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>JobPost</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.News.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.News.Tittle, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.News.Tittle)
+                @Html.ValidationMessageFor(model => model.News.Tittle)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.News.CategoryID, "CategoryID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.DropDownListFor(m => m.News.CategoryID,
+                        (SelectList)ViewBag.CategoryID,
+                        Model.News.Category.Id);
+
+                @Html.ValidationMessageFor(model => model.News.CategoryID)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewsTags, "JobTag", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(m => m._newsTag, Model.NewsTags)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -7,15 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClassLibrary1
+namespace NewsDbModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PostTag
+    public partial class NewsTag
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PostTag()
+        public NewsTag()
         {
             this.News = new HashSet<News>();
         }

@@ -35,19 +35,19 @@
           <Property Name="Modified" Type="datetime" />
           <Property Name="Category_Id" Type="int" />
         </EntityType>
-        <EntityType Name="PostTag">
+        <EntityType Name="NewsTag">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="PostTagNews">
+        <EntityType Name="NewsTagNews">
           <Key>
-            <PropertyRef Name="PostTag_Id" />
+            <PropertyRef Name="NewsTag_Id" />
             <PropertyRef Name="News_Id" />
           </Key>
-          <Property Name="PostTag_Id" Type="int" Nullable="false" />
+          <Property Name="NewsTag_Id" Type="int" Nullable="false" />
           <Property Name="News_Id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_News_dbo_Category_Category_Id">
@@ -62,31 +62,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_PostTagNews_dbo_News_News_Id">
+        <Association Name="FK_dbo_NewsTagNews_dbo_News_News_Id">
           <End Role="News" Type="Self.News" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="PostTagNews" Type="Self.PostTagNews" Multiplicity="*" />
+          <End Role="NewsTagNews" Type="Self.NewsTagNews" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="News">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PostTagNews">
+            <Dependent Role="NewsTagNews">
               <PropertyRef Name="News_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_PostTagNews_dbo_PostTag_PostTag_Id">
-          <End Role="PostTag" Type="Self.PostTag" Multiplicity="1">
+        <Association Name="FK_dbo_NewsTagNews_dbo_NewsTag_NewsTag_Id">
+          <End Role="NewsTag" Type="Self.NewsTag" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="PostTagNews" Type="Self.PostTagNews" Multiplicity="*" />
+          <End Role="NewsTagNews" Type="Self.NewsTagNews" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PostTag">
+            <Principal Role="NewsTag">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PostTagNews">
-              <PropertyRef Name="PostTag_Id" />
+            <Dependent Role="NewsTagNews">
+              <PropertyRef Name="NewsTag_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -94,19 +94,19 @@
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PostTag" EntityType="Self.PostTag" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PostTagNews" EntityType="Self.PostTagNews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsTag" EntityType="Self.NewsTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsTagNews" EntityType="Self.NewsTagNews" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_News_dbo_Category_Category_Id" Association="Self.FK_dbo_News_dbo_Category_Category_Id">
             <End Role="Category" EntitySet="Category" />
             <End Role="News" EntitySet="News" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_PostTagNews_dbo_News_News_Id" Association="Self.FK_dbo_PostTagNews_dbo_News_News_Id">
+          <AssociationSet Name="FK_dbo_NewsTagNews_dbo_News_News_Id" Association="Self.FK_dbo_NewsTagNews_dbo_News_News_Id">
             <End Role="News" EntitySet="News" />
-            <End Role="PostTagNews" EntitySet="PostTagNews" />
+            <End Role="NewsTagNews" EntitySet="NewsTagNews" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_PostTagNews_dbo_PostTag_PostTag_Id" Association="Self.FK_dbo_PostTagNews_dbo_PostTag_PostTag_Id">
-            <End Role="PostTag" EntitySet="PostTag" />
-            <End Role="PostTagNews" EntitySet="PostTagNews" />
+          <AssociationSet Name="FK_dbo_NewsTagNews_dbo_NewsTag_NewsTag_Id" Association="Self.FK_dbo_NewsTagNews_dbo_NewsTag_NewsTag_Id">
+            <End Role="NewsTag" EntitySet="NewsTag" />
+            <End Role="NewsTagNews" EntitySet="NewsTagNews" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -145,15 +145,15 @@
           <Property Name="Modified" Type="DateTime" Precision="3" />
           <Property Name="Category_Id" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK_dbo_News_dbo_Category_Category_Id" FromRole="News" ToRole="Category" />
-          <NavigationProperty Name="PostTags" Relationship="Self.PostTagNews" FromRole="News" ToRole="PostTag" />
+          <NavigationProperty Name="NewsTags" Relationship="Self.NewsTagNews" FromRole="News" ToRole="NewsTag" />
         </EntityType>
-        <EntityType Name="PostTag">
+        <EntityType Name="NewsTag">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="News" Relationship="Self.PostTagNews" FromRole="PostTag" ToRole="News" />
+          <NavigationProperty Name="News" Relationship="Self.NewsTagNews" FromRole="NewsTag" ToRole="News" />
         </EntityType>
         <Association Name="FK_dbo_News_dbo_Category_Category_Id">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -167,22 +167,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PostTagNews">
+        <Association Name="NewsTagNews">
           <End Role="News" Type="Self.News" Multiplicity="*" />
-          <End Role="PostTag" Type="Self.PostTag" Multiplicity="*" />
+          <End Role="NewsTag" Type="Self.NewsTag" Multiplicity="*" />
         </Association>
         <EntityContainer Name="NewsDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="News" EntityType="Self.News" />
-          <EntitySet Name="PostTags" EntityType="Self.PostTag" />
+          <EntitySet Name="NewsTags" EntityType="Self.NewsTag" />
           <AssociationSet Name="FK_dbo_News_dbo_Category_Category_Id" Association="Self.FK_dbo_News_dbo_Category_Category_Id">
             <End Role="Category" EntitySet="Categories" />
             <End Role="News" EntitySet="News" />
           </AssociationSet>
-          <AssociationSet Name="PostTagNews" Association="Self.PostTagNews">
+          <AssociationSet Name="NewsTagNews" Association="Self.NewsTagNews">
             <End Role="News" EntitySet="News" />
-            <End Role="PostTag" EntitySet="PostTags" />
+            <End Role="NewsTag" EntitySet="NewsTags" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -223,20 +223,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PostTags">
-            <EntityTypeMapping TypeName="NewsDbModel.PostTag">
-              <MappingFragment StoreEntitySet="PostTag">
+          <EntitySetMapping Name="NewsTags">
+            <EntityTypeMapping TypeName="NewsDbModel.NewsTag">
+              <MappingFragment StoreEntitySet="NewsTag">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="PostTagNews" TypeName="NewsDbModel.PostTagNews" StoreEntitySet="PostTagNews">
+          <AssociationSetMapping Name="NewsTagNews" TypeName="NewsDbModel.NewsTagNews" StoreEntitySet="NewsTagNews">
             <EndProperty Name="News">
               <ScalarProperty Name="Id" ColumnName="News_Id" />
             </EndProperty>
-            <EndProperty Name="PostTag">
-              <ScalarProperty Name="Id" ColumnName="PostTag_Id" />
+            <EndProperty Name="NewsTag">
+              <ScalarProperty Name="Id" ColumnName="NewsTag_Id" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

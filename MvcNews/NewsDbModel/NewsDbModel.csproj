@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6CE5C9C9-FB4C-4BF3-B742-990B0B631055}</ProjectGuid>
+    <ProjectGuid>{39CADBB2-74C1-4D62-91AB-F63CE460F5B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClassLibrary1</RootNamespace>
-    <AssemblyName>ClassLibrary1</AssemblyName>
+    <RootNamespace>NewsDbModel</RootNamespace>
+    <AssemblyName>NewsDbModel</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
@@ -67,63 +67,63 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs">
-      <DependentUpon>NewsModel.tt</DependentUpon>
+      <DependentUpon>NewsDb.tt</DependentUpon>
     </Compile>
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>NewsModel.tt</DependentUpon>
+      <DependentUpon>NewsDb.tt</DependentUpon>
     </Compile>
     <Compile Include="News.cs">
-      <DependentUpon>NewsModel.tt</DependentUpon>
+      <DependentUpon>NewsDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="NewsModel.Context.cs">
+    <Compile Include="NewsDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NewsModel.Context.tt</DependentUpon>
+      <DependentUpon>NewsDb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="NewsModel.cs">
+    <Compile Include="NewsDb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NewsModel.tt</DependentUpon>
+      <DependentUpon>NewsDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="NewsModel.Designer.cs">
+    <Compile Include="NewsDb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NewsModel.edmx</DependentUpon>
+      <DependentUpon>NewsDb.edmx</DependentUpon>
     </Compile>
-    <Compile Include="PostTag.cs">
-      <DependentUpon>NewsModel.tt</DependentUpon>
+    <Compile Include="NewsTag.cs">
+      <DependentUpon>NewsDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NewsDb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NewsDb.edmx</DependentUpon>
+      <LastGenOutput>NewsDb.Context.cs</LastGenOutput>
+    </Content>
     <Content Include="NewsDb.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewsDb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NewsDb.edmx</DependentUpon>
+      <LastGenOutput>NewsDb.cs</LastGenOutput>
     </Content>
     <Content Include="NewsDb_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>NewsDb.mdf</DependentUpon>
     </Content>
-    <Content Include="NewsModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NewsModel.edmx</DependentUpon>
-      <LastGenOutput>NewsModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="NewsModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NewsModel.edmx</DependentUpon>
-      <LastGenOutput>NewsModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="NewsModel.edmx">
+    <EntityDeploy Include="NewsDb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NewsModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>NewsDb.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="NewsModel.edmx.diagram">
-      <DependentUpon>NewsModel.edmx</DependentUpon>
+    <None Include="NewsDb.edmx.diagram">
+      <DependentUpon>NewsDb.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClassLibrary1
+namespace NewsDbModel
 {
     using System;
     using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace ClassLibrary1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public News()
         {
-            this.PostTags = new HashSet<PostTag>();
+            this.NewsTags = new HashSet<NewsTag>();
         }
     
         public int Id { get; set; }
@@ -31,6 +31,6 @@ namespace ClassLibrary1
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PostTag> PostTags { get; set; }
+        public virtual ICollection<NewsTag> NewsTags { get; set; }
     }
 }

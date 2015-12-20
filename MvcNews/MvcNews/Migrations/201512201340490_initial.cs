@@ -3,7 +3,7 @@ namespace MvcNews.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class firstmig : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -34,7 +34,7 @@ namespace MvcNews.Migrations
                 .Index(t => t.Category_Id);
             
             CreateTable(
-                "dbo.PostTag",
+                "dbo.NewsTag",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -43,30 +43,30 @@ namespace MvcNews.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.PostTagNews",
+                "dbo.NewsTagNews",
                 c => new
                     {
-                        PostTag_Id = c.Int(nullable: false),
+                        NewsTag_Id = c.Int(nullable: false),
                         News_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.PostTag_Id, t.News_Id })
-                .ForeignKey("dbo.PostTag", t => t.PostTag_Id, cascadeDelete: true)
+                .PrimaryKey(t => new { t.NewsTag_Id, t.News_Id })
+                .ForeignKey("dbo.NewsTag", t => t.NewsTag_Id, cascadeDelete: true)
                 .ForeignKey("dbo.News", t => t.News_Id, cascadeDelete: true)
-                .Index(t => t.PostTag_Id)
+                .Index(t => t.NewsTag_Id)
                 .Index(t => t.News_Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.PostTagNews", "News_Id", "dbo.News");
-            DropForeignKey("dbo.PostTagNews", "PostTag_Id", "dbo.PostTag");
+            DropForeignKey("dbo.NewsTagNews", "News_Id", "dbo.News");
+            DropForeignKey("dbo.NewsTagNews", "NewsTag_Id", "dbo.NewsTag");
             DropForeignKey("dbo.News", "Category_Id", "dbo.Category");
-            DropIndex("dbo.PostTagNews", new[] { "News_Id" });
-            DropIndex("dbo.PostTagNews", new[] { "PostTag_Id" });
+            DropIndex("dbo.NewsTagNews", new[] { "News_Id" });
+            DropIndex("dbo.NewsTagNews", new[] { "NewsTag_Id" });
             DropIndex("dbo.News", new[] { "Category_Id" });
-            DropTable("dbo.PostTagNews");
-            DropTable("dbo.PostTag");
+            DropTable("dbo.NewsTagNews");
+            DropTable("dbo.NewsTag");
             DropTable("dbo.News");
             DropTable("dbo.Category");
         }
