@@ -43,6 +43,7 @@ namespace MvcNews.Models
         public DbSet <News> News { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<NewsTag> NewsTags { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

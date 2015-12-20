@@ -26,27 +26,43 @@ namespace MvcNews.Models
         [Required]
         public bool Published { get; set; }
         [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime PostedDate { get; set; }
         public DateTime? Modified { get; set; }
         public Category Category { get; set; }
         public int CategoryID { get; set; }
         public ICollection<NewsTag> NewsTags { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
     public class NewsTag
     {
         [Key]
-        public int Id { get; set; }
+        public int TagId { get; set; }
         [Required]
-        public string Name { get; set; }
-        public ICollection<News> News { get; set; }
+        public string TagName { get; set; }
+        public ICollection<News> News { get; set; }        
     }
     public class Category
     {
         [Key]
-        public int Id { get; set; }
+        public int CategoryId { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string CategoryName { get; set; }
         public ICollection<News> News { get; set; }
+    }
+    public class Comment
+    {
+        [Key]
+        public int CommentId { get; set; }
+        [Required]
+        public string UserName { get; set; }
+        [Required]
+        public DateTime CommentDate { get; set; }
+        [Required]
+        public string Text { get; set; }
+        public News News { get; set; }
+        public int NewsID { get; set; }
     }
 
 }

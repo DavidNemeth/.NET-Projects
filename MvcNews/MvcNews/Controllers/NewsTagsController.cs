@@ -7,108 +7,110 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MvcNews.Models;
-using MvcNews.ViewModel;
-using System.Data.Entity.Infrastructure;
 
 namespace MvcNews.Controllers
 {
-    public class NewsController : Controller
+    public class NewsTagsController : Controller
     {
         private NewsDbContext db = new NewsDbContext();
 
-       
+        // GET: NewsTags
         public ActionResult Index()
         {
-            var news = db.News.Include(n => n.Category);
-            return View(news.ToList());
+            return View(db.NewsTags.ToList());
         }
-      
+
+        // GET: NewsTags/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            NewsTag newsTag = db.NewsTags.Find(id);
+            if (newsTag == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(newsTag);
         }
-       
+
+        // GET: NewsTags/Create
         public ActionResult Create()
         {
-            CategoryList();
             return View();
         }
 
-        
+        // POST: NewsTags/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Tittle,Description,Body,Published,PostedDate,Modified,CategoryID")] News news)
+        public ActionResult Create([Bind(Include = "TagId,TagName")] NewsTag newsTag)
         {
             if (ModelState.IsValid)
             {
-                db.News.Add(news);
+                db.NewsTags.Add(newsTag);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            CategoryList(news.CategoryID);
-            return View(news);
+            return View(newsTag);
         }
 
+        // GET: NewsTags/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            NewsTag newsTag = db.NewsTags.Find(id);
+            if (newsTag == null)
             {
                 return HttpNotFound();
             }
-            CategoryList(news.CategoryID);
-            return View(news);
+            return View(newsTag);
         }
-        
+
+        // POST: NewsTags/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Tittle,Description,Body,Published,PostedDate,Modified,CategoryID")] News news)
+        public ActionResult Edit([Bind(Include = "TagId,TagName")] NewsTag newsTag)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(news).State = EntityState.Modified;
+                db.Entry(newsTag).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            CategoryList(news.CategoryID);
-            return View(news);
+            return View(newsTag);
         }
 
-
+        // GET: NewsTags/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            NewsTag newsTag = db.NewsTags.Find(id);
+            if (newsTag == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(newsTag);
         }
-        
+
+        // POST: NewsTags/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            News news = db.News.Find(id);
-            db.News.Remove(news);
+            NewsTag newsTag = db.NewsTags.Find(id);
+            db.NewsTags.Remove(newsTag);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -121,24 +123,5 @@ namespace MvcNews.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-
-
-
-
-# region helpers
-        private void CategoryList(object selectedCategory = null)
-        {
-            var category = from d in db.Categories
-                           orderby d.CategoryName
-                           select d;
-            ViewBag.CategoryID = new SelectList(category, "CategoryId", "CategoryName", selectedCategory);
-        }
-
-
-
-
-# endregion
     }
 }

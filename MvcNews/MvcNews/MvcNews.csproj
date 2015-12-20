@@ -170,28 +170,38 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\NewsTagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512201340490_initial.cs" />
-    <Compile Include="Migrations\201512201340490_initial.Designer.cs">
-      <DependentUpon>201512201340490_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201512201740358_initial.cs" />
+    <Compile Include="Migrations\201512201740358_initial.Designer.cs">
+      <DependentUpon>201512201740358_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512201412347_NewsDbContext.cs" />
-    <Compile Include="Migrations\201512201412347_NewsDbContext.Designer.cs">
-      <DependentUpon>201512201412347_NewsDbContext.cs</DependentUpon>
+    <Compile Include="Migrations\201512201746499_comment.cs" />
+    <Compile Include="Migrations\201512201746499_comment.Designer.cs">
+      <DependentUpon>201512201746499_comment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512201749036_commentfix.cs" />
+    <Compile Include="Migrations\201512201749036_commentfix.Designer.cs">
+      <DependentUpon>201512201749036_commentfix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512201755379_fix.cs" />
+    <Compile Include="Migrations\201512201755379_fix.Designer.cs">
+      <DependentUpon>201512201755379_fix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NewsEntities.cs" />
-    <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\NewsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -251,8 +261,18 @@
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
-    <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\NewsTags\Create.cshtml" />
+    <Content Include="Views\NewsTags\Delete.cshtml" />
+    <Content Include="Views\NewsTags\Details.cshtml" />
+    <Content Include="Views\NewsTags\Edit.cshtml" />
+    <Content Include="Views\NewsTags\Index.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -266,15 +286,21 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512201340490_initial.resx">
-      <DependentUpon>201512201340490_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512201412347_NewsDbContext.resx">
-      <DependentUpon>201512201412347_NewsDbContext.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <EmbeddedResource Include="Migrations\201512201740358_initial.resx">
+      <DependentUpon>201512201740358_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512201746499_comment.resx">
+      <DependentUpon>201512201746499_comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512201749036_commentfix.resx">
+      <DependentUpon>201512201749036_commentfix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512201755379_fix.resx">
+      <DependentUpon>201512201755379_fix.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
