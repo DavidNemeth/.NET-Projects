@@ -10,7 +10,8 @@ namespace MvcNews.ViewModel
     public class NewsViewModel
     {
         public News News { get; set; }
-        public IEnumerable<SelectListItem> NewsTags { get; set; }
+        public IEnumerable<SelectListItem> AllTags { get; set; }
+        
 
         private List<int> _newsTag;
         public List<int> newsTag

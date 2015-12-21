@@ -19,7 +19,7 @@ namespace MvcNews.Controllers
        
         public ActionResult Index()
         {
-            var news = db.News.Include(n => n.Category);
+            var news = db.News.Include(n => n.Category).Include(t => t.NewsTags);
             return View(news.ToList());
         }
       
@@ -38,23 +38,38 @@ namespace MvcNews.Controllers
         }
        
         public ActionResult Create()
-        {
-            CategoryList();
+        {            
+            var news = new News();            
+            news.NewsTags = new List<NewsTag>();
+            TagList(news);
+            CategoryList();            
             return View();
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Tittle,Description,Body,Published,PostedDate,Modified,CategoryID")] News news)
+        public ActionResult Create([Bind(Include = "Id,Tittle,Description,Body,Published,PostedDate,Modified,CategoryID")] News news, string[] checkedTag)
         {
+
+            news.PostedDate = DateTime.Now;                       
+           
+            if (checkedTag != null)
+            {
+                news.NewsTags = new List<NewsTag>();
+                foreach (var tag in checkedTag)
+                {
+                    var addtag = db.NewsTags.Find(int.Parse(tag));
+                    news.NewsTags.Add(addtag);
+                }
+            }          
             if (ModelState.IsValid)
             {
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            TagList(news);
             CategoryList(news.CategoryID);
             return View(news);
         }
@@ -65,28 +80,52 @@ namespace MvcNews.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
+            News news = db.News
+                .Include(n => n.NewsTags)
+                .Where(n => n.Id == id)
+                .Single();
             if (news == null)
             {
                 return HttpNotFound();
             }
             CategoryList(news.CategoryID);
+            TagList(news);
             return View(news);
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Tittle,Description,Body,Published,PostedDate,Modified,CategoryID")] News news)
+        public ActionResult Edit(int? id, string[] checkedTag)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(news).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CategoryList(news.CategoryID);
-            return View(news);
+            var UpdatePost = db.News
+                .Include(n => n.NewsTags)
+                .Where(n => n.Id == id)
+                .Single();
+            UpdatePost.Modified = DateTime.Now;
+                        
+                if (TryUpdateModel(UpdatePost, "", new string[] {                    
+                    "CategoryID",
+                    "Tittle",
+                    "Description",
+                    "Body",
+                    "Published",
+                    "Modified" }))
+                {
+                    EditPostTags(checkedTag, UpdatePost);
+                    db.Entry(UpdatePost).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                        
+            CategoryList(UpdatePost.CategoryID);
+            TagList(UpdatePost);
+            return View(UpdatePost);
         }
+
 
 
         public ActionResult Delete(int? id)
@@ -113,14 +152,10 @@ namespace MvcNews.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
+
+
+
 
 
 
@@ -136,9 +171,62 @@ namespace MvcNews.Controllers
             ViewBag.CategoryID = new SelectList(category, "CategoryId", "CategoryName", selectedCategory);
         }
 
+        private void TagList(News news)
+        {
+            var allTags = db.NewsTags;
+            var newsTags = new HashSet<int>(news.NewsTags.Select(t => t.TagId));
+            var Model = new List<NewsTagsViewModel>();
+            foreach (var tag in allTags)
+            {
+                Model.Add(new NewsTagsViewModel
+                {
+                    TagId = tag.TagId,
+                    TagName = tag.TagName,
+                    Checked = newsTags.Contains(tag.TagId)
+                });
+            }
+            ViewBag.Tags = Model;
+        }
+        private void EditPostTags(string[] checkedTag, News newsToUpdate)
+        {
+            if (checkedTag == null)
+            {
+                newsToUpdate.NewsTags = new List<NewsTag>();
+                return;
+            }
+            var selectedTag = new HashSet<string>(checkedTag);
+            var newstags = new HashSet<int>(newsToUpdate.NewsTags.Select(t => t.TagId));
+            foreach (var tag in db.NewsTags)
+            {
+                var tagidstring = tag.TagId.ToString();
+
+                if (selectedTag.Contains(tagidstring))
+                {
+                    if (!newstags.Contains(tag.TagId))
+                    {
+                        newsToUpdate.NewsTags.Add(tag);
+                    }
+                }
+                else
+                {
+                    if (newstags.Contains(tag.TagId))
+                    {
+                        newsToUpdate.NewsTags.Remove(tag);
+                    }
+                }                
+            }                        
+        }        
 
 
 
-# endregion
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+        #endregion
     }
 }

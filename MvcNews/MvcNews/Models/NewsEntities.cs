@@ -26,8 +26,8 @@ namespace MvcNews.Models
         [Required]
         public bool Published { get; set; }
         [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime PostedDate { get; set; }
         public DateTime? Modified { get; set; }
         public Category Category { get; set; }

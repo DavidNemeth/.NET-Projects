@@ -15,17 +15,14 @@
             @Html.DisplayNameFor(model => model.Id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
+            Category
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Tittle)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
+        </th>       
         <th>
             @Html.DisplayNameFor(model => model.Published)
         </th>
@@ -34,11 +31,16 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Modified)
-        </th>        
+        </th>  
+        <th>
+            @Html.DisplayNameFor(model => model.NewsTags)
+        </th>      
+           
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Id)
@@ -51,10 +53,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
+        </td>        
         <td>
             @Html.DisplayFor(modelItem => item.Published)
         </td>
@@ -63,7 +62,17 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Modified)
-        </td>        
+        </td>  
+        <td>
+            @{
+                foreach (var tag in item.NewsTags)
+                {
+                    @tag.TagName <s></s>
+                }
+            }
+        </td>
+
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
