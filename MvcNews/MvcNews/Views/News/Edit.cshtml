@@ -72,39 +72,30 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Tags</label>
-            <div class="col-md-offset-2 col-md-10">
-                <table>
-                    <tr>
-                        @{ 
-                            int count = 0;
-                            List<MvcNews.ViewModel.NewsTagsViewModel> tags = ViewBag.Tags;
-                            foreach (var tag in tags)
-                            {
-                                if (count++ % 4 == 0)
-                                {
-                                    @:</tr><tr>
-                                }
-                                @:<td>
-                                <input type="checkbox"                       
-                                       name="checkedTag"
-                                       value="@tag.TagId"
-                                       @(Html.Raw(tag.Checked ? "checked" : ""))/>
-                                       @tag.TagName
-                                @:</td>
-                            }
-                            @:</tr>
-                        }
-                </table>
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+        <div class="row">
+            
+                <div class="col-md-4 form-group">
+                    <label class="control-label">Tagek</label>
+                    @Html.ListBox("SelectedTags", (MultiSelectList)ViewBag.SelectedTags, new { @class = "form-control" }) 
+                    <button type="button" id="btnRight" class="btn btn-default">
+                        <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                    </button>               
+                </div>  
+
+                <div class="col-md-4 form-group">
+                    <label class="control-label">Összes Tag</label>
+                    @Html.ListBox("NotSelectedTags", (MultiSelectList)ViewBag.NotSelectedTags, new { @class = "form-control" })                   
+                        <button type="button" id="btnLeft" class="btn btn-default">
+                            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                        </button>                    
+                </div> 
+        </div>   
+        
+            <div>
+                <input type="submit" id="btnSubmit" value="Save" class="btn btn-default" />
             </div>
-        </div>
+           
     </div>
 }
 
@@ -114,4 +105,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/dualselect")
 }

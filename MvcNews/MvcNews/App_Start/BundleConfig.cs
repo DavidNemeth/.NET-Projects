@@ -26,6 +26,8 @@ namespace MvcNews
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/dualselect").Include(
+                "~/Scripts/dualselectbox.js"));
         }
     }
 }

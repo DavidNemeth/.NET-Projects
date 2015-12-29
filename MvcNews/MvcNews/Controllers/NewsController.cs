@@ -49,15 +49,15 @@ namespace MvcNews.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Tittle,Description,Body,Published,PostedDate,Modified,CategoryID")] News news, string[] checkedTag)
+        public ActionResult Create([Bind(Include = "Id,Tittle,Description,Body,Published,PostedDate,Modified,CategoryID")] News news, string[] selectedTags)
         {
 
             news.PostedDate = DateTime.Now;                       
            
-            if (checkedTag != null)
+            if (selectedTags != null)
             {
                 news.NewsTags = new List<NewsTag>();
-                foreach (var tag in checkedTag)
+                foreach (var tag in selectedTags)
                 {
                     var addtag = db.NewsTags.Find(int.Parse(tag));
                     news.NewsTags.Add(addtag);
@@ -95,7 +95,7 @@ namespace MvcNews.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, string[] checkedTag)
+        public ActionResult Edit(int? id, string[] SelectedTags)
         {
             if (id == null)
             {
@@ -115,7 +115,7 @@ namespace MvcNews.Controllers
                     "Published",
                     "Modified" }))
                 {
-                    EditPostTags(checkedTag, UpdatePost);
+                    EditPostTags(SelectedTags, UpdatePost);
                     db.Entry(UpdatePost).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -174,18 +174,31 @@ namespace MvcNews.Controllers
         private void TagList(News news)
         {
             var allTags = db.NewsTags;
-            var newsTags = new HashSet<int>(news.NewsTags.Select(t => t.TagId));
-            var Model = new List<NewsTagsViewModel>();
+            var PostTags = new HashSet<int>(news.NewsTags.Select(t => t.TagId));
+            var SelectedTags = new List<NewsTagsViewModel>();
+            var NotSelectedTags = new List<NewsTagsViewModel>();
+
             foreach (var tag in allTags)
             {
-                Model.Add(new NewsTagsViewModel
+                if (PostTags.Contains(tag.TagId))
                 {
-                    TagId = tag.TagId,
-                    TagName = tag.TagName,
-                    Checked = newsTags.Contains(tag.TagId)
-                });
+                    SelectedTags.Add(new NewsTagsViewModel
+                    {
+                        TagId = tag.TagId,
+                        TagName = tag.TagName
+                    });
+                }
+                else
+                {
+                    NotSelectedTags.Add(new NewsTagsViewModel
+                    {
+                        TagId = tag.TagId,
+                        TagName = tag.TagName
+                    });
+                }                
             }
-            ViewBag.Tags = Model;
+            ViewBag.SelectedTags = new MultiSelectList(SelectedTags, "TagId", "TagName");
+            ViewBag.NotSelectedTags = new MultiSelectList(NotSelectedTags, "TagId", "TagName");
         }
         private void EditPostTags(string[] checkedTag, News newsToUpdate)
         {
