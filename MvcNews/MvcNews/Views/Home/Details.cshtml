@@ -15,7 +15,7 @@
                 <h1>@Html.DisplayFor(model => model.Tittle)</h1>
                 <!-- Author -->
                 <p class="lead">
-                    by <a href="#">TODO:AUTHOR</a>
+                    @Html.DisplayFor(model => model.Category.CategoryName) 
                 </p>
                 <hr>
                 <!-- Date/Time -->
