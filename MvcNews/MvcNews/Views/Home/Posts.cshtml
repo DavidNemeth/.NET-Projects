@@ -68,17 +68,18 @@
                             <ul class="list-unstyled">    
                                 @{ 
                                     int count = 0;
-
-                                       foreach (var item in ViewBag.AllCategory)
-                                       {
-                                             @item.CategoryName
-                                           count++;
-                                           if (count % 3 == 0)
-                                           {
+                                    string name;
+                                    foreach (var item in ViewBag.AllCategory)
+                                    {
+                                        name = item.CategoryName.ToString();
+                                        @Html.ActionLink(name, "Index", new { CatId = item.CategoryId });@:&nbsp; 
+                                        count++;                                        
+                                        if (count % 3 == 0)
+                                        {
                                                <li></li>
                                         }
                                     }
-                                 }                            
+                                 }                                                            
                             </ul>
                         </div>
                         <div class="col-lg-6">

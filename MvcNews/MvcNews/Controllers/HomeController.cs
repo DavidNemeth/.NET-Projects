@@ -27,47 +27,79 @@ namespace MvcNews.Controllers
         }
         private NewsDbContext db = new NewsDbContext();
 
-        public ActionResult Posts()
+        public ActionResult Posts(int? CatId)
         {
             newsList.Clear();
             var news = repo.GetAllNews();
             var categories = repo.GetAllCategory();
             var tags = repo.GetAllTags();
-            foreach (var post in news)
+            if (CatId == null)
             {
-                newsList.Add(new NewsViewModel()
+                newsList.Clear();
+                foreach (var post in news)
                 {
-                    News = news,
-                    Id = post.Id,
-                    Tittle = post.Tittle,
-                    Description = post.Description,
-                    Body = post.Body,
-                    PostedDate = post.PostedDate,
-                    Modified = post.Modified,
-                    Category = post.Category,
-                    CategoryID = post.CategoryID,
-                    NewsTags = post.NewsTags,   
-                    AllCategory = categories,
-                    AllTags = tags                 
-                });
+                    newsList.Add(new NewsViewModel()
+                    {
+                        News = news,
+                        Id = post.Id,
+                        Tittle = post.Tittle,
+                        Description = post.Description,
+                        Body = post.Body,
+                        PostedDate = post.PostedDate,
+                        Modified = post.Modified,
+                        Category = post.Category,
+                        CategoryID = post.CategoryID,
+                        NewsTags = post.NewsTags,
+                        AllCategory = categories,
+                        AllTags = tags
+                    });
+                }
+                ViewBag.AllCategory = categories;
+                CategoryList();
+                ViewBag.AllTags = tags;
+                return PartialView("Posts");
             }
-            ViewBag.AllCategory = categories;
-            ViewBag.AllTags = tags;
-            return PartialView("Posts");
+            else
+            {
+                newsList.Clear();
+                var newss = repo.GetAllNews().Where(p => p.CategoryID == CatId);
+                foreach (var post in newss)
+                {
+                    newsList.Add(new NewsViewModel()
+                    {
+                        News = news,
+                        Id = post.Id,
+                        Tittle = post.Tittle,
+                        Description = post.Description,
+                        Body = post.Body,
+                        PostedDate = post.PostedDate,
+                        Modified = post.Modified,
+                        Category = post.Category,
+                        CategoryID = post.CategoryID,
+                        NewsTags = post.NewsTags,
+                        AllCategory = categories,
+                        AllTags = tags
+                    });
+                }
+                ViewBag.AllCategory = categories;
+                CategoryList();
+                ViewBag.AllTags = tags;
+                return PartialView("Posts");
+            }    
+            
         }
 
-        public ActionResult Index()
-        {
-
+        public ActionResult Index(int? CatId)
+        {            
             //var news = db.News.Include(n => n.Category)
             //    .Include(t => t.NewsTags)
             //    .Where(p => p.Published == true)
             //    .OrderByDescending(p => p.PostedDate);
             //CategoryList();
             //TagList();
-            Posts();
+            Posts(CatId);
             return View(/*news.ToList()*/);
-        }
+        }        
 
         public ActionResult Details(int? id)
         {
@@ -125,10 +157,8 @@ namespace MvcNews.Controllers
         #region helpers
         private void CategoryList(object selectedCategory = null)
         {
-            var category = from d in db.Categories
-                           orderby d.CategoryName
-                           select d;
-            ViewBag.CategoryID = new SelectList(category, "CategoryId", "CategoryName", selectedCategory);
+            var category = repo.GetAllCategory();
+            ViewBag.Category = new SelectList(category, "CategoryId", "CategoryName", selectedCategory);
         }
         private void TagList(object selectedCategory = null)
         {
@@ -150,6 +180,7 @@ namespace MvcNews.Controllers
         {
             return repo.GetAllTags();
         }
+
         #endregion
     }
 }
