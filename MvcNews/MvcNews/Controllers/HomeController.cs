@@ -27,13 +27,13 @@ namespace MvcNews.Controllers
         }
         private NewsDbContext db = new NewsDbContext();
 
-        public ActionResult Posts(int? CatId)
+        public ActionResult Posts(int? CatId,int? TagId)
         {
             newsList.Clear();
             var news = repo.GetAllNews();
             var categories = repo.GetAllCategory();
             var tags = repo.GetAllTags();
-            if (CatId == null)
+            if (CatId == null & TagId == null)
             {
                 newsList.Clear();
                 foreach (var post in news)
@@ -62,9 +62,9 @@ namespace MvcNews.Controllers
             else
             {
                 newsList.Clear();
-                var newss = repo.GetAllNews().Where(p => p.CategoryID == CatId);
-                foreach (var post in newss)
-                {
+                var tfilter = repo.CategoryFilter(CatId);               
+                foreach (var post in tfilter)
+                {                    
                     newsList.Add(new NewsViewModel()
                     {
                         News = news,
@@ -89,7 +89,7 @@ namespace MvcNews.Controllers
             
         }
 
-        public ActionResult Index(int? CatId)
+        public ActionResult Index(int? CatId,int? TagId)
         {            
             //var news = db.News.Include(n => n.Category)
             //    .Include(t => t.NewsTags)
@@ -97,7 +97,7 @@ namespace MvcNews.Controllers
             //    .OrderByDescending(p => p.PostedDate);
             //CategoryList();
             //TagList();
-            Posts(CatId);
+            Posts(CatId,TagId);
             return View(/*news.ToList()*/);
         }        
 
@@ -179,6 +179,10 @@ namespace MvcNews.Controllers
         public IList<NewsTag> GetAllTags()
         {
             return repo.GetAllTags();
+        }
+        public IList<News> CategoryFilter(int? CatID)
+        {
+            return repo.CategoryFilter(CatID);
         }
 
         #endregion

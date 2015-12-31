@@ -12,5 +12,6 @@ namespace MvcNews.DAL
         IList<News> GetAllNews();
         IList<Category> GetAllCategory();
         IList<NewsTag> GetAllTags();
+        IList<News> CategoryFilter(int? CatID);
     }
 }

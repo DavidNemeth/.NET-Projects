@@ -34,7 +34,14 @@ namespace MvcNews.DAL
         {
             return _context.NewsTags.ToList();
         }
+        public IList<News> CategoryFilter(int? CatID)
+        {
+            return _context.News
+                .Include(p => p.CategoryID)
+                .Include(p => p.NewsTags)
+                .Where(p => p.CategoryID == CatID).ToList();           
 
+        }
 
 
 
