@@ -16,7 +16,7 @@ namespace MvcNews.Controllers
     public class HomeController : Controller
     {
         private INewsRepository repo;
-        public static List<NewsViewModel> newsList = new List<NewsViewModel>();
+        public static List<NewsViewModel> newsList = new List<NewsViewModel>();        
         public HomeController()
         {
             repo = new NewsRepository(new NewsDbContext());
@@ -27,16 +27,48 @@ namespace MvcNews.Controllers
         }
         private NewsDbContext db = new NewsDbContext();
 
-        public ActionResult Posts(int? CatId,int? TagId)
+        public ActionResult Posts(int? CatId, string[] searchTag,string searchString)
         {
             newsList.Clear();
+            ViewBag.CurrentSearchTag = searchTag;
+            ViewBag.CurrentSearchString = searchString;
             var news = repo.GetAllNews();
             var categories = repo.GetAllCategory();
-            var tags = repo.GetAllTags();
-            if (CatId == null & TagId == null)
+            var tags = repo.GetAllTags();           
+           
+            newsList.Clear();
+            //viewmodel feltöltés
+            foreach (var post in news)
+            {
+                newsList.Add(new NewsViewModel()
+                {
+                        News = news,
+                        Id = post.Id,
+                        Tittle = post.Tittle,
+                        Description = post.Description,
+                        Body = post.Body,
+                        PostedDate = post.PostedDate,
+                        Modified = post.Modified,
+                        Category = post.Category,
+                        CategoryID = post.CategoryID,
+                        NewsTags = post.NewsTags,
+                        AllCategory = categories,
+                        AllTags = tags
+                });
+            }
+            //keresés
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                newsList = newsList.Where(n => n.Tittle.ToLower().Contains(searchString.ToLower())
+                || n.Description.ToLower().Contains(searchString.ToLower())
+                || n.Category.CategoryName.ToLower().Contains(searchString.ToLower())).ToList();
+            }
+            //cat filter
+            if (CatId != null)
             {
                 newsList.Clear();
-                foreach (var post in news)
+                var newscatfilter = repo.CategoryFilter(CatId);
+                foreach (var post in newscatfilter)
                 {
                     newsList.Add(new NewsViewModel()
                     {
@@ -54,51 +86,28 @@ namespace MvcNews.Controllers
                         AllTags = tags
                     });
                 }
-                ViewBag.AllCategory = categories;
-                CategoryList();
-                ViewBag.AllTags = tags;
-                return PartialView("Posts");
             }
-            else
-            {
-                newsList.Clear();
-                var tfilter = repo.CategoryFilter(CatId);               
-                foreach (var post in tfilter)
-                {                    
-                    newsList.Add(new NewsViewModel()
-                    {
-                        News = news,
-                        Id = post.Id,
-                        Tittle = post.Tittle,
-                        Description = post.Description,
-                        Body = post.Body,
-                        PostedDate = post.PostedDate,
-                        Modified = post.Modified,
-                        Category = post.Category,
-                        CategoryID = post.CategoryID,
-                        NewsTags = post.NewsTags,
-                        AllCategory = categories,
-                        AllTags = tags
-                    });
-                }
-                ViewBag.AllCategory = categories;
-                CategoryList();
-                ViewBag.AllTags = tags;
-                return PartialView("Posts");
-            }    
-            
+
+
+
+
+
+
+
+
+
+
+            ViewBag.AllCategory = categories;
+            CategoryList();
+            ViewBag.AllTags = tags;
+            return PartialView("Posts");
         }
 
-        public ActionResult Index(int? CatId,int? TagId)
+        public ActionResult Index(int? CatId, string[] searchTag, string searchString)
         {            
-            //var news = db.News.Include(n => n.Category)
-            //    .Include(t => t.NewsTags)
-            //    .Where(p => p.Published == true)
-            //    .OrderByDescending(p => p.PostedDate);
-            //CategoryList();
-            //TagList();
-            Posts(CatId,TagId);
-            return View(/*news.ToList()*/);
+            
+            Posts(CatId, searchTag, searchString);
+            return View();
         }        
 
         public ActionResult Details(int? id)

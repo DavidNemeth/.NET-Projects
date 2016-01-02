@@ -20,8 +20,8 @@
                     <h2>
                         <a href="@Url.Action("Details", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Tittle)</a>
                     </h2>
-                    <p class="lead">                        
-                            <a href="index.php">@Html.DisplayFor(modelItem => item.Category.CategoryName)</a>                                                
+                    <p class="lead"> Category:                       
+                            <a href="@Url.Action("Index", new {  CatId = item.CategoryID })">@Html.DisplayFor(modelItem => item.Category.CategoryName)</a>                                                
                     </p>
                     <p><span class="glyphicon glyphicon-time"></span> Posted on @Html.DisplayFor(modelItem => item.PostedDate)</p>
                     <hr>
@@ -51,15 +51,13 @@
             <div class="col-md-4">
                 <!-- Blog Search Well -->
                 <div class="well">
-                    <h4>Blog Search</h4>
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                    </div>
+                    @using (Html.BeginForm())
+                    {
+                        <p>
+                            @Html.TextBox("SearchString")
+                            <input type="submit" value="Search" />
+                        </p>
+                    }
                 </div>
                 <div class="well" style="position:fixed">
                     <h4>Categories & Tags</h4>

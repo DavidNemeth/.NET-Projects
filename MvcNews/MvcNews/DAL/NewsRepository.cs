@@ -39,9 +39,8 @@ namespace MvcNews.DAL
             return _context.News
                 .Where(p => p.CategoryID == CatID)
                 .Where(p => p.Published == true).ToList();         
-
         }
-
+        
 
 
 
