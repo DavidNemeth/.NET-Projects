@@ -1,0 +1,66 @@
+﻿@model SzereloCegApp.Models.Kliens
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kliens</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Szerelo.Vezetéknév)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Szerelo.Vezetéknév)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vezetéknév)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vezetéknév)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Keresztnév)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Keresztnév)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Szulido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Szulido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FelvetelIdeje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FelvetelIdeje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surgos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surgos)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

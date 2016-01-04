@@ -1,0 +1,72 @@
+﻿@model SzereloCegApp.Models.Kliens
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Kliens</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Szerelo.Vezetéknév)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Szerelo.Vezetéknév)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vezetéknév)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vezetéknév)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Keresztnév)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Keresztnév)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Szulido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Szulido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FelvetelIdeje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FelvetelIdeje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surgos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surgos)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
