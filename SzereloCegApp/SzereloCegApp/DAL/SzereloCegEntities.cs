@@ -11,7 +11,7 @@ namespace SzereloCegApp.DAL
     public class SzereloCegEntities : DbContext
     {
         public DbSet<Szerelo> Szerelok { get; set; }
-        public DbSet<Kliens> Kliensek { get; set; }
+        public DbSet<Ugyfel> Ugyfelek { get; set; }
 
 
         //

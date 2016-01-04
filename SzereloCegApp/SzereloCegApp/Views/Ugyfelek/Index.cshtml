@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SzereloCegApp.Models.Kliens>
+﻿@model IEnumerable<SzereloCegApp.Models.Ugyfel>
 
 @{
     ViewBag.Title = "Index";
@@ -10,38 +10,33 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
+    <tr>        
         <th>
-            Szerelő Neve
+            @Html.DisplayNameFor(model => model.UgyfelNev)
         </th>
+       
         <th>
-            @Html.DisplayNameFor(model => model.Vezetéknév)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Keresztnév)
+            @Html.DisplayNameFor(model => model.Surgos)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Szulido)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FelvetelIdeje)
-        </th>
+        </th>        
         <th>
-            @Html.DisplayNameFor(model => model.Surgos)
+            @Html.DisplayNameFor(model => model.Szerelo.SzereloNev)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr>        
         <td>
-            @Html.DisplayFor(modelItem => item.Szerelo.Keresztnév)
-        </td>
+            @Html.DisplayFor(modelItem => item.UgyfelNev)
+        </td>        
         <td>
-            @Html.DisplayFor(modelItem => item.Vezetéknév)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Keresztnév)
+            @Html.DisplayFor(modelItem => item.Surgos)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Szulido)
@@ -49,8 +44,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.FelvetelIdeje)
         </td>
+        
         <td>
-            @Html.DisplayFor(modelItem => item.Surgos)
+            @Html.DisplayFor(modelItem => item.Szerelo.SzereloNev)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

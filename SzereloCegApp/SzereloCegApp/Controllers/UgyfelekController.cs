@@ -11,113 +11,112 @@ using SzereloCegApp.Models;
 
 namespace SzereloCegApp.Controllers
 {
-    public class KliensekController : Controller
+    public class UgyfelekController : Controller
     {
         private SzereloCegEntities db = new SzereloCegEntities();
 
-        // GET: Kliensek
+        // GET: Ugyfelek
         public ActionResult Index()
         {
-            var kliensek = db.Kliensek.Include(k => k.Szerelo);
-            return View(kliensek.ToList());
+            var ugyfelek = db.Ugyfelek.Include(u => u.Szerelo);
+            return View(ugyfelek.ToList());
         }
 
-        // GET: Kliensek/Details/5
+        // GET: Ugyfelek/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Kliens kliens = db.Kliensek.Find(id);
-            if (kliens == null)
+            Ugyfel ugyfel = db.Ugyfelek.Find(id);
+            if (ugyfel == null)
             {
                 return HttpNotFound();
             }
-            return View(kliens);
+            return View(ugyfel);
         }
 
-        // GET: Kliensek/Create
+        // GET: Ugyfelek/Create
         public ActionResult Create()
-        {            
-            ViewBag.SzereloID = new SelectList(db.Szerelok, "ID", "Vezetéknév");
+        {
+            SzereloDropDown();
             return View();
         }
 
-        // POST: Kliensek/Create
+        // POST: Ugyfelek/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Vezetéknév,Keresztnév,Szulido,FelvetelIdeje,Surgos,SzereloID")] Kliens kliens)
+        public ActionResult Create([Bind(Include = "ID,Vezetéknév,Keresztnév,Szulido,FelvetelIdeje,Surgos,SzereloID")] Ugyfel ugyfel)
         {
-            kliens.FelvetelIdeje = DateTime.Now;
             if (ModelState.IsValid)
             {
-                db.Kliensek.Add(kliens);
+                db.Ugyfelek.Add(ugyfel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SzereloID = new SelectList(db.Szerelok, "ID", "Vezetéknév", kliens.SzereloID);
-            return View(kliens);
+            SzereloDropDown(ugyfel.SzereloID);
+            return View(ugyfel);
         }
 
-        // GET: Kliensek/Edit/5
+        // GET: Ugyfelek/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Kliens kliens = db.Kliensek.Find(id);
-            if (kliens == null)
+            Ugyfel ugyfel = db.Ugyfelek.Find(id);
+            if (ugyfel == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SzereloID = new SelectList(db.Szerelok, "ID", "Vezetéknév", kliens.SzereloID);
-            return View(kliens);
+            SzereloDropDown(ugyfel.SzereloID);
+            return View(ugyfel);
         }
 
-        // POST: Kliensek/Edit/5
+        // POST: Ugyfelek/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Vezetéknév,Keresztnév,Szulido,FelvetelIdeje,Surgos,SzereloID")] Kliens kliens)
+        public ActionResult Edit([Bind(Include = "ID,Vezetéknév,Keresztnév,Szulido,FelvetelIdeje,Surgos,SzereloID")] Ugyfel ugyfel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(kliens).State = EntityState.Modified;
+                db.Entry(ugyfel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SzereloID = new SelectList(db.Szerelok, "ID", "Vezetéknév", kliens.SzereloID);
-            return View(kliens);
+            SzereloDropDown(ugyfel.SzereloID);
+            return View(ugyfel);
         }
 
-        // GET: Kliensek/Delete/5
+        // GET: Ugyfelek/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Kliens kliens = db.Kliensek.Find(id);
-            if (kliens == null)
+            Ugyfel ugyfel = db.Ugyfelek.Find(id);
+            if (ugyfel == null)
             {
                 return HttpNotFound();
             }
-            return View(kliens);
+            return View(ugyfel);
         }
 
-        // POST: Kliensek/Delete/5
+        // POST: Ugyfelek/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Kliens kliens = db.Kliensek.Find(id);
-            db.Kliensek.Remove(kliens);
+            Ugyfel ugyfel = db.Ugyfelek.Find(id);
+            db.Ugyfelek.Remove(ugyfel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -130,5 +129,18 @@ namespace SzereloCegApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        #region helpers
+
+        private void SzereloDropDown(object selectedSzerelo = null)
+        {
+            var Query = from s in db.Szerelok
+                        orderby s.Vezetéknév
+                        select s;
+            ViewBag.SzereloID = new SelectList(Query, "ID", "SzereloNev", selectedSzerelo);
+        }
+
+        #endregion
     }
 }

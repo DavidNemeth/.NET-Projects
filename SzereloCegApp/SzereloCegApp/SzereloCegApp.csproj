@@ -169,25 +169,21 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KliensekController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SzerelokController.cs" />
+    <Compile Include="Controllers\UgyfelekController.cs" />
     <Compile Include="DAL\SzereloCegEntities.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201601041402599_initial.cs" />
-    <Compile Include="Migrations\201601041402599_initial.Designer.cs">
-      <DependentUpon>201601041402599_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601041421406_dataAnnotation.cs" />
-    <Compile Include="Migrations\201601041421406_dataAnnotation.Designer.cs">
-      <DependentUpon>201601041421406_dataAnnotation.cs</DependentUpon>
+    <Compile Include="Migrations\201601041800475_fix4.cs" />
+    <Compile Include="Migrations\201601041800475_fix4.Designer.cs">
+      <DependentUpon>201601041800475_fix4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Kliens.cs" />
+    <Compile Include="Models\Ugyfel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Szerelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -263,11 +259,11 @@
     <Content Include="Views\Szerelok\Details.cshtml" />
     <Content Include="Views\Szerelok\Edit.cshtml" />
     <Content Include="Views\Szerelok\Index.cshtml" />
-    <Content Include="Views\Kliensek\Create.cshtml" />
-    <Content Include="Views\Kliensek\Delete.cshtml" />
-    <Content Include="Views\Kliensek\Details.cshtml" />
-    <Content Include="Views\Kliensek\Edit.cshtml" />
-    <Content Include="Views\Kliensek\Index.cshtml" />
+    <Content Include="Views\Ugyfelek\Create.cshtml" />
+    <Content Include="Views\Ugyfelek\Delete.cshtml" />
+    <Content Include="Views\Ugyfelek\Details.cshtml" />
+    <Content Include="Views\Ugyfelek\Edit.cshtml" />
+    <Content Include="Views\Ugyfelek\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -278,11 +274,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201601041402599_initial.resx">
-      <DependentUpon>201601041402599_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601041421406_dataAnnotation.resx">
-      <DependentUpon>201601041421406_dataAnnotation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601041800475_fix4.resx">
+      <DependentUpon>201601041800475_fix4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,4 +1,4 @@
-﻿@model SzereloCegApp.Models.Kliens
+﻿@model SzereloCegApp.Models.Ugyfel
 
 @{
     ViewBag.Title = "Details";
@@ -7,16 +7,10 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Kliens</h4>
+    <h4>Ugyfel</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Szerelo.Vezetéknév)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Szerelo.Vezetéknév)
-        </dd>
+        
 
         <dt>
             @Html.DisplayNameFor(model => model.Vezetéknév)
@@ -35,6 +29,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Surgos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surgos)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Szulido)
         </dt>
 
@@ -49,15 +51,14 @@
         <dd>
             @Html.DisplayFor(model => model.FelvetelIdeje)
         </dd>
-
+       
         <dt>
-            @Html.DisplayNameFor(model => model.Surgos)
+            @Html.DisplayNameFor(model => model.Szerelo.SzereloNev)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Surgos)
+            @Html.DisplayFor(model => model.Szerelo.SzereloNev)
         </dd>
-
     </dl>
 </div>
 <p>
