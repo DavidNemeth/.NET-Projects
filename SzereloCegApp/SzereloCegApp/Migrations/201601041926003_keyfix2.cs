@@ -3,7 +3,7 @@ namespace SzereloCegApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class fix4 : DbMigration
+    public partial class keyfix2 : DbMigration
     {
         public override void Up()
         {
@@ -30,7 +30,7 @@ namespace SzereloCegApp.Migrations
                         SzereloID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Szerelo", t => t.SzereloID, cascadeDelete: true)
+                .ForeignKey("dbo.Szerelo", t => t.SzereloID)
                 .Index(t => t.SzereloID);
             
         }

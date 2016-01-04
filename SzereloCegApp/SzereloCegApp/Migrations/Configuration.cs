@@ -38,6 +38,7 @@ namespace SzereloCegApp.Migrations
             };
             ugyfelek.ForEach(s => context.Ugyfelek.AddOrUpdate(a => a.Vezetéknév, s));
             context.SaveChanges();
+        
         }
     }
 }

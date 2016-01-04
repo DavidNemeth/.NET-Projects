@@ -12,22 +12,23 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Vezetéknév)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Keresztnév)
-        </th>
-        <th></th>
+            @Html.DisplayNameFor(model => model.SzereloNev)
+        </th>        
+        <th>Ügyfelek</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Vezetéknév)
-        </td>
+            @Html.DisplayFor(modelItem => item.SzereloNev)
+        </td> 
         <td>
-            @Html.DisplayFor(modelItem => item.Keresztnév)
-        </td>
+            @foreach (var ugyfel in item.Ugyfelek)
+            {
+                @Html.ActionLink(@ugyfel.UgyfelNev, "Details","Ugyfelek", new { id = ugyfel.ID }, null)
+                @: <br />
+        }
+        </td>  
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |

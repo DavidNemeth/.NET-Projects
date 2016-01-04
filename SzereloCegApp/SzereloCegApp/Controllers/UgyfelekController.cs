@@ -19,7 +19,7 @@ namespace SzereloCegApp.Controllers
         public ActionResult Index()
         {
             var ugyfelek = db.Ugyfelek.Include(u => u.Szerelo);
-            return View(ugyfelek.ToList());
+            return View(ugyfelek.ToList());   
         }
 
         // GET: Ugyfelek/Details/5
@@ -51,6 +51,7 @@ namespace SzereloCegApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Vezetéknév,Keresztnév,Szulido,FelvetelIdeje,Surgos,SzereloID")] Ugyfel ugyfel)
         {
+
             if (ModelState.IsValid)
             {
                 db.Ugyfelek.Add(ugyfel);

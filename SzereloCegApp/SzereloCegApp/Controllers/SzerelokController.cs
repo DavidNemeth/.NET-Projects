@@ -18,7 +18,9 @@ namespace SzereloCegApp.Controllers
         // GET: Szerelok
         public ActionResult Index()
         {
-            return View(db.Szerelok.ToList());
+            return View(db.Szerelok
+                .Include(s => s.Ugyfelek)             //innerjoin   
+                .ToList());
         }
 
         // GET: Szerelok/Details/5
@@ -28,7 +30,9 @@ namespace SzereloCegApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Szerelo szerelo = db.Szerelok.Find(id);
+            Szerelo szerelo = db.Szerelok
+                .Include(s => s.Ugyfelek)
+                .Where(s => s.ID == id).SingleOrDefault();
             if (szerelo == null)
             {
                 return HttpNotFound();
@@ -109,11 +113,26 @@ namespace SzereloCegApp.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-        {
+        {           
             Szerelo szerelo = db.Szerelok.Find(id);
-            db.Szerelok.Remove(szerelo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.Szerelok.Remove(szerelo);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (DataException ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("FK"))
+                {
+                    ModelState.AddModelError("", "Szerelő nem törölhető, amíg ügyfele van.");
+                }
+                else
+                {
+                    ModelState.AddModelError("","Elfárdadt az adatbázis, próbálja meg később.");
+                }
+            }
+            return View(szerelo);      
         }
 
         protected override void Dispose(bool disposing)

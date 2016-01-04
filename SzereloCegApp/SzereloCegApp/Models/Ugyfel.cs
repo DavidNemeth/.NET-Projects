@@ -9,7 +9,7 @@ namespace SzereloCegApp.Models
     public class Ugyfel : IValidatableObject
     {
         public int ID { get; set; }
-        [Required(ErrorMessage = "Kérem adja meg a Kliens Vezetéknevét")]
+        [Required(ErrorMessage = "Kérem adja meg a Kliens Vezetéknevét")]        
         public string Vezetéknév { get; set; }
         [Required(ErrorMessage = "Kérem adja meg a Kliens Keresztnevét")]
         public string Keresztnév { get; set; }
@@ -19,7 +19,7 @@ namespace SzereloCegApp.Models
         //
 
         [Display(Name ="Felvétel Ideje")]
-        [Required]        
+        [Required(ErrorMessage ="Kérem adja meg a felvétel idejét")]        
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FelvetelIdeje { get; set; }
         [Display(Name ="Sürgős Javítás")]

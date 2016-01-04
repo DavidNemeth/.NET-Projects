@@ -11,7 +11,7 @@ namespace SzereloCegApp.Models
         //opcionális (null error refnél)
         public Szerelo()
         {
-            this.Kliensek = new HashSet<Ugyfel>();
+            this.Ugyfelek = new HashSet<Ugyfel>();
         }     
 
         public int ID { get; set; }
@@ -19,7 +19,7 @@ namespace SzereloCegApp.Models
         public string Vezetéknév { get; set; }
         [Required(ErrorMessage = "Kérem adja meg a szerelő Keresztnevét")]
         public string Keresztnév { get; set; }
-        public virtual ICollection<Ugyfel> Kliensek { get; set; }
+        public virtual ICollection<Ugyfel> Ugyfelek { get; set; }
 
 
 
