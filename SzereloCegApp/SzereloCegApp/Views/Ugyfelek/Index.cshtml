@@ -9,22 +9,38 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>Szerelők:</td>
+            <td>@Html.DropDownList("SzereloID", null, "Összes Szerelő", htmlAttributes: new { @class = "form-control"})</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Ügyfél Keresése:</td>
+            <td>@Html.TextBox("searchString", null, new { @class = "form-control" })</td>
+            <td><input type="submit" value="Filter" class="btn btn-default" />@Html.ActionLink("Reset","Index")</td>
+        </tr>
+    </table>
+}
+<br />
 <table class="table">
     <tr>        
-        <th>
-            @Html.DisplayNameFor(model => model.UgyfelNev)
+        <th>            
+            @Html.ActionLink("Ügyfél", "Index", new { sortOrder = ViewBag.NameSort })
         </th>       
         <th>
-            @Html.DisplayNameFor(model => model.Surgos)
+            @Html.ActionLink("Sürgős Javítás", "Index", new { sortOrder = ViewBag.SurgosSort })
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Szulido)
+        <th>            
+            @Html.ActionLink("Születési Idő", "Index", new { sortOrder = ViewBag.SzulSort })
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FelvetelIdeje)
+        <th>            
+            @Html.ActionLink("Felvétel", "Index", new { sortOrder = ViewBag.FelvetelSort })
         </th>        
         <th>
-            @Html.DisplayNameFor(model => model.Szerelo.SzereloNev)
+            @Html.ActionLink("Szerelő", "Index", new { sortOrder = ViewBag.SzereloSort })
         </th>
         <th></th>
     </tr>

@@ -8,7 +8,7 @@ namespace SzereloCegApp.Models
 {
     public class Szerelo
     {
-        //opcionális (null error refnél)
+        //(null error)
         public Szerelo()
         {
             this.Ugyfelek = new HashSet<Ugyfel>();

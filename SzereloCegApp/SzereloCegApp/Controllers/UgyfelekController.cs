@@ -16,9 +16,66 @@ namespace SzereloCegApp.Controllers
         private SzereloCegEntities db = new SzereloCegEntities();
 
         // GET: Ugyfelek
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString, int? SzereloID)
         {
+            SzereloDropDown();
+            //TODO: Sorting/ordering
+            ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "név csökkenő" : "";
+            ViewBag.FelvetelSort = sortOrder == "FelvetelIdeje" ? "FelvetelIdeje csökkenő" : "FelvetelIdeje";
+            ViewBag.SzulSort = sortOrder == "Szulido" ? "Szulido csökkenő" : "Szulido";
+            ViewBag.SurgosSort = sortOrder == "Surgos" ? "Nem Surgos" : "Surgos";
+            ViewBag.SzereloSort = sortOrder == "Szerelo" ? "Szerelo desc" : "Szerelo";
+            //TODO: filtering
             var ugyfelek = db.Ugyfelek.Include(u => u.Szerelo);
+
+            if (SzereloID.HasValue)
+            {
+                ugyfelek = ugyfelek.Where(u => u.SzereloID == SzereloID);
+            }
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ugyfelek = ugyfelek.Where(u => u.Vezetéknév.ToLower().Contains(searchString.ToLower())
+                || u.Keresztnév.ToLower().Contains(searchString.ToLower()));                    
+            }
+
+            switch (sortOrder)
+            {
+                case "név csökkenő":
+                    ugyfelek = ugyfelek
+                        .OrderByDescending(u => u.Vezetéknév)
+                        .ThenByDescending(u => u.Keresztnév);
+                    break;
+                case "FelvetelIdeje":
+                    ugyfelek = ugyfelek.OrderBy(p => p.FelvetelIdeje);
+                    break;
+                case "FelvetelIdeje csökkenő":
+                    ugyfelek = ugyfelek.OrderByDescending(p => p.FelvetelIdeje);
+                    break;
+                case "Szulido":
+                    ugyfelek = ugyfelek.OrderBy(p => p.Szulido);
+                    break;
+                case "Szulido csökkenő":
+                    ugyfelek = ugyfelek.OrderByDescending(p => p.Szulido);
+                    break;
+                case "Surgos":
+                    ugyfelek = ugyfelek.OrderBy(p => p.Surgos);
+                    break;
+                case "Nem Surgos":
+                    ugyfelek = ugyfelek.OrderByDescending(p => p.Surgos);
+                    break;
+                case "Szerelo":
+                    ugyfelek = ugyfelek.OrderBy(p => p.Szerelo.Vezetéknév);
+                    break;
+                case "Szerelo desc":
+                    ugyfelek = ugyfelek.OrderByDescending(p => p.Szerelo.Vezetéknév);
+                    break;
+
+                default:
+                    ugyfelek = ugyfelek
+                        .OrderBy(u => u.Vezetéknév)
+                        .ThenBy(u => u.Keresztnév);
+                    break;
+            }
             return View(ugyfelek.ToList());   
         }
 
