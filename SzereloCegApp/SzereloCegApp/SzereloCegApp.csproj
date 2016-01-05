@@ -178,17 +178,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201601041926003_keyfix2.cs" />
-    <Compile Include="Migrations\201601041926003_keyfix2.Designer.cs">
-      <DependentUpon>201601041926003_keyfix2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601051310430_databasetwo.cs" />
-    <Compile Include="Migrations\201601051310430_databasetwo.Designer.cs">
-      <DependentUpon>201601051310430_databasetwo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601051534074_fill.cs" />
-    <Compile Include="Migrations\201601051534074_fill.Designer.cs">
-      <DependentUpon>201601051534074_fill.cs</DependentUpon>
+    <Compile Include="Migrations\201601051539479_Fix3.cs" />
+    <Compile Include="Migrations\201601051539479_Fix3.Designer.cs">
+      <DependentUpon>201601051539479_Fix3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -284,6 +276,7 @@
     <Content Include="Views\GepJarmuvek\Details.cshtml" />
     <Content Include="Views\GepJarmuvek\Edit.cshtml" />
     <Content Include="Views\GepJarmuvek\Index.cshtml" />
+    <Content Include="Views\GepJarmuvek\CreateForUgyfel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -294,14 +287,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201601041926003_keyfix2.resx">
-      <DependentUpon>201601041926003_keyfix2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601051310430_databasetwo.resx">
-      <DependentUpon>201601051310430_databasetwo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601051534074_fill.resx">
-      <DependentUpon>201601051534074_fill.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601051539479_Fix3.resx">
+      <DependentUpon>201601051539479_Fix3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

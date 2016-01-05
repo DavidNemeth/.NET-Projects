@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Tulajdonosok</h2>
+<h2>Ügyfelek</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -28,7 +28,7 @@
 <table class="table">
     <tr>        
         <th>            
-            @Html.ActionLink("Tulajdonos", "Index", new { sortOrder = ViewBag.NameSort })
+            @Html.ActionLink("Név", "Index", new { sortOrder = ViewBag.NameSort })
         </th>     
         
         <th>            

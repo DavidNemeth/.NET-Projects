@@ -23,7 +23,7 @@ namespace SzereloCegApp.Controllers
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "név csökkenő" : "";
             ViewBag.FelvetelSort = sortOrder == "FelvetelIdeje" ? "FelvetelIdeje csökkenő" : "FelvetelIdeje";
             ViewBag.SzulSort = sortOrder == "Szulido" ? "Szulido csökkenő" : "Szulido";
-            ViewBag.Gepjarmu = sortOrder == "Gepjarmu" ? "Gepjarmu desc" : "Gepjarmu";
+            //ViewBag.Gepjarmu = sortOrder == "Gepjarmu" ? "Gepjarmu desc" : "Gepjarmu";
             ViewBag.SzereloSort = sortOrder == "Szerelo" ? "Szerelo desc" : "Szerelo";
             //TODO: filtering
             var ugyfelek = db.Ugyfelek
@@ -59,12 +59,12 @@ namespace SzereloCegApp.Controllers
                 case "Szulido csökkenő":
                     ugyfelek = ugyfelek.OrderByDescending(p => p.Szulido);
                     break;
-                case "Gepjarmu":                                
-                    ugyfelek = ugyfelek.OrderBy(p => p.GepJarmu.OrderBy(n => n.Marka));
-                    break;
-                case "Gepjarmu desc":
-                    ugyfelek = ugyfelek.OrderByDescending(p => p.GepJarmu.OrderBy(n => n.Marka));
-                    break;
+                //case "Gepjarmu":                                
+                //    ugyfelek = ugyfelek.OrderBy(p => p.GepJarmu.OrderBy(n => n.Marka));
+                //    break;
+                //case "Gepjarmu desc":
+                //    ugyfelek = ugyfelek.OrderByDescending(p => p.GepJarmu.OrderBy(n => n.Marka));
+                //    break;
                 case "Szerelo":
                     ugyfelek = ugyfelek.OrderBy(p => p.Szerelo.Vezetéknév);
                     break;
@@ -101,7 +101,7 @@ namespace SzereloCegApp.Controllers
         // GET: Ugyfelek/Create
         public ActionResult Create()
         {
-            SzereloDropDown();
+            SzereloDropDown();            
             return View();
         }
 
@@ -111,13 +111,13 @@ namespace SzereloCegApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Vezetéknév,Keresztnév,Szulido,FelvetelIdeje,Surgos,SzereloID")] Ugyfel ugyfel)
-        {
-
+        {                 
+                   
             if (ModelState.IsValid)
             {
                 db.Ugyfelek.Add(ugyfel);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CreateForUgyfel","GepJarmuvek");
             }
 
             SzereloDropDown(ugyfel.SzereloID);

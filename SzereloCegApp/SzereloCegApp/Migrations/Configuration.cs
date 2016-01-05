@@ -68,7 +68,6 @@ namespace SzereloCegApp.Migrations
             };
             gepjarmuvek.ForEach(s => context.GepJarmuvek.AddOrUpdate(a => a.Rendszam, s));
             context.SaveChanges();
-
         }
     }
 }

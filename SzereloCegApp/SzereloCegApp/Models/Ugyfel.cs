@@ -52,9 +52,9 @@ namespace SzereloCegApp.Models
             {
                 yield return new ValidationResult("Ilyen idősen már csak nem vezetnék", new[] { "Szulido" });
             }
-            if (FelvetelIdeje > DateTime.Now.AddYears(1))
+            if (FelvetelIdeje > DateTime.Now)
             {
-                yield return new ValidationResult("Csak Idei javítás vállalható", new[] { "FelvetelIdeje" });
+                yield return new ValidationResult("Kérem a mai napot adja meg felvételnek", new[] { "FelvetelIdeje" });
             }
             if (FelvetelIdeje < DateTime.Now.AddYears(-1))
             {

@@ -5,7 +5,12 @@
 <div class="jumbotron">
     <h1>Car Tech</h1>
     <p class="lead">Autoszerelő Cég Nyilvántartási rendszer</p>    
-    <p>@Html.ActionLink("Szerelők", "Index", "Szerelok", new object { }, new { @class = "btn btn-primary btn-lg" }) @Html.ActionLink("Diagnosztikák", "Index", "Diagnosztikak", new object { }, new { @class = "btn btn-primary btn-lg" }) @Html.ActionLink("Gépjárművek", "Index", "GepJarmuvek", new object { }, new { @class = "btn btn-primary btn-lg" }) @Html.ActionLink("Tulajdonosok", "Index", "Ugyfelek", new object { },new { @class = "btn btn-primary btn-lg" })</p>      
+    <p>
+        @Html.ActionLink("Szerelők", "Index", "Szerelok", new object { }, new { @class = "btn btn-primary btn-lg" }) 
+        @Html.ActionLink("Ügyfelek", "Index", "Ugyfelek", new object { }, new { @class = "btn btn-primary btn-lg" })
+        @Html.ActionLink("Gépjárművek", "Index", "GepJarmuvek", new object { }, new { @class = "btn btn-primary btn-lg" })        
+        @Html.ActionLink("Diagnosztikák", "Index", "Diagnosztikak", new object { }, new { @class = "btn btn-primary btn-lg" })
+    </p>      
     
 </div>
 

@@ -61,6 +61,30 @@ namespace SzereloCegApp.Controllers
             TulajdonosDropDown(gepJarmu.UgyfelID);
             return View(gepJarmu);
         }
+        public ActionResult CreateForUgyfel()
+        {
+            
+            TulajdonosDropDown();
+            return View();
+        }
+
+        // POST: GepJarmuvek/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateForUgyfel([Bind(Include = "ID,Marka,Tipus,Rendszam,GyartasiEv,UgyfelID")] GepJarmu gepJarmu)
+        {
+            if (ModelState.IsValid)
+            {
+                db.GepJarmuvek.Add(gepJarmu);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Ugyfelek");
+            }
+
+            TulajdonosDropDown(gepJarmu.UgyfelID);
+            return View(gepJarmu);
+        }
 
         // GET: GepJarmuvek/Edit/5
         public ActionResult Edit(int? id)
@@ -135,7 +159,7 @@ namespace SzereloCegApp.Controllers
         private void TulajdonosDropDown(object selectedTulajdonos = null)
         {
             var Query = from s in db.Ugyfelek
-                        orderby s.Vezetéknév
+                        orderby s.FelvetelIdeje descending
                         select s;
             ViewBag.UgyfelID = new SelectList(Query, "ID", "UgyfelNev", selectedTulajdonos);
         }

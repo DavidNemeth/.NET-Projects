@@ -3,7 +3,7 @@ namespace SzereloCegApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class databasetwo : DbMigration
+    public partial class Fix3 : DbMigration
     {
         public override void Up()
         {
@@ -32,6 +32,32 @@ namespace SzereloCegApp.Migrations
                 .Index(t => t.UgyfelID);
             
             CreateTable(
+                "dbo.Ugyfel",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Vezetéknév = c.String(nullable: false),
+                        Keresztnév = c.String(nullable: false),
+                        Szulido = c.DateTime(),
+                        FelvetelIdeje = c.DateTime(nullable: false),
+                        Surgos = c.Boolean(nullable: false),
+                        SzereloID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Szerelo", t => t.SzereloID)
+                .Index(t => t.SzereloID);
+            
+            CreateTable(
+                "dbo.Szerelo",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Vezetéknév = c.String(nullable: false),
+                        Keresztnév = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
                 "dbo.GepJarmuDiagnosztika",
                 c => new
                     {
@@ -48,13 +74,17 @@ namespace SzereloCegApp.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.Ugyfel", "SzereloID", "dbo.Szerelo");
             DropForeignKey("dbo.GepJarmu", "UgyfelID", "dbo.Ugyfel");
             DropForeignKey("dbo.GepJarmuDiagnosztika", "Diagnosztika_ID", "dbo.Diagnosztika");
             DropForeignKey("dbo.GepJarmuDiagnosztika", "GepJarmu_ID", "dbo.GepJarmu");
             DropIndex("dbo.GepJarmuDiagnosztika", new[] { "Diagnosztika_ID" });
             DropIndex("dbo.GepJarmuDiagnosztika", new[] { "GepJarmu_ID" });
+            DropIndex("dbo.Ugyfel", new[] { "SzereloID" });
             DropIndex("dbo.GepJarmu", new[] { "UgyfelID" });
             DropTable("dbo.GepJarmuDiagnosztika");
+            DropTable("dbo.Szerelo");
+            DropTable("dbo.Ugyfel");
             DropTable("dbo.GepJarmu");
             DropTable("dbo.Diagnosztika");
         }
