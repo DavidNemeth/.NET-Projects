@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Szerelők</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(" ", "Create",new object { }, new { @class = "glyphicon glyphicon-plus" })
 </p>
 <table class="table">
     <tr>
@@ -27,12 +27,12 @@
             {
                 @Html.ActionLink(@ugyfel.UgyfelNev, "Details","Ugyfelek", new { id = ugyfel.ID }, null)
                 @: <br />
-        }
+            }
         </td>  
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink(" ", "Edit", new { id=item.ID }, new {@class = "glyphicon glyphicon-pencil" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.ID }, new { @class = "glyphicon glyphicon-info-sign" }) |
+            @Html.ActionLink(" ", "Delete", new { id=item.ID }, new { @class = "glyphicon glyphicon-remove" })
         </td>
     </tr>
 }

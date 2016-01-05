@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Tulajdonosok</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -28,11 +28,9 @@
 <table class="table">
     <tr>        
         <th>            
-            @Html.ActionLink("Ügyfél", "Index", new { sortOrder = ViewBag.NameSort })
-        </th>       
-        <th>
-            @Html.ActionLink("Sürgős Javítás", "Index", new { sortOrder = ViewBag.SurgosSort })
-        </th>
+            @Html.ActionLink("Tulajdonos", "Index", new { sortOrder = ViewBag.NameSort })
+        </th>     
+        
         <th>            
             @Html.ActionLink("Születési Idő", "Index", new { sortOrder = ViewBag.SzulSort })
         </th>
@@ -42,6 +40,9 @@
         <th>
             @Html.ActionLink("Szerelő", "Index", new { sortOrder = ViewBag.SzereloSort })
         </th>
+        <th>
+            Gépjármű
+        </th>
         <th></th>
     </tr>
 
@@ -49,10 +50,8 @@
     <tr>        
         <td>
             @Html.DisplayFor(modelItem => item.UgyfelNev)
-        </td>        
-        <td>
-            @Html.DisplayFor(modelItem => item.Surgos)
-        </td>
+        </td> 
+         
         <td>
             @Html.DisplayFor(modelItem => item.Szulido)
         </td>
@@ -64,9 +63,16 @@
             @Html.ActionLink(item.Szerelo.SzereloNev, "Details", "Szerelok", new { id = item.Szerelo.ID }, null)            
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @foreach (var auto in item.GepJarmu)
+            {
+                @Html.DisplayFor(modelItem => auto.Auto)
+                @:<br />
+            }
+        </td> 
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil" }) |
+            @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-info-sign" }) |
+            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-remove" })
         </td>
     </tr>
 }

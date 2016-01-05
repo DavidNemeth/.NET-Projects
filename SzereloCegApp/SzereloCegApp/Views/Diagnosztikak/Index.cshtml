@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<SzereloCegApp.Models.Diagnosztika>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Diagnosztikák";
 }
 
-<h2>Index</h2>
+<h2>Diagnosztikák</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -22,10 +22,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.HibaNeve)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        <td>                      
+            @Html.ActionLink("✖", "Delete", new { id=item.ID },new { @class = "" })
         </td>
     </tr>
 }

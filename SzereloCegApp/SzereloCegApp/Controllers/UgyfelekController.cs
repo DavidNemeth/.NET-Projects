@@ -23,10 +23,12 @@ namespace SzereloCegApp.Controllers
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "név csökkenő" : "";
             ViewBag.FelvetelSort = sortOrder == "FelvetelIdeje" ? "FelvetelIdeje csökkenő" : "FelvetelIdeje";
             ViewBag.SzulSort = sortOrder == "Szulido" ? "Szulido csökkenő" : "Szulido";
-            ViewBag.SurgosSort = sortOrder == "Surgos" ? "Nem Surgos" : "Surgos";
+            ViewBag.Gepjarmu = sortOrder == "Gepjarmu" ? "Gepjarmu desc" : "Gepjarmu";
             ViewBag.SzereloSort = sortOrder == "Szerelo" ? "Szerelo desc" : "Szerelo";
             //TODO: filtering
-            var ugyfelek = db.Ugyfelek.Include(u => u.Szerelo);
+            var ugyfelek = db.Ugyfelek
+                .Include(u => u.Szerelo)
+                .Include(u => u.GepJarmu);
 
             if (SzereloID.HasValue)
             {
@@ -57,11 +59,11 @@ namespace SzereloCegApp.Controllers
                 case "Szulido csökkenő":
                     ugyfelek = ugyfelek.OrderByDescending(p => p.Szulido);
                     break;
-                case "Surgos":
-                    ugyfelek = ugyfelek.OrderBy(p => p.Surgos);
+                case "Gepjarmu":                                
+                    ugyfelek = ugyfelek.OrderBy(p => p.GepJarmu.OrderBy(n => n.Marka));
                     break;
-                case "Nem Surgos":
-                    ugyfelek = ugyfelek.OrderByDescending(p => p.Surgos);
+                case "Gepjarmu desc":
+                    ugyfelek = ugyfelek.OrderByDescending(p => p.GepJarmu.OrderBy(n => n.Marka));
                     break;
                 case "Szerelo":
                     ugyfelek = ugyfelek.OrderBy(p => p.Szerelo.Vezetéknév);
@@ -86,7 +88,9 @@ namespace SzereloCegApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ugyfel ugyfel = db.Ugyfelek.Find(id);
+            Ugyfel ugyfel = db.Ugyfelek
+                .Include(s => s.GepJarmu)
+                .Where(s => s.ID == id).SingleOrDefault();
             if (ugyfel == null)
             {
                 return HttpNotFound();
@@ -174,9 +178,26 @@ namespace SzereloCegApp.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Ugyfel ugyfel = db.Ugyfelek.Find(id);
-            db.Ugyfelek.Remove(ugyfel);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {                
+                db.Ugyfelek.Remove(ugyfel);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (DataException ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("FK"))
+                {
+                    ModelState.AddModelError("", "Tulajdonos nem törölhető, amíg Gépkocsija szerelésre vár, ha a szerelést befejezte először törölje a járművet.");
+                    
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Elfárdadt az adatbázis, próbálja meg később.");
+                }
+            }
+
+            return View(ugyfel);
         }
 
         protected override void Dispose(bool disposing)

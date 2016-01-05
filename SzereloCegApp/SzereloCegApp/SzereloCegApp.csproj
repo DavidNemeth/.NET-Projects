@@ -186,6 +186,10 @@
     <Compile Include="Migrations\201601051310430_databasetwo.Designer.cs">
       <DependentUpon>201601051310430_databasetwo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601051534074_fill.cs" />
+    <Compile Include="Migrations\201601051534074_fill.Designer.cs">
+      <DependentUpon>201601051534074_fill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Diagnosztika.cs" />
@@ -239,8 +243,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -297,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601051310430_databasetwo.resx">
       <DependentUpon>201601051310430_databasetwo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601051534074_fill.resx">
+      <DependentUpon>201601051534074_fill.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

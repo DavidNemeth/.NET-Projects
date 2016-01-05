@@ -17,7 +17,7 @@ namespace SzereloCegApp.Controllers
 
         // GET: GepJarmuvek
         public ActionResult Index()
-        {
+        {            
             var gepJarmuvek = db.GepJarmuvek.Include(g => g.Ugyfel);
             return View(gepJarmuvek.ToList());
         }
@@ -40,7 +40,7 @@ namespace SzereloCegApp.Controllers
         // GET: GepJarmuvek/Create
         public ActionResult Create()
         {
-            ViewBag.UgyfelID = new SelectList(db.Ugyfelek, "ID", "Vezetéknév");
+            TulajdonosDropDown();
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace SzereloCegApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UgyfelID = new SelectList(db.Ugyfelek, "ID", "Vezetéknév", gepJarmu.UgyfelID);
+            TulajdonosDropDown(gepJarmu.UgyfelID);
             return View(gepJarmu);
         }
 
@@ -74,7 +74,7 @@ namespace SzereloCegApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UgyfelID = new SelectList(db.Ugyfelek, "ID", "Vezetéknév", gepJarmu.UgyfelID);
+            TulajdonosDropDown(gepJarmu.UgyfelID);
             return View(gepJarmu);
         }
 
@@ -91,7 +91,7 @@ namespace SzereloCegApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UgyfelID = new SelectList(db.Ugyfelek, "ID", "Vezetéknév", gepJarmu.UgyfelID);
+            TulajdonosDropDown(gepJarmu.UgyfelID);
             return View(gepJarmu);
         }
 
@@ -129,5 +129,17 @@ namespace SzereloCegApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        #region helper
+        private void TulajdonosDropDown(object selectedTulajdonos = null)
+        {
+            var Query = from s in db.Ugyfelek
+                        orderby s.Vezetéknév
+                        select s;
+            ViewBag.UgyfelID = new SelectList(Query, "ID", "UgyfelNev", selectedTulajdonos);
+        }
+        #endregion
+
     }
 }

@@ -52,7 +52,7 @@ namespace SzereloCegApp.Migrations
                 new Diagnosztika { HibaNeve = "Alváz" },
                 new Diagnosztika { HibaNeve = "Olajcsere" }
             };
-            diagnosztikak.ForEach(d => context.Diagnosztikák.AddOrUpdate(a => a.HibaNeve));
+            diagnosztikak.ForEach(d => context.Diagnosztikák.AddOrUpdate(b => b.HibaNeve, d));
             context.SaveChanges();
 
             var gepjarmuvek = new List<GepJarmu>
