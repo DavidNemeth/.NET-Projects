@@ -168,6 +168,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DiagnosztikakController.cs" />
+    <Compile Include="Controllers\GepJarmuvekController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SzerelokController.cs" />
@@ -180,8 +182,14 @@
     <Compile Include="Migrations\201601041926003_keyfix2.Designer.cs">
       <DependentUpon>201601041926003_keyfix2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601051310430_databasetwo.cs" />
+    <Compile Include="Migrations\201601051310430_databasetwo.Designer.cs">
+      <DependentUpon>201601051310430_databasetwo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Diagnosztika.cs" />
+    <Compile Include="Models\GepJarmu.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Ugyfel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -264,6 +272,16 @@
     <Content Include="Views\Ugyfelek\Details.cshtml" />
     <Content Include="Views\Ugyfelek\Edit.cshtml" />
     <Content Include="Views\Ugyfelek\Index.cshtml" />
+    <Content Include="Views\Diagnosztikak\Create.cshtml" />
+    <Content Include="Views\Diagnosztikak\Delete.cshtml" />
+    <Content Include="Views\Diagnosztikak\Details.cshtml" />
+    <Content Include="Views\Diagnosztikak\Edit.cshtml" />
+    <Content Include="Views\Diagnosztikak\Index.cshtml" />
+    <Content Include="Views\GepJarmuvek\Create.cshtml" />
+    <Content Include="Views\GepJarmuvek\Delete.cshtml" />
+    <Content Include="Views\GepJarmuvek\Details.cshtml" />
+    <Content Include="Views\GepJarmuvek\Edit.cshtml" />
+    <Content Include="Views\GepJarmuvek\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -276,6 +294,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201601041926003_keyfix2.resx">
       <DependentUpon>201601041926003_keyfix2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601051310430_databasetwo.resx">
+      <DependentUpon>201601051310430_databasetwo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

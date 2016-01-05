@@ -38,7 +38,37 @@ namespace SzereloCegApp.Migrations
             };
             ugyfelek.ForEach(s => context.Ugyfelek.AddOrUpdate(a => a.Vezetéknév, s));
             context.SaveChanges();
-        
+
+            var diagnosztikak = new List<Diagnosztika>
+            {
+                new Diagnosztika { HibaNeve = "Elektronika" },
+                new Diagnosztika { HibaNeve = "Önindító" },
+                new Diagnosztika { HibaNeve = "MotorHiba" },
+                new Diagnosztika { HibaNeve = "Kerekek" },
+                new Diagnosztika { HibaNeve = "Hûtés" },
+                new Diagnosztika { HibaNeve = "Üzemanyagrendszer" },
+                new Diagnosztika { HibaNeve = "Kuplung - Váltó" },
+                new Diagnosztika { HibaNeve = "Karosszéria" },
+                new Diagnosztika { HibaNeve = "Alváz" },
+                new Diagnosztika { HibaNeve = "Olajcsere" }
+            };
+            diagnosztikak.ForEach(d => context.Diagnosztikák.AddOrUpdate(a => a.HibaNeve));
+            context.SaveChanges();
+
+            var gepjarmuvek = new List<GepJarmu>
+            {
+                new GepJarmu { Marka = "Opel", Tipus = "Astra", GyartasiEv = DateTime.Parse("2010-01-01"),  Rendszam = "AGB-121", UgyfelID = 1},
+                new GepJarmu { Marka = "Audi", Tipus = "A4", GyartasiEv = DateTime.Parse("1999-01-01"),  Rendszam = "HBD-123", UgyfelID = 2},
+                new GepJarmu { Marka = "BMW", Tipus = "M4", GyartasiEv = DateTime.Parse("2000-01-01"),  Rendszam = "AWQ-663", UgyfelID = 3},
+                new GepJarmu { Marka = "Fiat", Tipus = "Punto", GyartasiEv = DateTime.Parse("2001-01-01"),  Rendszam = "XAW-234", UgyfelID = 4},
+                new GepJarmu { Marka = "Mitsubishi", Tipus = "Galant", GyartasiEv = DateTime.Parse("2013-01-01"),  Rendszam = "JRW-732", UgyfelID = 5},
+                new GepJarmu { Marka = "Audi", Tipus = "R8", GyartasiEv = DateTime.Parse("2015-01-01"),  Rendszam = "MEW-373", UgyfelID = 6},
+                new GepJarmu { Marka = "BMW", Tipus = "X5", GyartasiEv = DateTime.Parse("2015-01-01"),  Rendszam = "MEW-373", UgyfelID = 6},
+                new GepJarmu { Marka = "Opel", Tipus = "Vectra", GyartasiEv = DateTime.Parse("1990-01-01"),  Rendszam = "HWW-723", UgyfelID = 7}
+            };
+            gepjarmuvek.ForEach(s => context.GepJarmuvek.AddOrUpdate(a => a.Rendszam, s));
+            context.SaveChanges();
+
         }
     }
 }

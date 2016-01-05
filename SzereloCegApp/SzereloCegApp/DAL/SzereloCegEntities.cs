@@ -12,6 +12,9 @@ namespace SzereloCegApp.DAL
     {
         public DbSet<Szerelo> Szerelok { get; set; }
         public DbSet<Ugyfel> Ugyfelek { get; set; }
+        public DbSet<Diagnosztika> Diagnosztikák { get; set; }
+        public DbSet<GepJarmu> GepJarmuvek { get; set; }
+
 
 
         //

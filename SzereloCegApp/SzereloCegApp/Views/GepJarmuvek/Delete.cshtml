@@ -1,0 +1,64 @@
+﻿@model SzereloCegApp.Models.GepJarmu
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Gépjármű Törlése</h2>
+
+<h3>@Html.DisplayFor(model => model.Auto)</h3>
+<div>
+    <h4>@Html.DisplayFor(model => model.Ugyfel.UgyfelNev)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ugyfel.UgyfelNev)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ugyfel.UgyfelNev)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rendszam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rendszam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GyartasiEv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GyartasiEv)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

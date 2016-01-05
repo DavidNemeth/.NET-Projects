@@ -29,10 +29,10 @@ namespace SzereloCegApp.Models
         //
         public int SzereloID { get; set; }//foreign key
         public virtual Szerelo Szerelo { get; set; }
-
+        public virtual ICollection<GepJarmu> GepJarmu { get; set; }
         #region helpers
-        
-        [Display(Name ="Ügyfél")]
+
+        [Display(Name ="Tulajdonos")]
         public string UgyfelNev
         {
             get

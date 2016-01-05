@@ -1,0 +1,58 @@
+﻿@model SzereloCegApp.Models.GepJarmu
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Gépjármű Adatai</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Auto)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ugyfel.UgyfelNev)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ugyfel.UgyfelNev)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rendszam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rendszam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GyartasiEv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GyartasiEv)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
