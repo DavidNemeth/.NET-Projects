@@ -28,12 +28,8 @@
 <table class="table">
     <tr>        
         <th>            
-            @Html.ActionLink("Név", "Index", new { sortOrder = ViewBag.NameSort })
-        </th>     
-        
-        <th>            
-            @Html.ActionLink("Születési Idő", "Index", new { sortOrder = ViewBag.SzulSort })
-        </th>
+            @Html.ActionLink("Ügyfél", "Index", new { sortOrder = ViewBag.NameSort })
+        </th> 
         <th>            
             @Html.ActionLink("Felvétel", "Index", new { sortOrder = ViewBag.FelvetelSort })
         </th>        
@@ -49,12 +45,8 @@
 @foreach (var item in Model) {
     <tr>        
         <td>
-            @Html.DisplayFor(modelItem => item.UgyfelNev)
-        </td> 
-         
-        <td>
-            @Html.DisplayFor(modelItem => item.Szulido)
-        </td>
+           @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-info-sign" }) @Html.DisplayFor(modelItem => item.UgyfelNev)
+        </td>         
         <td>
             @Html.DisplayFor(modelItem => item.FelvetelIdeje)
         </td>
@@ -65,13 +57,13 @@
         <td>
             @foreach (var auto in item.GepJarmu)
             {
-                @Html.DisplayFor(modelItem => auto.Auto)
+                @Html.ActionLink(" ", "Details","GepJarmuvek", new { id = auto.ID }, new { @class = "glyphicon glyphicon-info-sign" })
+                @Html.DisplayFor(modelItem => auto.Auto) 
                 @:<br />
             }
         </td> 
         <td>
-            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil" }) |
-            @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-info-sign" }) |
+            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil" }) |             
             @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-remove" })
         </td>
     </tr>

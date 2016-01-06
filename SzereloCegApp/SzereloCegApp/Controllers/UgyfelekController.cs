@@ -131,7 +131,9 @@ namespace SzereloCegApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ugyfel ugyfel = db.Ugyfelek.Find(id);
+            Ugyfel ugyfel = db.Ugyfelek
+                .Include(s => s.GepJarmu)
+                .Where(s => s.ID == id).SingleOrDefault();
             if (ugyfel == null)
             {
                 return HttpNotFound();
@@ -164,7 +166,11 @@ namespace SzereloCegApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ugyfel ugyfel = db.Ugyfelek.Find(id);
+            Ugyfel ugyfel = db.Ugyfelek.Find(id);              
+            if (ugyfel.GepJarmu.FirstOrDefault() != null)
+            {
+                ModelState.AddModelError("", "Tulajdonos nem törölhető, amíg Gépkocsija szerelésre vár, ha a szerelést befejezte először törölje a járművet.");
+            }        
             if (ugyfel == null)
             {
                 return HttpNotFound();
@@ -177,7 +183,8 @@ namespace SzereloCegApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Ugyfel ugyfel = db.Ugyfelek.Find(id);
+            ModelState.AddModelError("Costum", "Tulajdonos nem törölhető, amíg Gépkocsija szerelésre vár, ha a szerelést befejezte először törölje a járművet.");
+            Ugyfel ugyfel = db.Ugyfelek.Find(id);            
             try
             {                
                 db.Ugyfelek.Remove(ugyfel);
@@ -188,8 +195,7 @@ namespace SzereloCegApp.Controllers
             {
                 if (ex.InnerException.InnerException.Message.Contains("FK"))
                 {
-                    ModelState.AddModelError("", "Tulajdonos nem törölhető, amíg Gépkocsija szerelésre vár, ha a szerelést befejezte először törölje a járművet.");
-                    
+                    ModelState.AddModelError("", "Tulajdonos nem törölhető, amíg Gépkocsija szerelésre vár, ha a szerelést befejezte először törölje a járművet.");                    
                 }
                 else
                 {

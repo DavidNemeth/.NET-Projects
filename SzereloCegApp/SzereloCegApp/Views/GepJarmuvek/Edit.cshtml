@@ -50,12 +50,44 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Diagnosztikák, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="col-md-offset-2 col-md-10">
+            <table>
+                <tr>
+                    @{
+                        int count = 0;
+                        List<SzereloCegApp.ViewModels.JarmuDiagnosztikaViewModel> hibak = ViewBag.Diagnosztikák;
+                        foreach (var hiba in hibak)
+                        {
+                            if (count++ % 3 == 0)
+                            {
+                                @:</tr><tr>
+                        }
+                            @:<td>
+                                <input type="checkbox"
+                                       name="selectedHibak"
+                                       value="@hiba.DiagnosztikaID"
+                                       @(Html.Raw(hiba.Hibas ? "checked=\"checked" : ""))>
+                                @hiba.DiagnosztikaNeve
+                                @:</td>
+                    }
+                        @:</tr>
+                    }
+                </table>
+                <br />
+            </div>        
+
+
+        <div class="form-group">
             @Html.LabelFor(model => model.UgyfelID, "Tulajdonos", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("UgyfelID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.UgyfelID, "", new { @class = "text-danger" })
             </div>
         </div>
+
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -66,7 +98,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="javascript:history.back()">Back to List</a>
 </div>
 
 @section Scripts {

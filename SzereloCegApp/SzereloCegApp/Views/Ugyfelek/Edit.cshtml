@@ -58,25 +58,37 @@
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SzereloID, "Szerelő", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("SzereloID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.SzereloID, "", new { @class = "text-danger" })
+        <dl>
+            <dt>
+                Gépjármű:
+            </dt>
+            <dd>
+                @foreach (var auto in Model.GepJarmu)
+                {
+                    @auto.Auto @Html.ActionLink(" ", "Delete", "GepJarmuvek",new { id = auto.ID }, new { @class = "glyphicon glyphicon-remove", @style = "color:red" })
+                    <br />
+                }
+                @Html.ActionLink(" ", "Create", "GepJarmuvek", new { id = Model.ID }, new { @class = "glyphicon glyphicon-plus", @style = "color:green" })
+            </dd>
+        </dl>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SzereloID, "Szerelő", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("SzereloID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SzereloID, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
             </div>
-        </div>
-    </div>
+</div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="javascript:history.back()">Vissza</a>
 </div>
 
 @section Scripts {

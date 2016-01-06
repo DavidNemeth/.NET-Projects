@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.GyartasiEv)
         </th>
+        <th>
+            Diagnosztikák
+        </th>
         <th></th>
     </tr>
 
@@ -40,6 +43,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.GyartasiEv)
         </td>
+        <td>
+            @{ 
+                foreach (var hiba in item.Diagnosztikák)
+                {
+                    @hiba.HibaNeve <br />
+                }
+            }
+        </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |

@@ -61,12 +61,19 @@
         <dt>
             Gépjárművek
         </dt>
-        <dd>            
-            @foreach (var auto in Model.GepJarmu)
+        <dd> 
+            @try
             {
-                    @auto.Auto @Html.ActionLink(" ", "Delete","GepJarmuvek", new { id = Model.ID }, new { @class = "glyphicon glyphicon-remove" })
+                foreach (var auto in Model.GepJarmu)
+                {
+                    @auto.Auto @Html.ActionLink(" ", "DeleteFor", "GepJarmuvek", new { id = auto.ID }, new { @class = "glyphicon glyphicon-remove" })
                     @: <br />
-            }            
+            }
+            }
+            catch (Exception)
+            {                
+                { Response.Redirect(Request.UrlReferrer.ToString());}
+            }                      
         </dd>
         <dd></dd>
     </dl>
@@ -76,7 +83,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <a href="javascript:history.back()">Vissza</a>
         </div>
     }
 </div>

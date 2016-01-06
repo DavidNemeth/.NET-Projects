@@ -59,9 +59,21 @@
         <dd>
             @Html.ActionLink(Model.Szerelo.SzereloNev, "Details", "Szerelok", new { id = Model.Szerelo.ID }, null)
         </dd>
+        <br />
+        <dt>
+            Gépjármű:
+        </dt>
+        <dd>
+            @foreach (var auto in Model.GepJarmu)
+            {
+                @auto.Auto
+                <br />
+            }
+            
+        </dd>
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="javascript:history.back()">Vissza</a>
 </p>

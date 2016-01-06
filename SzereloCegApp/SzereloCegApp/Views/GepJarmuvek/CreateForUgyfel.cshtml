@@ -4,14 +4,15 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Gépjármű Regisztrálása</h2>
+<h2>Create</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">        
+    <div class="form-horizontal">
+        <h4>GepJarmu</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -45,25 +46,52 @@
                 @Html.ValidationMessageFor(model => model.GyartasiEv, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.UgyfelID, "Tulajdonos", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("UgyfelID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.UgyfelID, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Diagnosztikák, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="col-md-offset-2 col-md-10">
+            <table>
+                <tr>
+                    @{
+                        int count = 0;
+                        List<SzereloCegApp.ViewModels.JarmuDiagnosztikaViewModel> hibak = ViewBag.Diagnosztikák;
+                        foreach (var hiba in hibak)
+                        {
+                            if (count++ % 3 == 0)
+                            {
+                                @:</tr><tr>
+                        }
+                            @:<td>
+                                <input type="checkbox"
+                                       name="selectedHibak"
+                                       value="@hiba.DiagnosztikaID"
+                                       @(Html.Raw(hiba.Hibas ? "checked=\"checked" : ""))>
+                                @hiba.DiagnosztikaNeve
+                                @:</td>
+                    }
+                        @:</tr>
+                    }
+                </table>
+                <br />
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.UgyfelID, "UgyfelID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("UgyfelID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UgyfelID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">                
-                <input type="submit" value="Kész" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
+                        }
 
 <div>
-    @Html.ActionLink("Vissza", "Index","Ugyfelek")
+    <a href="javascript:history.back()">Vissza</a>
 </div>
 
 @section Scripts {

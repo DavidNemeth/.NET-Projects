@@ -31,7 +31,7 @@
     <div class="col-md-3 col-lg-3">
         <table class="table">
             <tr>
-                <th>@Html.DisplayFor(model => model.SzereloNev) ügyfelei: </th>
+                <th>@Html.DisplayFor(model => model.SzereloNev) ügyfelei: @Model.Ugyfelek.Count() </th>
             </tr>
 
             @foreach (var ugyfel in Model.Ugyfelek)
@@ -46,5 +46,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="javascript:history.back()">Vissza</a>
 </p>

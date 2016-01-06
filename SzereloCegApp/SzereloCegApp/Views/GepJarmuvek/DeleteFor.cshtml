@@ -1,13 +1,14 @@
 ﻿@model SzereloCegApp.Models.GepJarmu
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Gépjármű Adatai</h2>
+<h2>Gépjármű Törlése</h2>
 
+<h3>@Html.DisplayFor(model => model.Auto)</h3>
 <div>
-    <h4>@Html.DisplayFor(model => model.Auto)</h4>
+    <h4>@Html.DisplayFor(model => model.Ugyfel.UgyfelNev)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -49,26 +50,16 @@
         <dd>
             @Html.DisplayFor(model => model.GyartasiEv)
         </dd>
-        <dt>            
-            @Html.DisplayNameFor(model => model.Ugyfel.Szerelo.SzereloNev)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Ugyfel.Szerelo.SzereloNev)
-        </dd>
-        <br />
-        <dt>
-            @Html.DisplayNameFor(model => model.Diagnosztikák)
-        </dt>
-        <dd>
-            @foreach (var hiba in Model.Diagnosztikák)
-            {
-                @hiba.HibaNeve<br />
-            }
-        </dd>
 
     </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a href="javascript:history.back()">Vissza</a>
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    <a href="javascript:history.back()">Vissza</a>
-</p>
