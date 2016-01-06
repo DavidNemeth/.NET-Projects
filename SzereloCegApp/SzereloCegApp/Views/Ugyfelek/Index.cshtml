@@ -4,11 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Ügyfelek</h2>
+<h2>Car Tech Db</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 @using (Html.BeginForm())
 {
     <table>
@@ -20,24 +18,28 @@
         <tr>
             <td>Ügyfél Keresése:</td>
             <td>@Html.TextBox("searchString", null, new { @class = "form-control" })</td>
-            <td><input type="submit" value="Filter" class="btn btn-default" />@Html.ActionLink("Reset","Index")</td>
+            <td><input type="submit" value="Keresés" class="btn btn-default" />@Html.ActionLink("Reset","Index")</td>
         </tr>
     </table>
 }
 <br />
 <table class="table">
     <tr>        
-        <th>            
-            @Html.ActionLink("Ügyfél", "Index", new { sortOrder = ViewBag.NameSort })
-        </th> 
-        <th>            
-            @Html.ActionLink("Felvétel", "Index", new { sortOrder = ViewBag.FelvetelSort })
-        </th>        
+        <th>       
+            @Html.ActionLink(" ","Index",new { sortOrder = ViewBag.NameSort},new { @class= "glyphicon glyphicon-sort", @style="color:black" })     
+            @Html.ActionLink("Ügyfél", "Index", new { sortOrder = ViewBag.NameSort },new { @style = "color:black" })
+            @Html.ActionLink(" ","Create","Ugyfelek",null,new { @class= "glyphicon glyphicon-plus", @style="color:green"})
+        </th>                 
         <th>
-            @Html.ActionLink("Szerelő", "Index", new { sortOrder = ViewBag.SzereloSort })
+            @Html.ActionLink("Szerelő", "Index", new { sortOrder = ViewBag.SzereloSort }, new { @style = "color:black" })
+            @Html.ActionLink(" ", "Create", "Szerelok", null, new { @class = "glyphicon glyphicon-plus", @style = "color:green" })
+        </th>
+        <th>            
+            @Html.ActionLink("Gépjármű", "Index", new { sortOrder = ViewBag.Gepjarmu }, new { @style = "color:black" })
+            @Html.ActionLink(" ", "Create", "GepJarmuvek", null, new { @class = "glyphicon glyphicon-plus", @style = "color:green" })
         </th>
         <th>
-            Gépjármű
+            @Html.ActionLink("Felvétel Ideje", "Index", new { sortOrder = ViewBag.FelvetelSort }, new { @style = "color:black" })
         </th>
         <th></th>
     </tr>
@@ -46,13 +48,10 @@
     <tr>        
         <td>
            @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-info-sign" }) @Html.DisplayFor(modelItem => item.UgyfelNev)
-        </td>         
+        </td>    
         <td>
-            @Html.DisplayFor(modelItem => item.FelvetelIdeje)
-        </td>
-        
-        <td>
-            @Html.ActionLink(item.Szerelo.SzereloNev, "Details", "Szerelok", new { id = item.Szerelo.ID }, null)            
+            @Html.ActionLink(" ", "Details","Szerelok", new { id = item.Szerelo.ID }, new { @class = "glyphicon glyphicon-info-sign" })
+            @Html.DisplayFor(modelItem => item.Szerelo.SzereloNev)                    
         </td>
         <td>
             @foreach (var auto in item.GepJarmu)
@@ -62,6 +61,9 @@
                 @:<br />
             }
         </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.FelvetelIdeje)
+        </td>
         <td>
             @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil" }) |             
             @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-remove" })
