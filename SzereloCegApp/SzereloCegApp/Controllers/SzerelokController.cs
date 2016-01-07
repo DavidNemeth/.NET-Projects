@@ -57,7 +57,7 @@ namespace SzereloCegApp.Controllers
             {
                 db.Szerelok.Add(szerelo);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Ugyfelek");
             }
 
             return View(szerelo);
@@ -89,7 +89,7 @@ namespace SzereloCegApp.Controllers
             {
                 db.Entry(szerelo).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Ugyfelek");
             }
             return View(szerelo);
         }

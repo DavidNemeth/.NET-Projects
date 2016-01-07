@@ -52,28 +52,24 @@
         <div class="col-md-offset-2 col-md-10">
             <table>
                 <tr>
-                @{
-                    int count = 0;
-                    List<SzereloCegApp.ViewModels.JarmuDiagnosztikaViewModel> hibak = ViewBag.Diagnosztikak;
-                    foreach (var hiba in hibak)
-                    {
-                        if (count++ % 3 == 0)
-                        {
-                            @:</tr><tr>
+                    @{
+                        List<SzereloCegApp.ViewModels.JarmuDiagnosztikaViewModel> diagok = ViewBag.Diagnosztikak;
+                        foreach (var hiba in diagok)
+                        {                            
+                            <td>
+                                <input type="checkbox"
+                                       name="selectedHibak"
+                                       value="@hiba.DiagnosztikaID"
+                                       @(Html.Raw(hiba.Hibas ? "checked=\"checked" : ""))>
+                                @hiba.DiagnosztikaNeve                                
+                            </td>
+                        <tr></tr>
                         }
-                        @:<td>
-                            <input type="checkbox"
-                                   name="selectedHibak"
-                                   value="@hiba.DiagnosztikaID"
-                                   @(Html.Raw(hiba.Hibas ? "checked=\"checked" : ""))>
-                            @hiba.DiagnosztikaNeve
-                            @:</td>
                     }
-                    @:</tr>
-                }
-            </table>
-            <br />
-        </div>        
+                </table>
+                <br />
+            </div>
+            
         <div class="form-group">
             @Html.LabelFor(model => model.UgyfelID, "Tulajdonos", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

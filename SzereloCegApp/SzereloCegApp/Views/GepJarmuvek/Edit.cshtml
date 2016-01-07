@@ -55,24 +55,19 @@
         <div class="col-md-offset-2 col-md-10">
             <table>
                 <tr>
-                    @{
-                        int count = 0;
+                    @{                        
                         List<SzereloCegApp.ViewModels.JarmuDiagnosztikaViewModel> diagok = ViewBag.Diagnosztikak;
                         foreach (var hiba in diagok)
-                        {
-                            if (count++ % 3 == 0)
-                            {
-                                @:</tr><tr>
-                        }
-                            @:<td>
+                        {                            
+                             <td>
                                 <input type="checkbox"
                                        name="selectedHibak"
                                        value="@hiba.DiagnosztikaID"
                                        @(Html.Raw(hiba.Hibas ? "checked=\"checked" : ""))>
                                 @hiba.DiagnosztikaNeve
-                                @:</td>
-                    }
-                        @:</tr>
+                              </td>          
+                             <tr></tr>                  
+                        }                        
                     }
                 </table>
                 <br />

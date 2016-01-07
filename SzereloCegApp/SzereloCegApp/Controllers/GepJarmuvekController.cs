@@ -116,7 +116,7 @@ namespace SzereloCegApp.Controllers
                 {
                     db.Entry(gepJarmu).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Ugyfelek");
                 }         
             }
             AutoDiagnosztikai(gepJarmu);
