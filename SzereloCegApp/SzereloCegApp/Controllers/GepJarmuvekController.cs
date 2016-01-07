@@ -147,7 +147,7 @@ namespace SzereloCegApp.Controllers
             GepJarmu gepJarmu = db.GepJarmuvek.Find(id);
             db.GepJarmuvek.Remove(gepJarmu);
             db.SaveChanges();
-            return RedirectToAction("Delete", "Ugyfelek", new { id = gepJarmu.UgyfelID });
+            return RedirectToAction("Index", "Ugyfelek");
         }
 
 

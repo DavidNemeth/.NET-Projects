@@ -33,17 +33,17 @@
     <tr>        
         <th>       
             @Html.ActionLink(" ","Index",new { sortOrder = ViewBag.NameSort},new { @class= "glyphicon glyphicon-sort", @style="color:black" })     
-            @Html.ActionLink("Ügyfél", "Index", new { sortOrder = ViewBag.NameSort },new { @style = "color:black" })
+            @Html.ActionLink("Ügyfelek", "Index", new { sortOrder = ViewBag.NameSort },new { @style = "color:black" })
            (@Model.Count())         
             @Html.ActionLink(" ","Create","Ugyfelek",null,new { @class= "glyphicon glyphicon-plus", @style="color:green"})
         </th>                 
         <th>
-            @Html.ActionLink("Beosztott Szerelő", "Index", new { sortOrder = ViewBag.SzereloSort }, new { @style = "color:black" })
+            @Html.ActionLink("Beosztott Szerelők", "Index", new { sortOrder = ViewBag.SzereloSort }, new { @style = "color:black" })
             (@Model.Select(g => g.Szerelo.ID).Distinct().Count()) 
             @Html.ActionLink(" ", "Create", "Szerelok", null, new { @class = "glyphicon glyphicon-plus", @style = "color:green" })
         </th>
         <th>            
-            @Html.ActionLink("Gépjármű", "Index", new { sortOrder = ViewBag.Gepjarmu }, new { @style = "color:black" })
+            @Html.ActionLink("Gépjárművek", "Index", new { sortOrder = ViewBag.Gepjarmu }, new { @style = "color:black" })
             @Html.ActionLink(" ", "Create", "GepJarmuvek", null, new { @class = "glyphicon glyphicon-plus", @style = "color:green" })
         </th>
         <th>

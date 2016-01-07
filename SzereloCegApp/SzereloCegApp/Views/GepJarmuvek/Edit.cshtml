@@ -57,8 +57,8 @@
                 <tr>
                     @{
                         int count = 0;
-                        List<SzereloCegApp.ViewModels.JarmuDiagnosztikaViewModel> hibak = ViewBag.Diagnosztikák;
-                        foreach (var hiba in hibak)
+                        List<SzereloCegApp.ViewModels.JarmuDiagnosztikaViewModel> diagok = ViewBag.Diagnosztikak;
+                        foreach (var hiba in diagok)
                         {
                             if (count++ % 3 == 0)
                             {
