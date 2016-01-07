@@ -74,7 +74,7 @@ namespace SzereloCegApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "Ugyfelek");
             }
-
+            AutoDiagnosztikai(gepJarmu);
             TulajdonosDropDown(gepJarmu.UgyfelID);
             return View(gepJarmu);
         }       
