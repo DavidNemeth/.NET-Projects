@@ -277,7 +277,6 @@
     <Content Include="Views\GepJarmuvek\Details.cshtml" />
     <Content Include="Views\GepJarmuvek\Edit.cshtml" />
     <Content Include="Views\GepJarmuvek\Index.cshtml" />
-    <Content Include="Views\GepJarmuvek\CreateForUgyfel.cshtml" />
     <Content Include="Views\GepJarmuvek\DeleteFor.cshtml" />
   </ItemGroup>
   <ItemGroup>

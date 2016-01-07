@@ -56,21 +56,21 @@
                     @Html.EditorFor(model => model.Surgos)
                     @Html.ValidationMessageFor(model => model.Surgos, "", new { @class = "text-danger" })
                 </div>
-            </div>
-        </div>
-        <dl>
-            <dt>
-                Gépjármű:
-            </dt>
-            <dd>
-                @foreach (var auto in Model.GepJarmu)
+            </div>  
+            </div>      
+            <dl class="right">
+                <dt>
+                    Gépjármű:
+                </dt>
+                <dd>
+                    @foreach (var auto in Model.GepJarmu)
                 {
-                    @auto.Auto @Html.ActionLink(" ", "Delete", "GepJarmuvek",new { id = auto.ID }, new { @class = "glyphicon glyphicon-remove", @style = "color:red" })
-                    <br />
-                }
-                @Html.ActionLink(" ", "Create", "GepJarmuvek", new { id = Model.ID }, new { @class = "glyphicon glyphicon-plus", @style = "color:green" })
-            </dd>
-        </dl>
+                        @auto.Auto @Html.ActionLink(" ", "Delete", "GepJarmuvek", new { id = auto.ID }, new { @class = "glyphicon glyphicon-remove", @style = "color:red" })
+                        <br />
+                    }
+                    @Html.ActionLink(" ", "Create", "GepJarmuvek", new { id = Model.ID }, new { @class = "glyphicon glyphicon-plus", @style = "color:green" })
+                </dd>
+            </dl>            
             <div class="form-group">
                 @Html.LabelFor(model => model.SzereloID, "Szerelő", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">

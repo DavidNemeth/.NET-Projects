@@ -72,45 +72,13 @@ namespace SzereloCegApp.Controllers
             {
                 db.GepJarmuvek.Add(gepJarmu);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            TulajdonosDropDown(gepJarmu.UgyfelID);
-            return View(gepJarmu);
-        }
-        // GET Create2
-        public ActionResult CreateForUgyfel()
-        {
-            TulajdonosDropDown();
-            var gepjarmu = new GepJarmu();
-            gepjarmu.Diagnosztikák = new List<Diagnosztika>();
-            AutoDiagnosztikai(gepjarmu);
-            return View();
-        }
-
-        // POST Create2
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateForUgyfel([Bind(Include = "ID,Marka,Tipus,Rendszam,GyartasiEv,UgyfelID")] GepJarmu gepJarmu, string[] selectedHibak)
-        {
-            if (selectedHibak != null)
-            {
-                gepJarmu.Diagnosztikák = new List<Diagnosztika>();
-                foreach (var hiba in selectedHibak)
-                {
-                    var addhiba = db.Diagnosztikák.Find(int.Parse(hiba));
-                    gepJarmu.Diagnosztikák.Add(addhiba);
-                }
-            }
-            if (ModelState.IsValid)
-            {
-                db.GepJarmuvek.Add(gepJarmu);
-                db.SaveChanges();
                 return RedirectToAction("Index", "Ugyfelek");
             }
+
             TulajdonosDropDown(gepJarmu.UgyfelID);
             return View(gepJarmu);
-        }
+        }       
+       
 
         // GET Edit1
         public ActionResult Edit(int? id)
@@ -179,7 +147,7 @@ namespace SzereloCegApp.Controllers
             GepJarmu gepJarmu = db.GepJarmuvek.Find(id);
             db.GepJarmuvek.Remove(gepJarmu);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Delete", "Ugyfelek", new { id = gepJarmu.UgyfelID });
         }
 
 
@@ -206,7 +174,7 @@ namespace SzereloCegApp.Controllers
             GepJarmu gepJarmu = db.GepJarmuvek.Find(id);
             db.GepJarmuvek.Remove(gepJarmu);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Delete", "Ugyfelek", new  { id = gepJarmu.UgyfelID });
         }
         protected override void Dispose(bool disposing)
         {
@@ -248,7 +216,7 @@ namespace SzereloCegApp.Controllers
                     Hibas = autoHibak.Contains(hiba.ID)
                 });
             }
-            ViewBag.Diagnosztikák = viewModel;
+            ViewBag.Diagnosztikak = viewModel;
         }
         //AUTO-Diagnosztika-Update
         private void UpdateAutoDiagnosztika(string[] selectedHibak, GepJarmu GepJarmuToUpdate)

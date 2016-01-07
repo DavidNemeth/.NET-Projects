@@ -1,7 +1,7 @@
 ﻿@model SzereloCegApp.Models.GepJarmu
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create";    
 }
 
 <h2>Create</h2>
@@ -54,7 +54,7 @@
                 <tr>
                 @{
                     int count = 0;
-                    List<SzereloCegApp.ViewModels.JarmuDiagnosztikaViewModel> hibak = ViewBag.Diagnosztikák;
+                    List<SzereloCegApp.ViewModels.JarmuDiagnosztikaViewModel> hibak = ViewBag.Diagnosztikak;
                     foreach (var hiba in hibak)
                     {
                         if (count++ % 3 == 0)

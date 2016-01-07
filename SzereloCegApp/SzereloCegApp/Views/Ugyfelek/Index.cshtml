@@ -10,15 +10,21 @@
 @using (Html.BeginForm())
 {
     <table>
+
         <tr>
             <td>Szerelők:</td>
-            <td>@Html.DropDownList("SzereloID", null, "Összes Szerelő", htmlAttributes: new { @class = "form-control"})</td>
+            <td>@Html.DropDownList("SzereloID", null,"Összes Szerelő", htmlAttributes: new { @class = "form-control"})</td>
             <td></td>
         </tr>
         <tr>
-            <td>Ügyfél Keresése:</td>
+            <td>Ügyfelek:</td>
+            <td>@Html.DropDownList("UgyfelID", null, "Összes Ügyfél", htmlAttributes: new { @class = "form-control" })</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Keresés:</td>
             <td>@Html.TextBox("searchString", null, new { @class = "form-control" })</td>
-            <td><input type="submit" value="Keresés" class="btn btn-default" />@Html.ActionLink("Reset","Index")</td>
+            <td><input type="submit" value="Keresés" class="btn btn-info" />@Html.ActionLink("Reset","Index",null,new {@class="btn btn-warning" })</td>
         </tr>
     </table>
 }
@@ -28,10 +34,12 @@
         <th>       
             @Html.ActionLink(" ","Index",new { sortOrder = ViewBag.NameSort},new { @class= "glyphicon glyphicon-sort", @style="color:black" })     
             @Html.ActionLink("Ügyfél", "Index", new { sortOrder = ViewBag.NameSort },new { @style = "color:black" })
+           (@Model.Count())         
             @Html.ActionLink(" ","Create","Ugyfelek",null,new { @class= "glyphicon glyphicon-plus", @style="color:green"})
         </th>                 
         <th>
-            @Html.ActionLink("Szerelő", "Index", new { sortOrder = ViewBag.SzereloSort }, new { @style = "color:black" })
+            @Html.ActionLink("Beosztott Szerelő", "Index", new { sortOrder = ViewBag.SzereloSort }, new { @style = "color:black" })
+            (@Model.Select(g => g.Szerelo.ID).Distinct().Count()) 
             @Html.ActionLink(" ", "Create", "Szerelok", null, new { @class = "glyphicon glyphicon-plus", @style = "color:green" })
         </th>
         <th>            
@@ -46,12 +54,13 @@
 
 @foreach (var item in Model) {
     <tr>        
-        <td>
-           @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-info-sign" }) @Html.DisplayFor(modelItem => item.UgyfelNev)
+        <td>       
+           @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-info-sign" })                
+           @Html.DisplayFor(modelItem => item.UgyfelNev)
         </td>    
         <td>
-            @Html.ActionLink(" ", "Details","Szerelok", new { id = item.Szerelo.ID }, new { @class = "glyphicon glyphicon-info-sign" })
-            @Html.DisplayFor(modelItem => item.Szerelo.SzereloNev)                    
+            @Html.ActionLink(" ", "Details", "Szerelok", new { id = item.Szerelo.ID }, new { @class = "glyphicon glyphicon-info-sign" })
+            @Html.DisplayFor(modelItem => item.Szerelo.SzereloNev)             
         </td>
         <td>
             @foreach (var auto in item.GepJarmu)
@@ -64,10 +73,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.FelvetelIdeje)
         </td>
-        <td>
-            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil" }) |             
-            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-remove" })
-        </td>
+        <td></td>
     </tr>
 }
 

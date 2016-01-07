@@ -16,9 +16,10 @@ namespace SzereloCegApp.Controllers
         private SzereloCegEntities db = new SzereloCegEntities();
 
         // GET: Ugyfelek
-        public ActionResult Index(string sortOrder, string searchString, int? SzereloID)
+        public ActionResult Index(string sortOrder, string searchString, int? SzereloID,int? UgyfelID,int? HibaID)
         {
             SzereloDropDown();
+            UgyfelDropDown();
             //TODO: Sorting/ordering
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "név csökkenő" : "";
             ViewBag.FelvetelSort = sortOrder == "FelvetelIdeje" ? "FelvetelIdeje csökkenő" : "FelvetelIdeje";
@@ -30,14 +31,28 @@ namespace SzereloCegApp.Controllers
                 .Include(u => u.Szerelo)
                 .Include(u => u.GepJarmu);
 
+            //if (HibaID.HasValue)
+            //{
+            //    ugyfelek = ugyfelek.Where(u => u.GepJarmu.ContainsSzereloID);
+            //}
+
             if (SzereloID.HasValue)
             {
                 ugyfelek = ugyfelek.Where(u => u.SzereloID == SzereloID);
             }
+            if (UgyfelID.HasValue)
+            {
+                ugyfelek = ugyfelek.Where(u => u.ID == UgyfelID);
+            }
             if (!String.IsNullOrEmpty(searchString))
             {
                 ugyfelek = ugyfelek.Where(u => u.Vezetéknév.ToLower().Contains(searchString.ToLower())
-                || u.Keresztnév.ToLower().Contains(searchString.ToLower()));                    
+                || u.Keresztnév.ToLower().Contains(searchString.ToLower())
+                || u.Szerelo.Keresztnév.ToLower().Contains(searchString.ToLower())
+                || u.Szerelo.Vezetéknév.ToLower().Contains(searchString.ToLower())
+                || u.FelvetelIdeje.ToString().ToLower().Contains(searchString.ToLower())
+                || u.GepJarmu.Select(g => g.Marka).ToList().Contains(searchString.ToLower())
+                || u.GepJarmu.Select(g => g.Tipus).ToList().Contains(searchString.ToLower()));                    
             }
 
             switch (sortOrder)
@@ -117,7 +132,7 @@ namespace SzereloCegApp.Controllers
             {
                 db.Ugyfelek.Add(ugyfel);
                 db.SaveChanges();
-                return RedirectToAction("CreateForUgyfel","GepJarmuvek");
+                return RedirectToAction("Create","GepJarmuvek");
             }
 
             SzereloDropDown(ugyfel.SzereloID);
@@ -225,7 +240,20 @@ namespace SzereloCegApp.Controllers
                         select s;
             ViewBag.SzereloID = new SelectList(Query, "ID", "SzereloNev", selectedSzerelo);
         }
-
+        private void UgyfelDropDown(object selectedUgyfel = null)
+        {
+            var Query = from s in db.Ugyfelek
+                        orderby s.Vezetéknév
+                        select s;
+            ViewBag.UgyfelID = new SelectList(Query, "ID", "UgyfelNev", selectedUgyfel);
+        }
+        private void AutoDropDown(object selectedAuto = null)
+        {
+            var Query = from s in db.GepJarmuvek
+                        orderby s.Marka
+                        select s;
+            ViewBag.UgyfelID = new SelectList(Query, "ID", "Auto", selectedAuto);
+        }    
         #endregion
     }
 }
