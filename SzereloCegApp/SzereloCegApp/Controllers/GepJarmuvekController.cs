@@ -57,12 +57,12 @@ namespace SzereloCegApp.Controllers
         // POST Create1
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Marka,Tipus,Rendszam,GyartasiEv,UgyfelID")] GepJarmu gepJarmu, string[] selectedHibak)
+        public ActionResult Create([Bind(Include = "ID,Marka,Tipus,Rendszam,GyartasiEv,UgyfelID")] GepJarmu gepJarmu, string[] SelectedDiag, string[] NotSelectedDia)
         {
-            if (selectedHibak != null)
+            if (SelectedDiag != null)
             {
                 gepJarmu.Diagnosztikák = new List<Diagnosztika>();
-                foreach (var hiba in selectedHibak)
+                foreach (var hiba in SelectedDiag)
                 {
                     var addhiba = db.Diagnosztikák.Find(int.Parse(hiba));
                     gepJarmu.Diagnosztikák.Add(addhiba);
@@ -103,25 +103,32 @@ namespace SzereloCegApp.Controllers
         // POST Edit1
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, string[] selectedHibak)
+        public ActionResult Edit(int? id, string[] SelectedDiag,string[] NotSelectedDiag)
         {
-            var gepJarmu = db.GepJarmuvek
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var gepJarmuEdit = db.GepJarmuvek
                 .Include(g => g.Diagnosztikák)
                 .Where(i => i.ID == id)
-                .Single();
-            if (TryUpdateModel(gepJarmu, "",new string[] { "ID,Marka,Tipus,Rendszam,GyartasiEv,UgyfelID" }))
+                .Single();           
+            if (TryUpdateModel(gepJarmuEdit, "", new string[] {
+                "ID",
+                "Marka",
+                "Tipus",
+                "Rendszam",
+                "GyartasiEv",
+                "UgyfelID" }))
             {
-                UpdateAutoDiagnosztika(selectedHibak, gepJarmu);
-                if (ModelState.IsValid)
-                {
-                    db.Entry(gepJarmu).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Ugyfelek");
-                }         
-            }
-            AutoDiagnosztikai(gepJarmu);
-            TulajdonosDropDown(gepJarmu.UgyfelID);
-            return View(gepJarmu);
+                UpdateAutoDiagnosztika(SelectedDiag, gepJarmuEdit);                
+                db.Entry(gepJarmuEdit).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Ugyfelek");                         
+            }            
+            AutoDiagnosztikai(gepJarmuEdit);
+            TulajdonosDropDown(gepJarmuEdit.UgyfelID);
+            return View(gepJarmuEdit);
         }
 
         // GET Delete1
@@ -201,22 +208,36 @@ namespace SzereloCegApp.Controllers
                         select s;
             ViewBag.UgyfelID = new SelectList(Query, "ID", "UgyfelNev", selectedTulajdonos);
         }
-        //AUTI-DIAGNOSZTIKA ViewBag
+        //AUTI-DIAGNOSZTIKA Double ListBox
         private void AutoDiagnosztikai(GepJarmu gepjarmu)
         {
             var allHiba = db.Diagnosztikák; //minden diag
             var autoHibak = new HashSet<int>(gepjarmu.Diagnosztikák.Select(d => d.ID)); //auto diagok
-            var viewModel = new List<JarmuDiagnosztikaViewModel>();
+            var viewModelNotSelected = new List<JarmuDiagnosztikaViewModel>();
+            var viewModelSelected = new List<JarmuDiagnosztikaViewModel>();
             foreach (var hiba in allHiba) //viewmodel feltöltés
             {
-                viewModel.Add(new JarmuDiagnosztikaViewModel
+                if (autoHibak.Contains(hiba.ID))
                 {
-                    DiagnosztikaID = hiba.ID,
-                    DiagnosztikaNeve = hiba.HibaNeve,
-                    Hibas = autoHibak.Contains(hiba.ID)
-                });
+                    viewModelSelected.Add(new JarmuDiagnosztikaViewModel
+                    {
+                        DiagnosztikaID = hiba.ID,
+                        DiagnosztikaNeve = hiba.HibaNeve,
+                        Hibas = true
+                    });
+                }
+                else
+                {
+                    viewModelNotSelected.Add(new JarmuDiagnosztikaViewModel
+                    {
+                        DiagnosztikaID = hiba.ID,
+                        DiagnosztikaNeve = hiba.HibaNeve,
+                        Hibas = false
+                    });
+                }
             }
-            ViewBag.Diagnosztikak = viewModel;
+            ViewBag.SelectedDiag = new MultiSelectList(viewModelSelected, "DiagnosztikaID", "DiagnosztikaNeve");
+            ViewBag.NotSelectedDiag = new MultiSelectList(viewModelNotSelected, "DiagnosztikaID", "DiagnosztikaNeve");
         }
         //AUTO-Diagnosztika-Update
         private void UpdateAutoDiagnosztika(string[] selectedHibak, GepJarmu GepJarmuToUpdate)

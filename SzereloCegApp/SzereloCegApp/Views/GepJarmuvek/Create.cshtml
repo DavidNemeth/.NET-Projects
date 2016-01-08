@@ -4,15 +4,14 @@
     ViewBag.Title = "Create";    
 }
 
-<h2>Create</h2>
+<h2>Új Gépjármű</h2>
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>GepJarmu</h4>
+    <div class="form-horizontal">       
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -46,30 +45,24 @@
                 @Html.ValidationMessageFor(model => model.GyartasiEv, "", new { @class = "text-danger" })
             </div>
         </div>      
-        <div class="form-group">
-            @Html.LabelFor(model => model.Diagnosztikák, htmlAttributes: new { @class = "control-label col-md-2" })
-        </div>  
-        <div class="col-md-offset-2 col-md-10">
-            <table>
-                <tr>
-                    @{
-                        List<SzereloCegApp.ViewModels.JarmuDiagnosztikaViewModel> diagok = ViewBag.Diagnosztikak;
-                        foreach (var hiba in diagok)
-                        {                            
-                            <td>
-                                <input type="checkbox"
-                                       name="selectedHibak"
-                                       value="@hiba.DiagnosztikaID"
-                                       @(Html.Raw(hiba.Hibas ? "checked=\"checked" : ""))>
-                                @hiba.DiagnosztikaNeve                                
-                            </td>
-                        <tr></tr>
-                        }
-                    }
-                </table>
-                <br />
+        <div class="row">
+
+            <div class="col-md-4 form-group">
+                <label class="control-label">Auto Diagnosztikái</label>
+                @Html.ListBox("SelectedDiag", (MultiSelectList)ViewBag.SelectedDiag, new { @class = "form-control" })
+                <button type="button" id="btnRight" class="btn btn-default">
+                    <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                </button>
             </div>
-            
+
+            <div class="col-md-4 form-group">
+                <label class="control-label">Összes Diagnosztika</label>
+                @Html.ListBox("NotSelectedDiag", (MultiSelectList)ViewBag.NotSelectedDiag, new { @class = "form-control" })
+                <button type="button" id="btnLeft" class="btn btn-default">
+                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.UgyfelID, "Tulajdonos", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -80,7 +73,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" id="btnSubmit" value="Mentés" class="btn btn-success" />
             </div>
         </div>
     </div>
@@ -90,6 +83,18 @@
     <a href="javascript:history.back()">Vissza</a>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('#GyartasiEv').datetimepicker({
+                defaultDate: '',
+                format: 'YYYY-MM',
+                showClose: false,
+                showClear: true,
+                toolbarPlacement: 'top'
+            });
+        });
+    </script>
 }
+
+

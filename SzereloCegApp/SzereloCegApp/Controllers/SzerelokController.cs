@@ -57,7 +57,7 @@ namespace SzereloCegApp.Controllers
             {
                 db.Szerelok.Add(szerelo);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Ugyfelek");
+                return RedirectToAction("Index", "Szerelok");
             }
 
             return View(szerelo);

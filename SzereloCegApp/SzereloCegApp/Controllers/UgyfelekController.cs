@@ -243,7 +243,7 @@ namespace SzereloCegApp.Controllers
         private void UgyfelDropDown(object selectedUgyfel = null)
         {
             var Query = from s in db.Ugyfelek
-                        orderby s.Vezetéknév
+                        orderby s.FelvetelIdeje descending
                         select s;
             ViewBag.UgyfelID = new SelectList(Query, "ID", "UgyfelNev", selectedUgyfel);
         }

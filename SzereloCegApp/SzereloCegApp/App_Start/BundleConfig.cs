@@ -26,6 +26,11 @@ namespace SzereloCegApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            //custom bundle for all stuff
+            bundles.Add(new ScriptBundle("~/bundles/GoodStuff").Include(
+                        "~/Scripts/DualSelectBox.js",
+                        "~/Scripts/moment*",
+                        "~/Scripts/bootstrap-datetimepicker*"));            
         }
     }
 }

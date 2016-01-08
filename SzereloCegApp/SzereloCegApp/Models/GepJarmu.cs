@@ -19,8 +19,8 @@ namespace SzereloCegApp.Models
         [Required]
         public string  Rendszam { get; set; }
         [Display(Name = "Gyártási Év")]
-        [Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Kérem adja meg a Gépjármű pontos Gyártási Idejét")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? GyartasiEv { get; set; }
         public int UgyfelID { get; set; }
         public virtual Ugyfel Ugyfel { get; set; }
