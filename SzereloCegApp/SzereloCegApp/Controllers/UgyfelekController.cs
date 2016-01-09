@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PagedList;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -16,11 +17,12 @@ namespace SzereloCegApp.Controllers
         private SzereloCegEntities db = new SzereloCegEntities();
 
         // GET: Ugyfelek
-        public ActionResult Index(string sortOrder, string searchString, int? SzereloID,int? UgyfelID,int? HibaID)
+        public ActionResult Index(string currentFilter,int? page, string sortOrder, string searchString, int? SzereloID,int? UgyfelID,int? HibaID)
         {
             SzereloDropDown();
             UgyfelDropDown();
             //TODO: Sorting/ordering
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "név csökkenő" : "";
             ViewBag.FelvetelSort = sortOrder == "FelvetelIdeje" ? "FelvetelIdeje csökkenő" : "FelvetelIdeje";
             ViewBag.SzulSort = sortOrder == "Szulido" ? "Szulido csökkenő" : "Szulido";
@@ -35,7 +37,15 @@ namespace SzereloCegApp.Controllers
             //{
             //    ugyfelek = ugyfelek.Where(u => u.GepJarmu.ContainsSzereloID);
             //}
-
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
             if (SzereloID.HasValue)
             {
                 ugyfelek = ugyfelek.Where(u => u.SzereloID == SzereloID);
@@ -45,7 +55,7 @@ namespace SzereloCegApp.Controllers
                 ugyfelek = ugyfelek.Where(u => u.ID == UgyfelID);
             }
             if (!String.IsNullOrEmpty(searchString))
-            {
+            {                 
                 ugyfelek = ugyfelek.Where(u => u.Vezetéknév.ToLower().Contains(searchString.ToLower())
                 || u.Keresztnév.ToLower().Contains(searchString.ToLower())
                 || u.Szerelo.Keresztnév.ToLower().Contains(searchString.ToLower())
@@ -53,7 +63,7 @@ namespace SzereloCegApp.Controllers
                 || u.FelvetelIdeje.ToString().ToLower().Contains(searchString.ToLower())
                 || u.GepJarmu.Select(g => g.Marka).ToList().Contains(searchString.ToLower())
                 || u.GepJarmu.Select(g => g.Tipus).ToList().Contains(searchString.ToLower()));                    
-            }
+            }            
 
             switch (sortOrder)
             {
@@ -93,7 +103,9 @@ namespace SzereloCegApp.Controllers
                         .ThenBy(u => u.Keresztnév);
                     break;
             }
-            return View(ugyfelek.ToList());   
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(ugyfelek.ToPagedList(pageNumber,pageSize));   
         }
 
         // GET: Ugyfelek/Details/5

@@ -1,5 +1,6 @@
-﻿@model IEnumerable<SzereloCegApp.Models.Diagnosztika>
-
+﻿@model PagedList.IPagedList<SzereloCegApp.Models.Diagnosztika>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Diagnosztikák";
 }
@@ -12,7 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.HibaNeve)
+            Hiba Neve:
         </th>
         <th></th>
     </tr>
@@ -29,3 +30,7 @@
 }
 
 </table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

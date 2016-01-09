@@ -1,13 +1,15 @@
-﻿@model IEnumerable<SzereloCegApp.Models.Ugyfel>
+﻿@model PagedList.IPagedList<SzereloCegApp.Models.Ugyfel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Ugyfelek";
 }
 
 <h2>Car Tech Db</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Ugyfelek", FormMethod.Get))
 {
     <table>
 
@@ -23,7 +25,7 @@
         </tr>
         <tr>
             <td>Keresés:</td>
-            <td>@Html.TextBox("searchString", null, new { @class = "form-control" })</td>
+            <td>@Html.TextBox("searchString", ViewBag.CurrentFilter as string , new { @class = "form-control" })</td>
             <td><input type="submit" value="Keresés" class="btn btn-info" />@Html.ActionLink("Reset","Index",null,new {@class="btn btn-warning" })</td>
         </tr>
     </table>
@@ -38,16 +40,16 @@
             @Html.ActionLink(" ","Create","Ugyfelek",null,new { @class= "glyphicon glyphicon-plus", @style="color:green"})
         </th>                 
         <th>
-            @Html.ActionLink("Beosztott Szerelők", "Index", new { sortOrder = ViewBag.SzereloSort }, new { @style = "color:black" })
+            @Html.ActionLink("Beosztott Szerelők", "Index", new { sortOrder = ViewBag.SzereloSort, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:black" })
             (@Model.Select(g => g.Szerelo.ID).Distinct().Count()) 
             @Html.ActionLink(" ", "Create", "Szerelok", null, new { @class = "glyphicon glyphicon-plus", @style = "color:green" })
         </th>
         <th>            
-            @Html.ActionLink("Gépjárművek", "Index", new { sortOrder = ViewBag.Gepjarmu }, new { @style = "color:black" })
+            @Html.ActionLink("Gépjárművek", "Index", new { sortOrder = ViewBag.Gepjarmu, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:black" })
             @Html.ActionLink(" ", "Create", "GepJarmuvek", null, new { @class = "glyphicon glyphicon-plus", @style = "color:green" })
         </th>
         <th>
-            @Html.ActionLink("Felvétel Ideje", "Index", new { sortOrder = ViewBag.FelvetelSort }, new { @style = "color:black" })
+            @Html.ActionLink("Felvétel Ideje", "Index", new { sortOrder = ViewBag.FelvetelSort, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:black" })
         </th>
         <th></th>
     </tr>
@@ -78,3 +80,8 @@
 }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

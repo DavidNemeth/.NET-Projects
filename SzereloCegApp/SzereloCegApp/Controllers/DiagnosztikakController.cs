@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PagedList;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -16,9 +17,13 @@ namespace SzereloCegApp.Controllers
         private SzereloCegEntities db = new SzereloCegEntities();
 
         // GET: Diagnosztikak
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Diagnosztikák.ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            var diag = db.Diagnosztikák
+                .OrderBy(d => d.HibaNeve);
+            return View(diag.ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Diagnosztikak/Details/5

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PagedList;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -16,11 +17,14 @@ namespace SzereloCegApp.Controllers
         private SzereloCegEntities db = new SzereloCegEntities();
 
         // GET: Szerelok
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Szerelok
-                .Include(s => s.Ugyfelek)             //innerjoin   
-                .ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            var szerelok = db.Szerelok
+                .Include(u => u.Ugyfelek)
+                .OrderBy(u => u.Keresztnév);             
+            return View(szerelok.ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Szerelok/Details/5
