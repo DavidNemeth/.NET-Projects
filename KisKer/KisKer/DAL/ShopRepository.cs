@@ -33,11 +33,25 @@ namespace KisKer.DAL
         }
         #endregion
 
-        public DateTime GetDates(int id)
+        public List<DateTime> GetDates(int id)
         {
-            var datetime = _context.ErtekesitesReszletek.Where(p => p.AruID == id).Select(p => p.ErtekesitesID).FirstOrDefault();
-            var times = _context.Ertekesitesek.Where(p => p.ErtekesitesID == datetime).Select(p => p.ErtekesitesDatum).FirstOrDefault();     
-            return times;
+            List<DateTime> dates = new List<DateTime>();
+            var datetimes = _context.ErtekesitesReszletek.Where(p => p.AruID == id).Select(p => p.ErtekesitesID);
+            foreach (var time in datetimes)
+            {
+                dates.Add(_context.Ertekesitesek.Where(p => p.ErtekesitesID == time).Select(p => p.ErtekesitesDatum).FirstOrDefault());
+            }
+            return dates;
+        }
+        public List<decimal> GetAruMennyiseg(int id)
+        {
+            List<decimal> mennyiseg = new List<decimal>();
+            var arumennyiseg = _context.ErtekesitesReszletek.Where(p => p.AruID == id).Select(p => p.AruMennyiseg);
+            foreach (var menyi in arumennyiseg)
+            {
+                mennyiseg.Add(menyi);
+            }
+            return mennyiseg;
         }
         public IEnumerable<AruKategoria> GetCategories()
         {
@@ -84,48 +98,11 @@ namespace KisKer.DAL
         {
             int mertekegysegazon = _context.AruKeszletek.Where(k => k.AruID == id).Select(k => k.MertekegysegAzon).FirstOrDefault();
             return mertekegysegazon;
-        }
-        public decimal GetAruMennyiseg(int id)
-        {
-            decimal arumennyiseg = _context.ErtekesitesReszletek.Where(k => k.AruID == id).Select(k => k.AruMennyiseg).FirstOrDefault();
-            return arumennyiseg;
-        }
+        }        
         public string GetAruNev(int id)
         {
             string arunev = _context.AruKeszletek.Where(k => k.AruID == id).Select(k => k.AruMegnevezes).FirstOrDefault();
             return arunev;
         }
-        
-
-        //public IList<AruKeszlet> GetEgysegAr(ErtekesitesReszlet Aru)
-        //{
-        //    var aruIds = _context.ErtekesitesReszletek.Where(k => k.AruID == Aru.AruID).Select(k => k.AruID).ToList();
-        //    List<AruKeszlet> egysegarak = new List<AruKeszlet>();
-        //    foreach (var arid in aruIds)
-        //    {
-        //        egysegarak.Add(_context.AruKeszlet.Where(d => d.AruID == arid).FirstOrDefault());
-        //    }
-        //    return egysegarak;
-        //}
-        //public IList<Ertekesites> GetDate(ErtekesitesReszlet Aru)
-        //{
-        //    var ertekesitesIds = _context.Ertekesitesek.Where(k => k.ErtekesitesID == Aru.ErtekesitesID).Select(k => k.ErtekesitesID).ToList();
-        //    List<Ertekesites> ertekesitesDates = new List<Ertekesites>();
-        //    foreach (var dateid in ertekesitesIds)
-        //    {
-        //        ertekesitesDates.Add(_context.Ertekesitesek.Where(d => d.ErtekesitesID == dateid).FirstOrDefault());
-        //    }
-        //    return ertekesitesDates;
-        //}
-        //public IList<AruKeszlet> GetKategoriaId(ErtekesitesReszlet Aru)
-        //{
-        //    var categoryIds = _context.AruKeszlet.Where(k => k.AruKategoriaID == Aru.AruID).Select(k => k.AruKategoriaID).ToList();
-        //    List<AruKeszlet> kategorianev = new List<AruKeszlet>();
-        //    foreach (var catid in categoryIds)
-        //    {
-        //        kategorianev.Add(_context.AruKeszlet.Where(k => k.AruKategoriaID == catid).FirstOrDefault());
-        //    }
-        //    return kategorianev;
-        //}
     }
 }

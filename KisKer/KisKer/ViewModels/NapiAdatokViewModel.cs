@@ -11,9 +11,9 @@ namespace KisKer.ViewModels
         //public IList<ErtekesitesReszlet> ErtekesitesReszletek { get; set; }
         //public IList<Ertekesites> Ertekesitesek { get; set; }
         //public IList<AruKeszlet> AruKeszletek { get; set; }
-        //public IList<AruKategoria> AruKategoriak { get; set; }   
-        public DateTime ErtekesitesDate { get; set; }
-        public int ID { get; set; }       
+        //public IList<AruKategoria> AruKategoriak { get; set; }
+        public int ID { get; set; }
+        public DateTime ErtekesitesDates { get; set; }              
         public string AruKategoriaMegnevezes { get; set; }
         public int AruKategoriaID { get; set; }
         public string Mertekegyseg { get; set; }
