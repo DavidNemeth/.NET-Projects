@@ -10,7 +10,7 @@ namespace KisKer.DAL
     public interface IShopRepository : IDisposable
     {        
         IList<ErtekesitesReszlet> GetReszletek();
-        IEnumerable<Ertekesites> GetDates();
+        DateTime GetDates(int id);
         string GetKategoriaNev(int id);
         int GetKategoriaId(int id);
         decimal GetEgysegAr(int id);

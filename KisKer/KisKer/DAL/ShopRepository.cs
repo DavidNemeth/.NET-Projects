@@ -33,12 +33,11 @@ namespace KisKer.DAL
         }
         #endregion
 
-        public IEnumerable<Ertekesites> GetDates()
+        public DateTime GetDates(int id)
         {
-            var ertekesitesDate = from s in _context.Ertekesitesek
-                                  orderby s.ErtekesitesDatum
-                                  select s;
-            return ertekesitesDate;
+            var datetime = _context.ErtekesitesReszletek.Where(p => p.AruID == id).Select(p => p.ErtekesitesID).FirstOrDefault();
+            var times = _context.Ertekesitesek.Where(p => p.ErtekesitesID == datetime).Select(p => p.ErtekesitesDatum).FirstOrDefault();     
+            return times;
         }
         public IEnumerable<AruKategoria> GetCategories()
         {
