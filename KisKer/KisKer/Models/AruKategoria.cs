@@ -17,13 +17,13 @@ namespace KisKer.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AruKategoria()
         {
-            this.AruKategoriaID = new HashSet<AruKeszlet>();
+            this.AruKeszletek = new HashSet<AruKeszlet>();
         }
     
         public int AruKategoriaID { get; set; }
         public string AruKategoriaMegnevezes { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AruKeszlet> AruKategoriaID { get; set; }
+        public virtual ICollection<AruKeszlet> AruKeszletek { get; set; }
     }
 }

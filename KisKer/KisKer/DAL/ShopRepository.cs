@@ -33,50 +33,71 @@ namespace KisKer.DAL
         }
         #endregion
 
-
-        public IList<AruKeszlet> GetKeszlet()
+        public IEnumerable<Ertekesites> GetDates()
         {
-            return _context.AruKeszlet.ToList();
+            var ertekesitesDate = from s in _context.Ertekesitesek
+                                  orderby s.ErtekesitesDatum
+                                  select s;
+            return ertekesitesDate;
+        }
+        public IEnumerable<AruKategoria> GetCategories()
+        {
+            var categories = from s in _context.AruKategoriak
+                             orderby s.AruKategoriaMegnevezes
+                             select s;
+            return categories;
         }
         public IList<ErtekesitesReszlet> GetReszletek()
         {
             return _context.ErtekesitesReszletek.ToList();
         }
-        //public IList<AruKeszlet> GetKategoriaId(ErtekesitesReszlet Aru)
-        //{
-        //    var categoryIds = _context.AruKeszlet.Where(k => k.AruKategoriaID == Aru.AruID).Select(k => k.AruKategoriaID).ToList();
-        //    List<AruKeszlet> kategorianev = new List<AruKeszlet>();
-        //    foreach (var catid in categoryIds)
-        //    {
-        //        kategorianev.Add(_context.AruKeszlet.Where(k => k.AruKategoriaID == catid).FirstOrDefault());
-        //    }
-        //    return kategorianev;
-        //}
+        public IList<AruKeszlet> GetAruKeszlet()
+        {
+            return _context.AruKeszletek.ToList();
+        }
         public string GetKategoriaNev(int id)
         {
-            string KatName = _context.AruKeszlet.Where(k => k.AruKategoriaID == id).Select(k => k.AruMegnevezes).FirstOrDefault();
+            string KatName = _context.AruKeszletek.Where(k => k.AruID == id).Select(k => k.AruMegnevezes).FirstOrDefault();
             return KatName;
         }
         public int GetKategoriaId(int id)
         {
-            int KatId = _context.AruKeszlet.Where(k => k.AruKategoriaID == id).Select(k => k.AruKategoriaID).FirstOrDefault();
+            int KatId = _context.AruKeszletek.Where(k => k.AruID == id).Select(k => k.AruKategoriaID).FirstOrDefault();
             return KatId;
+        }     
+        public decimal GetEgysegAr(int id)
+        {            
+            decimal egysegar = _context.AruKeszletek.Where(k => k.AruID == id).Select(k => k.EgysegAr).FirstOrDefault();
+            return egysegar;
         }
-        //public IList<Ertekesites> GetDate(ErtekesitesReszlet Aru)
-        //{
-        //    var ertekesitesIds = _context.Ertekesitesek.Where(k => k.ErtekesitesID == Aru.ErtekesitesID).Select(k => k.ErtekesitesID).ToList();
-        //    List<Ertekesites> ertekesitesDates = new List<Ertekesites>();
-        //    foreach (var dateid in ertekesitesIds)
-        //    {
-        //        ertekesitesDates.Add(_context.Ertekesitesek.Where(d => d.ErtekesitesID == dateid).FirstOrDefault());
-        //    }
-        //    return ertekesitesDates;
-        //}
-        public DateTime GetErtekesitesDate(int id)
+        public decimal GetTeljesAr(int id)
         {
-            DateTime ertekesitesDate = _context.Ertekesitesek.Where(k => k.ErtekesitesID == id).Select(k => k.ErtekesitesDatum).FirstOrDefault();
-            return ertekesitesDate;
+            decimal egysegar = _context.AruKeszletek.Where(k => k.AruID == id).Select(k => k.EgysegAr).FirstOrDefault();
+            decimal darabszam = _context.ErtekesitesReszletek.Where(k => k.AruID == id).Select(k => k.AruMennyiseg).FirstOrDefault();
+            return egysegar * darabszam;
         }
+        public string GetMertekEgyseg(int id)
+        {
+            string mertekegyseg = _context.AruKeszletek.Where(k => k.AruID == id).Select(k => k.Mertekegyseg).FirstOrDefault();
+            return mertekegyseg;
+        }
+        public int GetMertekEgysegAzon(int id)
+        {
+            int mertekegysegazon = _context.AruKeszletek.Where(k => k.AruID == id).Select(k => k.MertekegysegAzon).FirstOrDefault();
+            return mertekegysegazon;
+        }
+        public decimal GetAruMennyiseg(int id)
+        {
+            decimal arumennyiseg = _context.ErtekesitesReszletek.Where(k => k.AruID == id).Select(k => k.AruMennyiseg).FirstOrDefault();
+            return arumennyiseg;
+        }
+        public string GetAruNev(int id)
+        {
+            string arunev = _context.AruKeszletek.Where(k => k.AruID == id).Select(k => k.AruMegnevezes).FirstOrDefault();
+            return arunev;
+        }
+        
+
         //public IList<AruKeszlet> GetEgysegAr(ErtekesitesReszlet Aru)
         //{
         //    var aruIds = _context.ErtekesitesReszletek.Where(k => k.AruID == Aru.AruID).Select(k => k.AruID).ToList();
@@ -87,10 +108,25 @@ namespace KisKer.DAL
         //    }
         //    return egysegarak;
         //}
-        public decimal GetTermekAr(int id)
-        {            
-            decimal aruar = _context.AruKeszlet.Where(k => k.AruID == id).Select(k => k.EgysegAr).FirstOrDefault();
-            return aruar;
-        }  
+        //public IList<Ertekesites> GetDate(ErtekesitesReszlet Aru)
+        //{
+        //    var ertekesitesIds = _context.Ertekesitesek.Where(k => k.ErtekesitesID == Aru.ErtekesitesID).Select(k => k.ErtekesitesID).ToList();
+        //    List<Ertekesites> ertekesitesDates = new List<Ertekesites>();
+        //    foreach (var dateid in ertekesitesIds)
+        //    {
+        //        ertekesitesDates.Add(_context.Ertekesitesek.Where(d => d.ErtekesitesID == dateid).FirstOrDefault());
+        //    }
+        //    return ertekesitesDates;
+        //}
+        //public IList<AruKeszlet> GetKategoriaId(ErtekesitesReszlet Aru)
+        //{
+        //    var categoryIds = _context.AruKeszlet.Where(k => k.AruKategoriaID == Aru.AruID).Select(k => k.AruKategoriaID).ToList();
+        //    List<AruKeszlet> kategorianev = new List<AruKeszlet>();
+        //    foreach (var catid in categoryIds)
+        //    {
+        //        kategorianev.Add(_context.AruKeszlet.Where(k => k.AruKategoriaID == catid).FirstOrDefault());
+        //    }
+        //    return kategorianev;
+        //}
     }
 }

@@ -119,7 +119,7 @@
           <Property Name="EgysegAr" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Raktarkeszlet" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="AruKategoria" Relationship="Self.FK_AruKeszlet_ToAruKategoria" FromRole="AruKeszlet" ToRole="AruKategoriak" />
-          <NavigationProperty Name="ErtekesitesReszletekek" Relationship="Self.FK_ErtekesitesReszletek_Keszlet" FromRole="AruKeszletek" ToRole="ErtekesitesReszlet" />
+          <NavigationProperty Name="ErtekesitesReszletek" Relationship="Self.FK_ErtekesitesReszletek_Keszlet" FromRole="AruKeszletek" ToRole="ErtekesitesReszlet" />
         </EntityType>
         <EntityType Name="Ertekesites">
           <Key>

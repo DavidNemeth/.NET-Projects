@@ -17,7 +17,7 @@ namespace KisKer.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AruKeszlet()
         {
-            this.ErtekesitesReszletekek = new HashSet<ErtekesitesReszlet>();
+            this.ErtekesitesReszletek = new HashSet<ErtekesitesReszlet>();
         }
     
         public int AruID { get; set; }
@@ -30,6 +30,6 @@ namespace KisKer.Models
     
         public virtual AruKategoria AruKategoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ErtekesitesReszlet> ErtekesitesReszletekek { get; set; }
+        public virtual ICollection<ErtekesitesReszlet> ErtekesitesReszletek { get; set; }
     }
 }

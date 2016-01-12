@@ -8,13 +8,19 @@ using System.Threading.Tasks;
 namespace KisKer.DAL
 {
     public interface IShopRepository : IDisposable
-    {
-        IList<AruKeszlet> GetKeszlet();
+    {        
         IList<ErtekesitesReszlet> GetReszletek();
-        DateTime GetErtekesitesDate(int id);
-        decimal GetTermekAr(int id);
+        IEnumerable<Ertekesites> GetDates();
         string GetKategoriaNev(int id);
         int GetKategoriaId(int id);
+        decimal GetEgysegAr(int id);
+        decimal GetTeljesAr(int id);
+        string GetMertekEgyseg(int id);
+        int GetMertekEgysegAzon(int id);
+        decimal GetAruMennyiseg(int id);
+        string GetAruNev(int id);
+        IEnumerable<AruKategoria> GetCategories();
+        IList<AruKeszlet> GetAruKeszlet();
     }
 }
         

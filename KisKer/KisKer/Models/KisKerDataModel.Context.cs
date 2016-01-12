@@ -26,7 +26,7 @@ namespace KisKer.Models
         }
     
         public virtual DbSet<AruKategoria> AruKategoriak { get; set; }
-        public virtual DbSet<AruKeszlet> AruKeszlet { get; set; }
+        public virtual DbSet<AruKeszlet> AruKeszletek { get; set; }
         public virtual DbSet<Ertekesites> Ertekesitesek { get; set; }
         public virtual DbSet<ErtekesitesReszlet> ErtekesitesReszletek { get; set; }
     }

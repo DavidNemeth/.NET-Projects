@@ -1,0 +1,50 @@
+﻿@model IEnumerable<KisKer.ViewModels.NapiAdatokViewModel>
+
+@using KisKer.Controllers
+@{ 
+    NapiAdatokController Ctrl = new NapiAdatokController();
+}
+@*@using (Html.BeginForm("Index", "NapiAdatok", FormMethod.Get))
+{
+    <table>
+        <tr>
+            <td>
+                @Html.DropDownList("CategoryID", null, "Összes Kategória", htmlAttributes: new { @class = "form-control" })
+            </td>
+            <td>
+                <input type="submit" value="Filter" class="btn btn-info" />@Html.ActionLink("Reset", "Index", null, new { @class = "btn btn-warning" })
+            </td>
+        </tr>
+    </table>
+}*@
+
+<table class="table">   
+
+@foreach (var item in NapiAdatokController.AdatokList) {
+    <tr>        
+        <td>
+            @Html.DisplayFor(modelItem => item.AruMegnevezes)
+        </td>      
+        <td>
+            @Html.DisplayFor(modelItem => item.Mertekegyseg)
+            @Html.DisplayFor(modelItem => item.MertekegysegAzon)
+        </td>        
+        <td>
+            @Html.DisplayFor(modelItem => item.EgysegAr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AruMennyiseg)
+        </td>            
+        <td>
+            @Html.DisplayFor(modelItem => item.TeljesAr)
+        </td>  
+        <td>
+            @Html.DisplayFor(modelItem => item.AruKategoriaMegnevezes)
+        </td>  
+        <td>
+            @Html.DisplayFor(modelItem => item.AruKategoriaID)
+        </td>    
+    </tr>
+}
+
+</table>
