@@ -15,12 +15,12 @@ namespace KisKer.ViewModels
             public int AruID { get; set; }
             public decimal EgysegAr { get; set; }
             public int AruMennyiseg { get; set; }
-            public string AruNeve { get; set; }
+            public string AruMegnevezes { get; set; }
         }
         public class ErtekesitesReszletekModel
         {
             private List<ErtekesitesReszletekLine> BevasarloLista = new List<ErtekesitesReszletekLine>();
-            public IEnumerable<ErtekesitesReszletekLine> RendelesiTetelek
+            public IEnumerable<ErtekesitesReszletekLine> ErtekesitesTetelek
             {
                 get
                 {
@@ -39,7 +39,7 @@ namespace KisKer.ViewModels
                         AruID = Aru.AruID,
                         EgysegAr = Aru.EgysegAr,
                         AruMennyiseg = 1,
-                        AruNeve = Aru.AruMegnevezes                        
+                        AruMegnevezes = Aru.AruMegnevezes                        
                     });
                 }
                 else
