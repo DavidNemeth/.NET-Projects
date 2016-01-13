@@ -1,0 +1,104 @@
+﻿@model KisKer.ViewModels.ErtekesitesViewModel
+@using KisKer.Models
+
+@{
+    ViewBag.Title = "Árufelvétel kész";
+}
+<h2>RendelesMegrendelo</h2>
+
+<div class="well well-sm col-xs-12">
+    <h2 class="col-xs-7">
+        <strong>
+            @Html.DisplayFor(model => model.Ertekesitesek.First().ErtekesitesDatum)
+        </strong>
+    </h2>
+</div>
+    
+
+<h2>Kiválasztott Áruk</h2>
+<div class="well well-sm col-xs-12">
+    @{
+        int nCounter = 0;
+    }
+    <table class="table" id="bevkosar">
+        <thead>
+            <tr>
+                <th class="col-xs-4">Áru neve</th>
+                <th class="text-center col-xs-2">Mennyisége</th>
+                <th class="text-right col-xs-2">Egységára</th>                
+                <th class="text-right col-xs-2">Összesen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sor in Model.ertekesitesTetelek.ErtekesitesTetelek)
+            {
+                <tr>
+                    <td class="text-left table_td_align">@Model.ertekesitesTetelek.ErtekesitesTetelek.ElementAt(nCounter).AruMegnevezes</td>
+                    <td class="text-right table_td_align">@Model.ertekesitesTetelek.ErtekesitesTetelek.ElementAt(nCounter).AruMennyiseg</td>
+                    <td class="text-right table_td_align">@Model.ertekesitesTetelek.ErtekesitesTetelek.ElementAt(nCounter).EgysegAr.ToString("c")</td>                    
+                    <td class="text-right table_td_align">
+                        @((Convert.ToDecimal(sor.AruMennyiseg) * sor.EgysegAr).ToString("c"))
+                    </td>
+                </tr>
+                nCounter++;
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="text-right table_td_align">Összérték:</td>
+                <td class="text-right table_td_align srOsszes"> @Model.ertekesitesTetelek.TeljesErtek().ToString("c")</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    @{
+        Model.ertekesitesTetelek.ClearAll();
+    }
+</div>
+
+@*Bootstrap modal dialog*@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header alert-info">
+                <h4 class="modal-title" id="myModalLabel">
+                    Vásárlás sikeres
+                </h4>
+            </div>
+            <div class="modal-body">
+                Nyomja meg a nyomógombot a folytatáshoz!
+            </div>
+            <div class="modal-footer">
+                @Html.RouteLink("Vissza az Árukhoz", new
+           {
+               controller = "Termekek",
+               action = "Index"
+           }, new
+           {
+               @class = "btn btn-primary"
+           })
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+
+    <script type="text/javascript">
+        $(function () {
+            $('#myModal').modal({
+                keyboard: true
+            })
+        });
+
+        $(function () {
+            $('#myModal').on('hide.bs.modal', function () {
+                window.location = '@Url.Action("Index", "Termekek")';
+            })
+        });
+
+    </script>
+}
