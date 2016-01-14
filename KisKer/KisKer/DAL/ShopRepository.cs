@@ -33,30 +33,19 @@ namespace KisKer.DAL
             GC.SuppressFinalize(this);
         }
         #endregion
-        public void AddErtekesites(int ErtekesitesID,int AruID, DateTime selectedDate, decimal arumennyiseg)
-        {
-            List<int> ids = new List<int>();
-            int num = 1;
-            var check = _context.ErtekesitesReszletek.Where(x => x.ErtekesitesID == ErtekesitesID).Any();
-            if(!check)
-            {
-                while(_context.ErtekesitesReszletek.Where(x => x.ErtekesitesID == num).Any())
-                {
-                    num++;
-                }
-            }
+        public void AddErtekesites(int AruID, DateTime selectedDate, decimal arumennyiseg)
+        {  
             var reszlet = new ErtekesitesReszlet
             {
-                AruID = AruID,
-                ErtekesitesID = num,
+                AruID = AruID,                
                 AruMennyiseg = arumennyiseg
             };
             _context.SaveChanges();
-            var date = _context.Ertekesitesek.Where(p => p.ErtekesitesID == num).Select(p => p.ErtekesitesDatum).FirstOrDefault();
+            var ertid = _context.ErtekesitesReszletek.Where(p => p.AruID == AruID).Select(p => p.ErtekesitesID).FirstOrDefault();
+            var date = _context.Ertekesitesek.Where(p => p.ErtekesitesID == ertid).Select(p => p.ErtekesitesDatum).FirstOrDefault();
             date = selectedDate;
             _context.SaveChanges();
-            var id = _context.ErtekesitesReszletek.Where(p => p.ErtekesitesID == num).Select(p => p.AruID).FirstOrDefault();
-            var keszlet = _context.AruKeszletek.Where(p => p.AruID == id).Select(p => p.Raktarkeszlet).FirstOrDefault();
+            var keszlet = _context.AruKeszletek.Where(p => p.AruID == AruID).Select(p => p.Raktarkeszlet).FirstOrDefault();
             keszlet = keszlet - arumennyiseg;
             _context.SaveChanges();
         }

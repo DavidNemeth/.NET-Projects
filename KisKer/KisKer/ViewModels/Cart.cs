@@ -44,6 +44,10 @@ namespace KisKer.ViewModels
         public void Clear()
         {
             lineCollection.Clear();
-        }        
+        }    
+        public void SaveData()
+        {
+               
+        }    
     }
 }

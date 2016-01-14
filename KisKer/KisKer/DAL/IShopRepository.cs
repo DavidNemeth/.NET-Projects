@@ -9,7 +9,7 @@ namespace KisKer.DAL
 {
     public interface IShopRepository : IDisposable
     {
-        void AddErtekesites(int ErtekesitesID, int AruID, DateTime selectedDate, decimal arumennyiseg);
+        void AddErtekesites(int AruID, DateTime selectedDate, decimal arumennyiseg);
         void Save();
         IEnumerable<AruKeszlet> AruKeszletek();
         IList<ErtekesitesReszlet> GetReszletek();

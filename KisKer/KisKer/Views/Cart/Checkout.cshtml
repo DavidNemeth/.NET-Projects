@@ -1,57 +1,36 @@
 ﻿@model KisKer.ViewModels.CartIndexViewModel
+@using KisKer.Models
 
 @{
     ViewBag.Title = "Checkout";
 }
 
-<h2>Dátum Kiválasztása</h2>
+<h2>Checkout</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Checkout", "Cart", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.TextBox("selectedDate", @DateTime.Now.ToString("yyyy-MM-dd"), new { @class = "form-control", type = "date" })
-    <div class="form-horizontal">
-        <h4>Részletek</h4>
-        <table class="table">
-            @foreach (var line in Model.Cart.Lines)
-            {
-                <tr>
-                    <td class="text-center">@line.AruMennyiseg</td>
-                    <td class="text-left">@line.Product.AruMegnevezes</td>
-                    <td class="text-right">
-                        @((line.AruMennyiseg * line.Product.EgysegAr).ToString("c"))
-                    </td>
-                    <td>
-                        @using (Html.BeginForm("RemoveFromCart", "Cart"))
-                        {
-                            @Html.Hidden("AruID", line.Product.AruID)
-                            @Html.HiddenFor(x => x.ReturnUrl)
-                        }
-                    </td>
-                </tr>
-            }
-            <tfoot>
-                <tr>
-                    <td colspan="3" class="text-right">Összesen:</td>
-                    <td class="text-right">
-                        @Model.Cart.ComputeTotalValue().ToString("c")
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Kész" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+
+    <table>
+        <tr>
+            <td>
+                @foreach (var item in Model.Cart.Lines)
+                {
+
+                    @item.AruMennyiseg
+                    @item.Product.AruMegnevezes
+                    <br />
+                }
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">                
+                <input type="submit" value="Create" class="btn btn-default" />
+            </td>
+        </tr>
+    </table>
 }
-<script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
-<script>
-    webshims.setOptions('waitReady', false);
-    webshims.setOptions('forms-ext', { types: 'date' });
-    webshims.polyfill('forms forms-ext');
-</script>
+
 <div>
-    @Html.ActionLink("Back to List", "List","Product")
+    @Html.ActionLink("Back to List", "Index")
 </div>
