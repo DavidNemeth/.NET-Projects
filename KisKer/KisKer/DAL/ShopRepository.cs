@@ -33,6 +33,37 @@ namespace KisKer.DAL
             GC.SuppressFinalize(this);
         }
         #endregion
+        public void AddErtekesites(int ErtekesitesID,int AruID, DateTime selectedDate, decimal arumennyiseg)
+        {
+            List<int> ids = new List<int>();
+            int num = 1;
+            var check = _context.ErtekesitesReszletek.Where(x => x.ErtekesitesID == ErtekesitesID).Any();
+            if(!check)
+            {
+                while(_context.ErtekesitesReszletek.Where(x => x.ErtekesitesID == num).Any())
+                {
+                    num++;
+                }
+            }
+            var reszlet = new ErtekesitesReszlet
+            {
+                AruID = AruID,
+                ErtekesitesID = num,
+                AruMennyiseg = arumennyiseg
+            };
+            _context.SaveChanges();
+            var date = _context.Ertekesitesek.Where(p => p.ErtekesitesID == num).Select(p => p.ErtekesitesDatum).FirstOrDefault();
+            date = selectedDate;
+            _context.SaveChanges();
+            var id = _context.ErtekesitesReszletek.Where(p => p.ErtekesitesID == num).Select(p => p.AruID).FirstOrDefault();
+            var keszlet = _context.AruKeszletek.Where(p => p.AruID == id).Select(p => p.Raktarkeszlet).FirstOrDefault();
+            keszlet = keszlet - arumennyiseg;
+            _context.SaveChanges();
+        }
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
         public IEnumerable<AruKeszlet> AruKeszletek()
         {
             return _context.AruKeszletek;
