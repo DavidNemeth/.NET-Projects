@@ -14,7 +14,8 @@ namespace KisKer.DAL
         {
             _context = context;
         }
-        private bool disposed = false;
+        private bool disposed = false;        
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
@@ -32,7 +33,10 @@ namespace KisKer.DAL
             GC.SuppressFinalize(this);
         }
         #endregion
-
+        public IEnumerable<AruKeszlet> AruKeszletek()
+        {
+            return _context.AruKeszletek;
+        }
         public List<DateTime> GetDates(int id)
         {
             List<DateTime> dates = new List<DateTime>();

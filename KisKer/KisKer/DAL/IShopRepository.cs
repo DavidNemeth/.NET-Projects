@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace KisKer.DAL
 {
     public interface IShopRepository : IDisposable
-    {        
+    {
+        IEnumerable<AruKeszlet> AruKeszletek();
         IList<ErtekesitesReszlet> GetReszletek();
         List<DateTime> GetDates(int id);
         string GetKategoriaNev(int id);
