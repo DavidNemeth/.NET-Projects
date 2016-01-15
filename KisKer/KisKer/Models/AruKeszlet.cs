@@ -11,8 +11,7 @@ namespace KisKer.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
+    
     public partial class AruKeszlet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,14 +19,12 @@ namespace KisKer.Models
         {
             this.ErtekesitesReszletek = new HashSet<ErtekesitesReszlet>();
         }
-        [HiddenInput(DisplayValue = false)]
+    
         public int AruID { get; set; }
         public int AruKategoriaID { get; set; }
         public string AruMegnevezes { get; set; }
         public int MertekegysegAzon { get; set; }
         public string Mertekegyseg { get; set; }
-        [Required]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Az ár nem lehet negatív")]
         public decimal EgysegAr { get; set; }
         public decimal Raktarkeszlet { get; set; }
     

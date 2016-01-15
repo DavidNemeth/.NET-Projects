@@ -13,7 +13,7 @@ namespace KisKer.Controllers
     {
         #region repo
         private IShopRepository _shopRepository;
-        public int PageSize = 6;
+        public int PageSize = 1000;
         public ProductController()
         {
             _shopRepository = new ShopRepository(new KiskerEntities());

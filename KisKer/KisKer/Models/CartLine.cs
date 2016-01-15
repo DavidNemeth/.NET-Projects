@@ -8,8 +8,7 @@ namespace KisKer.Models
 {
     public class CartLine
     {
-        public AruKeszlet Product { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:00}")]
+        public AruKeszlet Product { get; set; }        
         public decimal AruMennyiseg { get; set; }   
     }
 }

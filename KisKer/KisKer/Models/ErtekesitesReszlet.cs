@@ -11,13 +11,13 @@ namespace KisKer.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class ErtekesitesReszlet
     {
         public int AruID { get; set; }
         public int ErtekesitesID { get; set; }
         public decimal AruMennyiseg { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:00}")]
+    
         public virtual AruKeszlet AruKeszlet { get; set; }
         public virtual Ertekesites Ertekesites { get; set; }
     }
