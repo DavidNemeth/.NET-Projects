@@ -10,7 +10,7 @@ namespace KisKer.ViewModels
     {
         private List<CartLine> lineCollection = new List<CartLine>();
 
-        public void AddItem(AruKeszlet product, int quantity)
+        public void AddItem(AruKeszlet product, decimal quantity)
         {
             CartLine line = lineCollection
                 .Where(p => p.Product.AruID == product.AruID)

@@ -52,7 +52,8 @@
     </tfoot>
 </table>
 <div class="text-center">
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Áru Felvitele</a>
+    @Html.ActionLink("Áru Hozzáadás", "List","Product", null,
+     new { @class = "btn btn-primary" })
     @Html.ActionLink("Mentés", "Checkout", null,
      new { @class = "btn btn-success" })
 </div>
