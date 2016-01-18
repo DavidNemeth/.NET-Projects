@@ -4,10 +4,8 @@
 @{
     ViewBag.Title = "Checkout";
 }
-@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-@using (Html.BeginForm("Checkout", "Cart", FormMethod.Get))
-{
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@using (Html.BeginForm("Checkout", "Cart", FormMethod.Get)){
+    
     <br />
     <table>
         <tr>
@@ -24,11 +22,18 @@
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    try
+    {
+    
     foreach (var item in Model.Cart.Lines)
     {
         @item.AruMennyiseg
         @item.Product.AruMegnevezes
         <br />
+        }
+    }
+    catch (Exception)
+    {              
     }
     <br />
      <input type="submit" value="Mentés" />
