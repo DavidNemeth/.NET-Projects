@@ -3,7 +3,7 @@ namespace SzereloCegApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Fix3 : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -13,6 +13,8 @@ namespace SzereloCegApp.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         HibaNeve = c.String(nullable: false),
+                        MunkaIdo = c.Int(nullable: false),
+                        Anyagköltseg = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -40,7 +42,7 @@ namespace SzereloCegApp.Migrations
                         Keresztnév = c.String(nullable: false),
                         Szulido = c.DateTime(),
                         FelvetelIdeje = c.DateTime(nullable: false),
-                        Surgos = c.Boolean(nullable: false),
+                        Fizetve = c.Boolean(nullable: false),
                         SzereloID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -54,6 +56,7 @@ namespace SzereloCegApp.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Vezetéknév = c.String(nullable: false),
                         Keresztnév = c.String(nullable: false),
+                        Oraber = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.ID);
             

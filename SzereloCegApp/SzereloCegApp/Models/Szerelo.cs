@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -19,6 +20,9 @@ namespace SzereloCegApp.Models
         public string Vezetéknév { get; set; }
         [Required(ErrorMessage = "Kérem adja meg a szerelő Keresztnevét")]
         public string Keresztnév { get; set; }
+        [Required(ErrorMessage = "Kérem adja meg a szerelő órabérét")]        
+        [Display(Name = "Ódabér")]
+        public decimal Oraber { get; set; }
         public virtual ICollection<Ugyfel> Ugyfelek { get; set; }
 
 

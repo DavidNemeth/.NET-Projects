@@ -22,9 +22,9 @@ namespace SzereloCegApp.Models
         [Required(ErrorMessage ="Kérem adja meg a felvétel idejét")]        
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FelvetelIdeje { get; set; }
-        [Display(Name ="Sürgős Javítás")]
+        [Display(Name ="Fizetve")]
         [Required]        
-        public bool Surgos { get; set; }
+        public bool Fizetve { get; set; }
 
         //
         public int SzereloID { get; set; }//foreign key

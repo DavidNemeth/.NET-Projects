@@ -21,7 +21,7 @@ namespace SzereloCegApp.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {                     
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
+            modelBuilder.Properties<decimal>().Configure(c => c.HasPrecision(18, 2));
             //TODO: ErrorHandling -> controller(fkey adatbázispusztulásos)
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
