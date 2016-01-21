@@ -12,7 +12,8 @@
 </p>
 <table class="table">
     <tr>        
-        <th>Szerelők</th>                
+        <th>Szerelők</th>    
+        <th>Órabér</th>       
         <th>Ügyfelek</th>
     </tr>
 
@@ -21,6 +22,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.SzereloNev)
         </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.Oraber)
+        </td>
         <td>
             @foreach (var ugyfel in item.Ugyfelek)
             {

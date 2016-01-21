@@ -189,6 +189,10 @@
     <Compile Include="Migrations\201601190757074_initial.Designer.cs">
       <DependentUpon>201601190757074_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601211529190_decimal.cs" />
+    <Compile Include="Migrations\201601211529190_decimal.Designer.cs">
+      <DependentUpon>201601211529190_decimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Diagnosztika.cs" />
@@ -363,6 +367,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201601190757074_initial.resx">
       <DependentUpon>201601190757074_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601211529190_decimal.resx">
+      <DependentUpon>201601211529190_decimal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -20,8 +20,9 @@ namespace SzereloCegApp.Models
         public string Vezetéknév { get; set; }
         [Required(ErrorMessage = "Kérem adja meg a szerelő Keresztnevét")]
         public string Keresztnév { get; set; }
-        [Required(ErrorMessage = "Kérem adja meg a szerelő órabérét")]        
-        [Display(Name = "Ódabér")]
+        [Required(ErrorMessage = "Kérem adja meg a szerelő órabérét")]
+        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Csak pozitív egész szám adható meg")]
+        [Display(Name = "Órabér")]
         public decimal Oraber { get; set; }
         public virtual ICollection<Ugyfel> Ugyfelek { get; set; }
 
