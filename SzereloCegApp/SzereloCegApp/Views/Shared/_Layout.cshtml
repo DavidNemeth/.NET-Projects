@@ -6,10 +6,9 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
 </head>
-<body>
-
+<body>        
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -22,20 +21,57 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">                    
-                    <li>@Html.ActionLink("Szerelők", "Index", "Szerelok")</li>                    
-                    <li>@Html.ActionLink("Diagnosztikák", "Index", "Diagnosztikak")</li> 
+                    <li>@Html.ActionLink("Ügyfél Felvétel", "Create", "Ugyfelek", new object { },null)</li>   
                 </ul>
                 @*@Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div> 
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    @Html.ActionLink("Car Tech", "Index", "Home")
+                </li>
+                <li>
+                    @Html.ActionLink("Ügyfelek", "Index", "Ugyfelek")
+                </li>
+                <li>
+                    @Html.ActionLink("Szerelők", "Index", "Szerelok")
+                </li>
+                <li>
+                    @Html.ActionLink("Gépjárművek", "Index", "GepJarmuvek")
+                </li>
+                <li>
+                    @Html.ActionLink("Diagnosztikák", "Index", "Diagnosztikak")
+                </li>
+                <li>
+                    <a href="#">Bejegyzések</a>
+                </li>                
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="container body-content">
+                    @RenderBody()
+                    <hr />
+                </div> 
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap") 
     @Scripts.Render("~/bundles/GoodStuff")   

@@ -18,10 +18,10 @@ namespace SzereloCegApp.Migrations
         {
             var szerelok = new List<Szerelo>
             {
-                new Szerelo { Vezetéknév = "Nagy", Keresztnév = "Péter", Oraber= 5000 },
-                new Szerelo { Vezetéknév = "Kiss", Keresztnév = "Áron", Oraber= 4500 },
-                new Szerelo { Vezetéknév = "Joó", Keresztnév = "Gábor", Oraber= 4000 },
-                new Szerelo { Vezetéknév = "Alex", Keresztnév = "János", Oraber= 7000 }
+                new Szerelo { Vezetéknév = "Nagy", Keresztnév = "Péter"},
+                new Szerelo { Vezetéknév = "Kiss", Keresztnév = "Áron"},
+                new Szerelo { Vezetéknév = "Joó", Keresztnév = "Gábor"},
+                new Szerelo { Vezetéknév = "Alex", Keresztnév = "János"}
             };
             szerelok.ForEach(s => context.Szerelok.AddOrUpdate(a => a.Keresztnév, s));
             context.SaveChanges();
@@ -41,15 +41,15 @@ namespace SzereloCegApp.Migrations
 
             var diagnosztikak = new List<Diagnosztika>
             {
-                new Diagnosztika { HibaNeve = "Kerékcsere",MunkaIdo = 1 ,Anyagköltseg= 0 },
-                new Diagnosztika { HibaNeve = "Fékbetét" ,MunkaIdo = 3 ,Anyagköltseg= 15000 },
-                new Diagnosztika { HibaNeve = "Karosszéria-Kicsi" ,MunkaIdo = 3 ,Anyagköltseg= 10000 },
-                new Diagnosztika { HibaNeve = "Karosszéria-Közepes" ,MunkaIdo = 5 ,Anyagköltseg= 20000 },
-                new Diagnosztika { HibaNeve = "Karosszéria-Nagy" ,MunkaIdo = 8 ,Anyagköltseg= 30000 },
-                new Diagnosztika { HibaNeve = "Üzemanyagrendszer" ,MunkaIdo = 10 ,Anyagköltseg= 25000 },
-                new Diagnosztika { HibaNeve = "Kuplung - Váltó" ,MunkaIdo = 8 ,Anyagköltseg= 125000 },                
-                new Diagnosztika { HibaNeve = "Alváz" ,MunkaIdo = 5 ,Anyagköltseg= 10000 },
-                new Diagnosztika { HibaNeve = "Olajcsere" ,MunkaIdo = 1 ,Anyagköltseg= 5000 }
+                new Diagnosztika { HibaNeve = "Kerékcsere"},
+                new Diagnosztika { HibaNeve = "Fékbetét"},
+                new Diagnosztika { HibaNeve = "Karosszéria-Kicsi"},
+                new Diagnosztika { HibaNeve = "Karosszéria-Közepes" },
+                new Diagnosztika { HibaNeve = "Karosszéria-Nagy"},
+                new Diagnosztika { HibaNeve = "Üzemanyagrendszer"},
+                new Diagnosztika { HibaNeve = "Kuplung - Váltó"},                
+                new Diagnosztika { HibaNeve = "Alváz"},
+                new Diagnosztika { HibaNeve = "Olajcsere"}
             };
             diagnosztikak.ForEach(d => context.Diagnosztikák.AddOrUpdate(b => b.HibaNeve, d));
             context.SaveChanges();

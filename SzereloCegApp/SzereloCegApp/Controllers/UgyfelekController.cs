@@ -18,7 +18,7 @@ namespace SzereloCegApp.Controllers
 
         // GET: Ugyfelek
         public ActionResult Index(string currentFilter,int? page, string sortOrder, string searchString, int? SzereloID,int? UgyfelID,int? HibaID)
-        {
+        {            
             SzereloDropDown();
             UgyfelDropDown();
             //TODO: Sorting/ordering
@@ -31,8 +31,7 @@ namespace SzereloCegApp.Controllers
             //TODO: filtering
             var ugyfelek = db.Ugyfelek
                 .Include(u => u.Szerelo)
-                .Include(u => u.GepJarmu);
-
+                .Include(u => u.GepJarmu);  
             //if (HibaID.HasValue)
             //{
             //    ugyfelek = ugyfelek.Where(u => u.GepJarmu.ContainsSzereloID);
@@ -64,7 +63,7 @@ namespace SzereloCegApp.Controllers
                 || u.GepJarmu.Select(g => g.Marka).ToList().Contains(searchString.ToLower())
                 || u.GepJarmu.Select(g => g.Tipus).ToList().Contains(searchString.ToLower()));                    
             }            
-
+            
             switch (sortOrder)
             {
                 case "név csökkenő":
@@ -266,6 +265,7 @@ namespace SzereloCegApp.Controllers
                         select s;
             ViewBag.UgyfelID = new SelectList(Query, "ID", "Auto", selectedAuto);
         }    
+        
         #endregion
     }
 }

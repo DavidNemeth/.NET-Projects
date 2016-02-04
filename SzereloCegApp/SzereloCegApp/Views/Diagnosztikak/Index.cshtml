@@ -14,26 +14,14 @@
     <tr>
         <th>
             Hiba Neve:
-        </th>
-        <th>
-            Munkaidő:
-        </th>
-        <th>
-            Anyagköltség:
-        </th>
+        </th>        
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.HibaNeve)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MunkaIdo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Anyagköltseg)
-        </td>
+        </td>        
         <td>                      
             @Html.ActionLink("✖", "Delete", new { id=item.ID },new { @class = "" })
         </td>

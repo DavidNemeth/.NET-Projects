@@ -12,15 +12,7 @@ namespace SzereloCegApp.Models
         public int ID { get; set; }
         [Required]
         [Display(Name = "Meghibásodás")]
-        public string HibaNeve { get; set; }
-        [Required(ErrorMessage ="Munkaidő kitöltése kötelező")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Csak pozitív egész szám adható meg")]
-        [Display(Name = "Munkaidő")]
-        public int MunkaIdo { get; set; }
-        [Required(ErrorMessage ="Anyagköltség kitöltése kötelező")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Csak pozitív egész szám adható meg")]
-        [Display(Name = "Anyagköltésg")]
-        public decimal Anyagköltseg { get; set; }
+        public string HibaNeve { get; set; }             
         public virtual ICollection<GepJarmu> GepJarmuvek { get; set; }
     }
 }
