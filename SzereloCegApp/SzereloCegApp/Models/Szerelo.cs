@@ -21,10 +21,11 @@ namespace SzereloCegApp.Models
         [Required(ErrorMessage = "Kérem adja meg a szerelő Keresztnevét")]
         public string Keresztnév { get; set; } 
         public virtual ICollection<Ugyfel> Ugyfelek { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
 
 
 
-#region helpers
+        #region helpers
         [Display(Name ="Szerelő")]
         public string SzereloNev
         {

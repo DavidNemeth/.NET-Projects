@@ -1,0 +1,22 @@
+﻿@model IEnumerable<SzereloCegApp.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+@using (Html.BeginForm("Index", "Posts", FormMethod.Get))
+{
+    <table>
+
+        <tr>            
+            <td>@Html.DropDownList("SzereloID", null, "Összes Szerelő", htmlAttributes: new { @class = "form-control" })</td>
+            </tr>
+           <tr>
+            <td><input type="submit" value="Keresés" class="btn btn-info" /></td>
+        </tr>       
+    </table>
+}
+<br />
+<div>
+    @{ Html.RenderPartial("Posts");}
+</div>
+
