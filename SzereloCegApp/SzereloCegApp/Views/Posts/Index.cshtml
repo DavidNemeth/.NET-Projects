@@ -1,5 +1,6 @@
-﻿@model IEnumerable<SzereloCegApp.Models.Post>
-
+﻿@model PagedList.IPagedList<SzereloCegApp.Models.Post>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Index";
 }
@@ -19,4 +20,7 @@
 <div>
     @{ Html.RenderPartial("Posts");}
 </div>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

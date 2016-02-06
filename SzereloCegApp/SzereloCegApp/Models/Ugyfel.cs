@@ -22,8 +22,7 @@ namespace SzereloCegApp.Models
         [Required(ErrorMessage ="Kérem adja meg a felvétel idejét")]        
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FelvetelIdeje { get; set; }
-        [Display(Name ="Fizetve")]
-        [Required]        
+        [Display(Name ="Fizetve")]            
         public bool Fizetve { get; set; }
 
         //

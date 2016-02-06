@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -16,15 +17,17 @@ namespace SzereloCegApp.Controllers
         private SzereloCegEntities db = new SzereloCegEntities();
 
         // GET: Posts
-        public ActionResult Index(int? SzereloID)
+        public ActionResult Index(int? SzereloID, int? page)
         {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);            
             SzereloDropDown();
-            var posts = db.Posts.Include(p => p.Szerelo);
+            var posts = db.Posts.Include(p => p.Szerelo).OrderBy(p => p.PostedDate);
             if (SzereloID.HasValue)
             {
-                posts = posts.Where(u => u.SzereloID == SzereloID);
+                posts = posts.Where(u => u.SzereloID == SzereloID).OrderBy(p => p.PostedDate);
             }
-            return View(posts.ToList());
+            return View(posts.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Posts/Details/5

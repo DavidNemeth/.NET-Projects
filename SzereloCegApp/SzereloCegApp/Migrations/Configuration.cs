@@ -47,9 +47,13 @@ namespace SzereloCegApp.Migrations
                 new Diagnosztika { HibaNeve = "Karosszéria-Közepes" },
                 new Diagnosztika { HibaNeve = "Karosszéria-Nagy"},
                 new Diagnosztika { HibaNeve = "Üzemanyagrendszer"},
-                new Diagnosztika { HibaNeve = "Kuplung - Váltó"},                
+                new Diagnosztika { HibaNeve = "Kuplung"},                
                 new Diagnosztika { HibaNeve = "Alváz"},
-                new Diagnosztika { HibaNeve = "Olajcsere"}
+                new Diagnosztika { HibaNeve = "Szervó"},
+                new Diagnosztika { HibaNeve = "Váltó"},
+                new Diagnosztika { HibaNeve = "Szürõ"},
+                new Diagnosztika { HibaNeve = "Kompresszor"}
+                
             };
             diagnosztikak.ForEach(d => context.Diagnosztikák.AddOrUpdate(b => b.HibaNeve, d));
             context.SaveChanges();
@@ -66,6 +70,16 @@ namespace SzereloCegApp.Migrations
                 new GepJarmu { Marka = "Opel", Tipus = "Vectra", GyartasiEv = DateTime.Parse("1990-01-01"),  Rendszam = "HWW-723", UgyfelID = 7}
             };
             gepjarmuvek.ForEach(s => context.GepJarmuvek.AddOrUpdate(a => a.Rendszam, s));
+            context.SaveChanges();
+            var posts = new List<Post>
+            {
+                new Post { Description = "Alex hozd vissza a villáskucsot", Body = "Alex ha még egyszer eltünteted a villáskulcsot, ki tekerem a nyakadat! Üdv: Peti", PostedDate = DateTime.Parse("2016-01-12"),  SzereloID = 1},
+                new Post { Description = "Szabadság", Body = "Srácok, nyertem egy kissebb összeget kaparóson, úgyhogy két hétre sielni mentem. UI: a villáskulcsot a Gabi tette el..", PostedDate = DateTime.Parse("2016-01-14"),  SzereloID = 4},
+                new Post { Description = "Villáskulcs", Body = "Elnézést, visszaraktam a kulcsot a helyére, tudom ott sosem keresitek.", PostedDate = DateTime.Parse("2016-01-15"),  SzereloID = 3},
+                new Post { Description = "Alex BMW", Body = "Alex azt a pancser BMW-s srácot átveszem tõled amíg szabin vagy.", PostedDate = DateTime.Parse("2016-01-16"),  SzereloID = 2},
+                new Post { Description = "BMW-s srác", Body = "Ha valaki távollétemben lenyulja a BMW-s kuncsaftomat, azt a Villáskulcsal verem agyon.", PostedDate = DateTime.Parse("2016-01-17"),  SzereloID = 4}
+            };
+            posts.ForEach(s => context.Posts.AddOrUpdate(a => a.Description, s));
             context.SaveChanges();
         }
     }

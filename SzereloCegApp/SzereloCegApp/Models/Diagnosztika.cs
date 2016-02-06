@@ -10,7 +10,7 @@ namespace SzereloCegApp.Models
     public class Diagnosztika
     {
         public int ID { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Adja meg a hiba nevét")]
         [Display(Name = "Meghibásodás")]
         public string HibaNeve { get; set; }             
         public virtual ICollection<GepJarmu> GepJarmuvek { get; set; }

@@ -7,13 +7,13 @@ namespace SzereloCegApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class _decimal : IMigrationMetadata
+    public sealed partial class Postfix : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_decimal));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Postfix));
         
         string IMigrationMetadata.Id
         {
-            get { return "201601211529190_decimal"; }
+            get { return "201602052133085_Postfix"; }
         }
         
         string IMigrationMetadata.Source

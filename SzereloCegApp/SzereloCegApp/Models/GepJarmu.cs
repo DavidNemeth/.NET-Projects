@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -17,7 +18,8 @@ namespace SzereloCegApp.Models
         [Required]
         public string Tipus { get; set; }
         [Display(Name = "Rendszám")]
-        [Required]
+        [Index(IsUnique = true)]
+        [Required(ErrorMessage ="A rendszámnak egyedinek kell lennie.")]
         public string  Rendszam { get; set; }
         [Display(Name = "Gyártási Év")]
         [Required(ErrorMessage = "Kérem adja meg a Gépjármű pontos Gyártási Idejét")]
