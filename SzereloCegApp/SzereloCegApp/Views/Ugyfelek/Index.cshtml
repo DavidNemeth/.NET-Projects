@@ -56,19 +56,17 @@
 
 @foreach (var item in Model) {
     <tr>        
-        <td>       
-           @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-info-sign" })                
-           @Html.DisplayFor(modelItem => item.UgyfelNev)
+        <td> 
+           @Html.ActionLink(@item.UgyfelNev, "Details", "Ugyfelek", new { id = item.ID }, null)
         </td>    
-        <td>
-            @Html.ActionLink(" ", "Details", "Szerelok", new { id = item.Szerelo.ID }, new { @class = "glyphicon glyphicon-info-sign" })
-            @Html.DisplayFor(modelItem => item.Szerelo.SzereloNev)             
+        <td>              
+            @Html.ActionLink(@item.Szerelo.SzereloNev, "Details", "Szerelok", new { id = item.Szerelo.ID }, null)         
         </td>
         <td>
             @foreach (var auto in item.GepJarmu)
             {
-                @Html.ActionLink(" ", "Details","GepJarmuvek", new { id = auto.ID }, new { @class = "glyphicon glyphicon-info-sign" })
-                @Html.DisplayFor(modelItem => auto.Auto) 
+                @Html.ActionLink(" ", "Szamla","GepJarmuvek", new { id = auto.ID }, new { @class = "glyphicon glyphicon-file" })                
+                @Html.ActionLink(auto.Auto, "Details", "Gepjarmuvek", new { id = auto.ID }, null)
                 @:<br />
             }
         </td> 
