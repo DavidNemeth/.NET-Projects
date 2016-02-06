@@ -12,7 +12,9 @@ namespace SzereloCegApp.Models
         public int ID { get; set; }
         [Required(ErrorMessage ="Adja meg a hiba nevét")]
         [Display(Name = "Meghibásodás")]
-        public string HibaNeve { get; set; }             
+        public string HibaNeve { get; set; }
+        [Required(ErrorMessage = "Adja meg a javítás költségét")]
+        public int JavitasAr { get; set; }
         public virtual ICollection<GepJarmu> GepJarmuvek { get; set; }
     }
 }

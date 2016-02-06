@@ -12,15 +12,15 @@ namespace SzereloCegApp.Models
     {
         public int ID { get; set; }
         [Display(Name = "Márka")]
-        [Required]
+        [Required(ErrorMessage = "A mező kitöltése kötelező")]
         public string Marka { get; set; }
         [Display(Name = "Típus")]
-        [Required]
+        [Required(ErrorMessage ="A mező kitöltése kötelező")]
         public string Tipus { get; set; }
         [Display(Name = "Rendszám")]
-        [Index(IsUnique = true)]
-        [Required(ErrorMessage ="A rendszámnak egyedinek kell lennie.")]
-        public string  Rendszam { get; set; }
+        [MaxLength(100)]              
+        [Required(ErrorMessage ="A rendszám megadása kötelező")]
+        public string Rendszam { get; set; }
         [Display(Name = "Gyártási Év")]
         [Required(ErrorMessage = "Kérem adja meg a Gépjármű pontos Gyártási Idejét")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

@@ -14,14 +14,20 @@
     <tr>
         <th>
             Hiba Neve:
-        </th>        
-    </tr>
+        </th>     
+        <th>
+            Javítás Költsége:
+        </th>   
+    </tr>    
 
 @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.HibaNeve)
-        </td>        
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.JavitasAr)
+        </td>          
         <td>                      
             @Html.ActionLink("✖", "Delete", new { id=item.ID },new { @class = "" })
         </td>

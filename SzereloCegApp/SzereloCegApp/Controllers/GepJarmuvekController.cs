@@ -18,7 +18,7 @@ namespace SzereloCegApp.Controllers
 
         // GET Index
         public ActionResult Index()
-        {            
+        {
             var gepJarmuvek = db.GepJarmuvek
                 .Include(g => g.Diagnosztikák)
                 .Include(g => g.Ugyfel);
@@ -52,7 +52,7 @@ namespace SzereloCegApp.Controllers
             gepjarmu.Diagnosztikák = new List<Diagnosztika>();
             AutoDiagnosztikai(gepjarmu);
             return View();
-        }        
+        }
 
         // POST Create1
         [HttpPost]
@@ -74,11 +74,12 @@ namespace SzereloCegApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "Ugyfelek");
             }
+            gepJarmu.Diagnosztikák = new List<Diagnosztika>();
             AutoDiagnosztikai(gepJarmu);
             TulajdonosDropDown(gepJarmu.UgyfelID);
             return View(gepJarmu);
-        }       
-       
+        }
+
 
         // GET Edit1
         public ActionResult Edit(int? id)
@@ -103,7 +104,7 @@ namespace SzereloCegApp.Controllers
         // POST Edit1
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, string[] SelectedDiag,string[] NotSelectedDiag)
+        public ActionResult Edit(int? id, string[] SelectedDiag, string[] NotSelectedDiag)
         {
             if (id == null)
             {
@@ -112,7 +113,7 @@ namespace SzereloCegApp.Controllers
             var gepJarmuEdit = db.GepJarmuvek
                 .Include(g => g.Diagnosztikák)
                 .Where(i => i.ID == id)
-                .Single();           
+                .Single();
             if (TryUpdateModel(gepJarmuEdit, "", new string[] {
                 "ID",
                 "Marka",
@@ -121,11 +122,11 @@ namespace SzereloCegApp.Controllers
                 "GyartasiEv",
                 "UgyfelID" }))
             {
-                UpdateAutoDiagnosztika(SelectedDiag, gepJarmuEdit);                
+                UpdateAutoDiagnosztika(SelectedDiag, gepJarmuEdit);
                 db.Entry(gepJarmuEdit).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "Ugyfelek");                         
-            }            
+                return RedirectToAction("Index", "Ugyfelek");
+            }
             AutoDiagnosztikai(gepJarmuEdit);
             TulajdonosDropDown(gepJarmuEdit.UgyfelID);
             return View(gepJarmuEdit);
@@ -181,7 +182,7 @@ namespace SzereloCegApp.Controllers
             GepJarmu gepJarmu = db.GepJarmuvek.Find(id);
             db.GepJarmuvek.Remove(gepJarmu);
             db.SaveChanges();
-            return RedirectToAction("Delete", "Ugyfelek", new  { id = gepJarmu.UgyfelID });
+            return RedirectToAction("Delete", "Ugyfelek", new { id = gepJarmu.UgyfelID });
         }
         protected override void Dispose(bool disposing)
         {
@@ -248,7 +249,7 @@ namespace SzereloCegApp.Controllers
                 return;
             }
             var selectedHibakHash = new HashSet<string>(selectedHibak); //checkbox diagok
-            var autoHibak = new HashSet<int>(GepJarmuToUpdate.Diagnosztikák.Select(g => g.ID));            
+            var autoHibak = new HashSet<int>(GepJarmuToUpdate.Diagnosztikák.Select(g => g.ID));
             foreach (var hiba in db.Diagnosztikák)
             {
                 string hibaid = hiba.ID.ToString();

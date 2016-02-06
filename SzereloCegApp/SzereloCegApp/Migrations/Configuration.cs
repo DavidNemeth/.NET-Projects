@@ -41,19 +41,19 @@ namespace SzereloCegApp.Migrations
 
             var diagnosztikak = new List<Diagnosztika>
             {
-                new Diagnosztika { HibaNeve = "Kerékcsere"},
-                new Diagnosztika { HibaNeve = "Fékbetét"},
-                new Diagnosztika { HibaNeve = "Karosszéria-Kicsi"},
-                new Diagnosztika { HibaNeve = "Karosszéria-Közepes" },
-                new Diagnosztika { HibaNeve = "Karosszéria-Nagy"},
-                new Diagnosztika { HibaNeve = "Üzemanyagrendszer"},
-                new Diagnosztika { HibaNeve = "Kuplung"},                
-                new Diagnosztika { HibaNeve = "Alváz"},
-                new Diagnosztika { HibaNeve = "Szervó"},
-                new Diagnosztika { HibaNeve = "Váltó"},
-                new Diagnosztika { HibaNeve = "Szürõ"},
-                new Diagnosztika { HibaNeve = "Kompresszor"}
-                
+                new Diagnosztika { HibaNeve = "Kerékcsere",JavitasAr=50000},
+                new Diagnosztika { HibaNeve = "Fékbetét",JavitasAr=50000},
+                new Diagnosztika { HibaNeve = "Karosszéria-Kicsi",JavitasAr=50000},
+                new Diagnosztika { HibaNeve = "Karosszéria-Közepes",JavitasAr=50000},
+                new Diagnosztika { HibaNeve = "Karosszéria-Nagy",JavitasAr=50000},
+                new Diagnosztika { HibaNeve = "Üzemanyagrendszer",JavitasAr=50000},
+                new Diagnosztika { HibaNeve = "Kuplung",JavitasAr=50000},
+                new Diagnosztika { HibaNeve = "Alváz",JavitasAr=50000},
+                new Diagnosztika { HibaNeve = "Szervó",JavitasAr=50000},
+                new Diagnosztika { HibaNeve = "Váltó",JavitasAr=50000},
+                new Diagnosztika { HibaNeve = "Szürõ",JavitasAr=50000},
+                new Diagnosztika { HibaNeve = "Kompresszor",JavitasAr=50000}
+
             };
             diagnosztikak.ForEach(d => context.Diagnosztikák.AddOrUpdate(b => b.HibaNeve, d));
             context.SaveChanges();
@@ -66,7 +66,7 @@ namespace SzereloCegApp.Migrations
                 new GepJarmu { Marka = "Fiat", Tipus = "Punto", GyartasiEv = DateTime.Parse("2001-01-01"),  Rendszam = "XAW-234", UgyfelID = 4},
                 new GepJarmu { Marka = "Mitsubishi", Tipus = "Galant", GyartasiEv = DateTime.Parse("2013-01-01"),  Rendszam = "JRW-732", UgyfelID = 5},
                 new GepJarmu { Marka = "Audi", Tipus = "R8", GyartasiEv = DateTime.Parse("2015-01-01"),  Rendszam = "MEW-373", UgyfelID = 6},
-                new GepJarmu { Marka = "BMW", Tipus = "X5", GyartasiEv = DateTime.Parse("2015-01-01"),  Rendszam = "MEW-373", UgyfelID = 6},
+                new GepJarmu { Marka = "BMW", Tipus = "X5", GyartasiEv = DateTime.Parse("2015-01-01"),  Rendszam = "MEW-615", UgyfelID = 6},
                 new GepJarmu { Marka = "Opel", Tipus = "Vectra", GyartasiEv = DateTime.Parse("1990-01-01"),  Rendszam = "HWW-723", UgyfelID = 7}
             };
             gepjarmuvek.ForEach(s => context.GepJarmuvek.AddOrUpdate(a => a.Rendszam, s));

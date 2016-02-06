@@ -56,9 +56,21 @@
             @Html.DisplayFor(model => model.Ugyfel.Szerelo.SzereloNev)
         </dd>
         <br />
+        <dt>Javítás költsége:</dt>
+        <dd>
+            @{
+                int teljesar = 0;
+                foreach (var hiba in Model.Diagnosztikák)
+                {
+                    teljesar += @hiba.JavitasAr;
+                }
+                @teljesar
+                }
+        </dd>
+        <br />
         <dt>
             @Html.DisplayNameFor(model => model.Diagnosztikák)
-        </dt>
+        </dt>        
         <dd>
             @foreach (var hiba in Model.Diagnosztikák)
             {

@@ -17,10 +17,9 @@ namespace SzereloCegApp.Models
         [Display(Name = "Születési Idő")]
         public DateTime? Szulido { get; set; }
         //
-
         [Display(Name ="Felvétel Ideje")]
         [Required(ErrorMessage ="Kérem adja meg a felvétel idejét")]        
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime FelvetelIdeje { get; set; }
         [Display(Name ="Fizetve")]            
         public bool Fizetve { get; set; }
@@ -43,9 +42,9 @@ namespace SzereloCegApp.Models
         //hiba teszt
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if  (Szulido.GetValueOrDefault() > DateTime.Now)
+            if  (Szulido.GetValueOrDefault() > DateTime.Now.AddYears(-10))
             {
-                yield return new ValidationResult("TimeTravel ??", new[] { "Szulido" });
+                yield return new ValidationResult("Születési dátum nem megfelelő", new[] { "Szulido" });
             }
             if (Szulido.GetValueOrDefault() < DateTime.Now.AddYears(-120))
             {

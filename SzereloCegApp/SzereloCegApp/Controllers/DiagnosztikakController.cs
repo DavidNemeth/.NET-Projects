@@ -52,7 +52,7 @@ namespace SzereloCegApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,HibaNeve")] Diagnosztika diagnosztika)
+        public ActionResult Create([Bind(Include = "ID,HibaNeve,JavitasAr")] Diagnosztika diagnosztika)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace SzereloCegApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,HibaNeve")] Diagnosztika diagnosztika)
+        public ActionResult Edit([Bind(Include = "ID,HibaNeve,JavitasAr")] Diagnosztika diagnosztika)
         {
             if (ModelState.IsValid)
             {

@@ -7,13 +7,13 @@ namespace SzereloCegApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class post : IMigrationMetadata
+    public sealed partial class fix31 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(post));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(fix31));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602052251000_post"; }
+            get { return "201602061444508_fix31"; }
         }
         
         string IMigrationMetadata.Source
