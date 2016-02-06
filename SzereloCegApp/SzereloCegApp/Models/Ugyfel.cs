@@ -15,17 +15,21 @@ namespace SzereloCegApp.Models
         public string Keresztnév { get; set; }
         [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}",ApplyFormatInEditMode =true)]
         [Display(Name = "Születési Idő")]
-        public DateTime? Szulido { get; set; }
-        //
-        [Display(Name ="Felvétel Ideje")]
+        public DateTime? Szulido { get; set; }        
+        [Display(Name ="Felvétel Dátuma")]
         [Required(ErrorMessage ="Kérem adja meg a felvétel idejét")]        
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime FelvetelIdeje { get; set; }
         [Display(Name ="Fizetve")]            
         public bool Fizetve { get; set; }
+        [Required(ErrorMessage = "Kérem adja meg a telefonszámot")]
+        [Display(Name = "Telefonszám")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^(\+\s?)?((?<!\+.*)\(\+?\d+([\s\-\.]?\d+)?\)|\d+)([\s\-\.]?(\(\d+([\s\-\.]?\d+)?\)|\d+))*(\s?(x|ext\.?)\s?\d+)?$", ErrorMessage = "Telefonszám nem megfelelő")]
+        public string UgyfelTelefon { get; set; }
 
         //
-        public int SzereloID { get; set; }//foreign key
+        public int SzereloID { get; set; }
         public virtual Szerelo Szerelo { get; set; }
         public virtual ICollection<GepJarmu> GepJarmu { get; set; }
         #region helpers
@@ -38,8 +42,7 @@ namespace SzereloCegApp.Models
                 return Vezetéknév + (" ") + Keresztnév;
             }
         }
-        #endregion
-        //hiba teszt
+        #endregion       
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if  (Szulido.GetValueOrDefault() > DateTime.Now.AddYears(-10))

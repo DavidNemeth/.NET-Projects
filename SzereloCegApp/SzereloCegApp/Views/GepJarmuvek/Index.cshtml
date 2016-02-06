@@ -1,63 +1,6 @@
 ﻿@model IEnumerable<SzereloCegApp.Models.GepJarmu>
+@{ Response.Redirect("~/Ugyfelek/Index");}
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Gépjárművek</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Ugyfel.UgyfelNev)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Auto)
-        </th>        
-        <th>
-            @Html.DisplayNameFor(model => model.Rendszam)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GyartasiEv)
-        </th>
-        <th>
-            Diagnosztikák
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ugyfel.UgyfelNev)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Auto)
-        </td>        
-        <td>
-            @Html.DisplayFor(modelItem => item.Rendszam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GyartasiEv)
-        </td>
-        <td>
-            @{ 
-                foreach (var hiba in item.Diagnosztikák)
-                {
-                    @hiba.HibaNeve <br />
-                }
-            }
-        </td>
-
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>

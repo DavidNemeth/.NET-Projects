@@ -59,7 +59,7 @@ namespace SzereloCegApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Description,Body,PostedDate,SzereloID")] Post post)
         {
-            post.PostedDate = DateTime.Now;
+            post.PostedDate = System.DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Posts.Add(post);

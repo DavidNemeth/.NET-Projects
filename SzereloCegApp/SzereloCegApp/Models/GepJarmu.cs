@@ -43,11 +43,11 @@ namespace SzereloCegApp.Models
         {
             if (GyartasiEv.GetValueOrDefault() > DateTime.Now)
             {
-                yield return new ValidationResult("TimeTravel ??", new[] { "GyartasiEv" });
+                yield return new ValidationResult("Nem megfelelő gyártási év", new[] { "GyartasiEv" });
             }
-            if (GyartasiEv.GetValueOrDefault() < DateTime.Now.AddYears(-30))
+            if (GyartasiEv.GetValueOrDefault() < DateTime.Now.AddYears(-50))
             {
-                yield return new ValidationResult("30 Évnél öregebb auto javítását nem vállaljuk", new[] { "GyartasiEv" });
+                yield return new ValidationResult("50 Évnél öregebb auto javítását nem vállaljuk", new[] { "GyartasiEv" });
             }
         }
         #endregion

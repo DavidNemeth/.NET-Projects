@@ -98,8 +98,7 @@ namespace SzereloCegApp.Controllers
 
                 default:
                     ugyfelek = ugyfelek
-                        .OrderBy(u => u.Vezetéknév)
-                        .ThenBy(u => u.Keresztnév);
+                        .OrderByDescending(u => u.FelvetelIdeje);
                     break;
             }
             int pageSize = 10;
@@ -136,9 +135,8 @@ namespace SzereloCegApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Vezetéknév,Keresztnév,Szulido,FelvetelIdeje,Fizetve,SzereloID")] Ugyfel ugyfel)
-        {                 
-                   
+        public ActionResult Create([Bind(Include = "ID,Vezetéknév,Keresztnév,Szulido,FelvetelIdeje,Fizetve,SzereloID,UgyfelTelefon")] Ugyfel ugyfel)
+        {         
             if (ModelState.IsValid)
             {
                 db.Ugyfelek.Add(ugyfel);
@@ -173,7 +171,7 @@ namespace SzereloCegApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Vezetéknév,Keresztnév,Szulido,FelvetelIdeje,Fizetve,SzereloID")] Ugyfel ugyfel)
+        public ActionResult Edit([Bind(Include = "ID,Vezetéknév,Keresztnév,Szulido,FelvetelIdeje,Fizetve,SzereloID,UgyfelTelefon")] Ugyfel ugyfel)
         {
             if (ModelState.IsValid)
             {

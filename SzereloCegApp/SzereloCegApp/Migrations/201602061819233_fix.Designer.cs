@@ -13,7 +13,7 @@ namespace SzereloCegApp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201602061409578_fix"; }
+            get { return "201602061819233_fix"; }
         }
         
         string IMigrationMetadata.Source

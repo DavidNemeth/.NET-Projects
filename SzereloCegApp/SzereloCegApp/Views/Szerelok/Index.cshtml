@@ -12,15 +12,19 @@
 </p>
 <table class="table">
     <tr>        
-        <th>Szerelők</th>                   
-        <th>Ügyfelek</th>
+        <th>Szerelők</th>    
+        <th>Telefonszám</th>               
+        <th>Ügyfelek</th>        
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.SzereloNev)
-        </td>         
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.SzereloTelefon)
+        </td>          
         <td>
             @foreach (var ugyfel in item.Ugyfelek)
             {

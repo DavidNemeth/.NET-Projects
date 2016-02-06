@@ -18,41 +18,41 @@ namespace SzereloCegApp.Migrations
         {
             var szerelok = new List<Szerelo>
             {
-                new Szerelo { Vezetéknév = "Nagy", Keresztnév = "Péter"},
-                new Szerelo { Vezetéknév = "Kiss", Keresztnév = "Áron"},
-                new Szerelo { Vezetéknév = "Joó", Keresztnév = "Gábor"},
-                new Szerelo { Vezetéknév = "Alex", Keresztnév = "János"}
+                new Szerelo { Vezetéknév = "Nagy", Keresztnév = "Péter",SzereloTelefon = "06304637463"},
+                new Szerelo { Vezetéknév = "Kiss", Keresztnév = "Áron",SzereloTelefon = "06704527389"},
+                new Szerelo { Vezetéknév = "Joó", Keresztnév = "Gábor",SzereloTelefon = "06709939283"},
+                new Szerelo { Vezetéknév = "Alex", Keresztnév = "János",SzereloTelefon = "06207374981"}
             };
             szerelok.ForEach(s => context.Szerelok.AddOrUpdate(a => a.Keresztnév, s));
             context.SaveChanges();
 
             var ugyfelek = new List<Ugyfel>
             {
-                new Ugyfel { Vezetéknév = "Németh", Keresztnév = "Gábor", Szulido = DateTime.Parse("1990-01-01"), SzereloID =1, FelvetelIdeje = DateTime.Parse("2015-12-11"), Fizetve = false },
-                new Ugyfel { Vezetéknév = "Nagy", Keresztnév = "Lajos", Szulido = DateTime.Parse("1980-07-21"), SzereloID =2, FelvetelIdeje = DateTime.Parse("2015-12-20"), Fizetve = false },
-                new Ugyfel { Vezetéknév = "Répás", Keresztnév = "Viktor", Szulido = DateTime.Parse("1970-03-20"), SzereloID =3, FelvetelIdeje = DateTime.Parse("2015-12-05"), Fizetve = false },
-                new Ugyfel { Vezetéknév = "Oleg", Keresztnév = "Renátó", Szulido = DateTime.Parse("1975-05-30"), SzereloID =4, FelvetelIdeje = DateTime.Parse("2015-11-11"), Fizetve = true },
-                new Ugyfel { Vezetéknév = "Franc", Keresztnév = "Béle", Szulido = DateTime.Parse("1912-02-11"), SzereloID =3, FelvetelIdeje = DateTime.Parse("2015-12-26"), Fizetve = false },
-                new Ugyfel { Vezetéknév = "Loo", Keresztnév = "Károly", Szulido = DateTime.Parse("1965-11-05"), SzereloID =2, FelvetelIdeje = DateTime.Parse("2016-01-02"), Fizetve = false },
-                new Ugyfel { Vezetéknév = "Ollos", Keresztnév = "Vilmos", Szulido = DateTime.Parse("1979-12-14"), SzereloID =3, FelvetelIdeje = DateTime.Parse("2015-10-11"), Fizetve = true }
+                new Ugyfel { Vezetéknév = "Németh", Keresztnév = "Gábor", Szulido = DateTime.Parse("1990-01-01"), SzereloID =1, FelvetelIdeje = DateTime.Parse("2015-12-11"), Fizetve = false, UgyfelTelefon = "06208283723" },
+                new Ugyfel { Vezetéknév = "Nagy", Keresztnév = "Lajos", Szulido = DateTime.Parse("1980-07-21"), SzereloID =2, FelvetelIdeje = DateTime.Parse("2015-12-20"), Fizetve = false, UgyfelTelefon = "06307237471" },
+                new Ugyfel { Vezetéknév = "Répás", Keresztnév = "Viktor", Szulido = DateTime.Parse("1970-03-20"), SzereloID =3, FelvetelIdeje = DateTime.Parse("2015-12-05"), Fizetve = false, UgyfelTelefon = "06708987876" },
+                new Ugyfel { Vezetéknév = "Oleg", Keresztnév = "Renátó", Szulido = DateTime.Parse("1975-05-30"), SzereloID =4, FelvetelIdeje = DateTime.Parse("2015-11-11"), Fizetve = true, UgyfelTelefon = "06306473888"},
+                new Ugyfel { Vezetéknév = "Franc", Keresztnév = "Belé", Szulido = DateTime.Parse("1912-02-11"), SzereloID =3, FelvetelIdeje = DateTime.Parse("2015-12-26"), Fizetve = false, UgyfelTelefon = "06708878123" },
+                new Ugyfel { Vezetéknév = "Loo", Keresztnév = "Károly", Szulido = DateTime.Parse("1965-11-05"), SzereloID =2, FelvetelIdeje = DateTime.Parse("2016-01-02"), Fizetve = false, UgyfelTelefon = "06203324234"},
+                new Ugyfel { Vezetéknév = "Ollos", Keresztnév = "Vilmos", Szulido = DateTime.Parse("1979-12-14"), SzereloID =3, FelvetelIdeje = DateTime.Parse("2015-10-11"), Fizetve = true, UgyfelTelefon = "06307464643"}
             };
             ugyfelek.ForEach(s => context.Ugyfelek.AddOrUpdate(a => a.Vezetéknév, s));
             context.SaveChanges();
 
             var diagnosztikak = new List<Diagnosztika>
             {
-                new Diagnosztika { HibaNeve = "Kerékcsere",JavitasAr=50000},
-                new Diagnosztika { HibaNeve = "Fékbetét",JavitasAr=50000},
-                new Diagnosztika { HibaNeve = "Karosszéria-Kicsi",JavitasAr=50000},
-                new Diagnosztika { HibaNeve = "Karosszéria-Közepes",JavitasAr=50000},
-                new Diagnosztika { HibaNeve = "Karosszéria-Nagy",JavitasAr=50000},
-                new Diagnosztika { HibaNeve = "Üzemanyagrendszer",JavitasAr=50000},
-                new Diagnosztika { HibaNeve = "Kuplung",JavitasAr=50000},
-                new Diagnosztika { HibaNeve = "Alváz",JavitasAr=50000},
-                new Diagnosztika { HibaNeve = "Szervó",JavitasAr=50000},
-                new Diagnosztika { HibaNeve = "Váltó",JavitasAr=50000},
-                new Diagnosztika { HibaNeve = "Szürõ",JavitasAr=50000},
-                new Diagnosztika { HibaNeve = "Kompresszor",JavitasAr=50000}
+                new Diagnosztika { HibaNeve = "Kerékcsere",JavitasAr=5000},
+                new Diagnosztika { HibaNeve = "Fékbetét javítás",JavitasAr=30000},
+                new Diagnosztika { HibaNeve = "Karosszéria szerelés(kicsi)",JavitasAr=20000},
+                new Diagnosztika { HibaNeve = "Karosszéria szerelés(közepes)",JavitasAr=40000},
+                new Diagnosztika { HibaNeve = "Karosszéria szerelés(nagy)",JavitasAr=80000},
+                new Diagnosztika { HibaNeve = "Üzemanyagrendszer javítás",JavitasAr=150000},
+                new Diagnosztika { HibaNeve = "Kuplung csere",JavitasAr=200000},
+                new Diagnosztika { HibaNeve = "Alváz szerelés",JavitasAr=50000},
+                new Diagnosztika { HibaNeve = "Szervó javítás",JavitasAr=70000},
+                new Diagnosztika { HibaNeve = "Váltó csere",JavitasAr=300000},
+                new Diagnosztika { HibaNeve = "Részecskeszûrõ javítás",JavitasAr=99000},
+                new Diagnosztika { HibaNeve = "Kompresszor javítás",JavitasAr=60000}
 
             };
             diagnosztikak.ForEach(d => context.Diagnosztikák.AddOrUpdate(b => b.HibaNeve, d));
@@ -68,8 +68,8 @@ namespace SzereloCegApp.Migrations
                 new GepJarmu { Marka = "Audi", Tipus = "R8", GyartasiEv = DateTime.Parse("2015-01-01"),  Rendszam = "MEW-373", UgyfelID = 6},
                 new GepJarmu { Marka = "BMW", Tipus = "X5", GyartasiEv = DateTime.Parse("2015-01-01"),  Rendszam = "MEW-615", UgyfelID = 6},
                 new GepJarmu { Marka = "Opel", Tipus = "Vectra", GyartasiEv = DateTime.Parse("1990-01-01"),  Rendszam = "HWW-723", UgyfelID = 7}
-            };
-            gepjarmuvek.ForEach(s => context.GepJarmuvek.AddOrUpdate(a => a.Rendszam, s));
+            };            
+            gepjarmuvek.ForEach(s => context.GepJarmuvek.AddOrUpdate(a => a.Rendszam, s));            
             context.SaveChanges();
             var posts = new List<Post>
             {

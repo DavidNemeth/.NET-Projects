@@ -183,25 +183,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602061409578_fix.cs" />
-    <Compile Include="Migrations\201602061409578_fix.Designer.cs">
-      <DependentUpon>201602061409578_fix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602061426556_fix2.cs" />
-    <Compile Include="Migrations\201602061426556_fix2.Designer.cs">
-      <DependentUpon>201602061426556_fix2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602061443209_fix3.cs" />
-    <Compile Include="Migrations\201602061443209_fix3.Designer.cs">
-      <DependentUpon>201602061443209_fix3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602061444508_fix31.cs" />
-    <Compile Include="Migrations\201602061444508_fix31.Designer.cs">
-      <DependentUpon>201602061444508_fix31.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602061517326_javar.cs" />
-    <Compile Include="Migrations\201602061517326_javar.Designer.cs">
-      <DependentUpon>201602061517326_javar.cs</DependentUpon>
+    <Compile Include="Migrations\201602061819233_fix.cs" />
+    <Compile Include="Migrations\201602061819233_fix.Designer.cs">
+      <DependentUpon>201602061819233_fix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Diagnosztika.cs" />
@@ -370,6 +354,7 @@
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Posts\Posts.cshtml" />
+    <Content Include="Views\GepJarmuvek\Szamla.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -380,20 +365,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602061409578_fix.resx">
-      <DependentUpon>201602061409578_fix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061426556_fix2.resx">
-      <DependentUpon>201602061426556_fix2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061443209_fix3.resx">
-      <DependentUpon>201602061443209_fix3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061444508_fix31.resx">
-      <DependentUpon>201602061444508_fix31.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061517326_javar.resx">
-      <DependentUpon>201602061517326_javar.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602061819233_fix.resx">
+      <DependentUpon>201602061819233_fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

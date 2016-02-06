@@ -43,6 +43,23 @@ namespace SzereloCegApp.Controllers
             }
             return View(gepJarmu);
         }
+        public ActionResult Szamla(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            GepJarmu gepJarmu = db.GepJarmuvek
+                .Include(g => g.Ugyfel.Szerelo)
+                .Where(i => i.ID == id)
+                .Include(i => i.Diagnosztikák)
+                .Single();
+            if (gepJarmu == null)
+            {
+                return HttpNotFound();
+            }
+            return View(gepJarmu);
+        }
 
         // GET Create1
         public ActionResult Create()

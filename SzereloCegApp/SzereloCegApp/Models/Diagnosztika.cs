@@ -14,7 +14,8 @@ namespace SzereloCegApp.Models
         [Display(Name = "Meghibásodás")]
         public string HibaNeve { get; set; }
         [Required(ErrorMessage = "Adja meg a javítás költségét")]
-        public int JavitasAr { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}")]
+        public decimal JavitasAr { get; set; }
         public virtual ICollection<GepJarmu> GepJarmuvek { get; set; }
     }
 }

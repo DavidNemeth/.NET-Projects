@@ -19,7 +19,12 @@ namespace SzereloCegApp.Models
         [Required(ErrorMessage = "Kérem adja meg a szerelő Vezetéknevét")]
         public string Vezetéknév { get; set; }
         [Required(ErrorMessage = "Kérem adja meg a szerelő Keresztnevét")]
-        public string Keresztnév { get; set; } 
+        public string Keresztnév { get; set; }
+        [Required(ErrorMessage = "Kérem adja meg a telefonszámot")]
+        [Display(Name = "Telefonszám")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^(\+\s?)?((?<!\+.*)\(\+?\d+([\s\-\.]?\d+)?\)|\d+)([\s\-\.]?(\(\d+([\s\-\.]?\d+)?\)|\d+))*(\s?(x|ext\.?)\s?\d+)?$", ErrorMessage = "Telefonszám nem megfelelő")]
+        public string SzereloTelefon { get; set; }
         public virtual ICollection<Ugyfel> Ugyfelek { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
 

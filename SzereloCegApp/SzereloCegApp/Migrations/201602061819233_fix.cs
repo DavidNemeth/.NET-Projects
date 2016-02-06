@@ -13,6 +13,7 @@ namespace SzereloCegApp.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         HibaNeve = c.String(nullable: false),
+                        JavitasAr = c.Decimal(nullable: false, precision: 18, scale: 0),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -29,7 +30,6 @@ namespace SzereloCegApp.Migrations
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Ugyfel", t => t.UgyfelID)
-                .Index(t => t.Rendszam, unique: true)
                 .Index(t => t.UgyfelID);
             
             CreateTable(
@@ -42,6 +42,7 @@ namespace SzereloCegApp.Migrations
                         Szulido = c.DateTime(),
                         FelvetelIdeje = c.DateTime(nullable: false),
                         Fizetve = c.Boolean(nullable: false),
+                        UgyfelTelefon = c.String(nullable: false),
                         SzereloID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -55,6 +56,7 @@ namespace SzereloCegApp.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Vezetéknév = c.String(nullable: false),
                         Keresztnév = c.String(nullable: false),
+                        SzereloTelefon = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -99,7 +101,6 @@ namespace SzereloCegApp.Migrations
             DropIndex("dbo.Post", new[] { "SzereloID" });
             DropIndex("dbo.Ugyfel", new[] { "SzereloID" });
             DropIndex("dbo.GepJarmu", new[] { "UgyfelID" });
-            DropIndex("dbo.GepJarmu", new[] { "Rendszam" });
             DropTable("dbo.GepJarmuDiagnosztika");
             DropTable("dbo.Post");
             DropTable("dbo.Szerelo");
