@@ -27,6 +27,7 @@ namespace SzereloCegApp.Models
         public DateTime? GyartasiEv { get; set; }
         public int UgyfelID { get; set; }
         public virtual Ugyfel Ugyfel { get; set; }
+        [Display(Name ="Javítás")]
         public virtual ICollection<Diagnosztika> Diagnosztikák { get; set; }
         #region helper
         [Display(Name ="Gépjármű")]

@@ -53,7 +53,7 @@
         <div class="row">
 
             <div class="col-md-4 form-group">
-                <label class="control-label">Auto Diagnosztikái</label>
+                <label class="control-label">Auto Hibái</label>
                 @Html.ListBox("SelectedDiag", (MultiSelectList)ViewBag.SelectedDiag, new { @class = "form-control" })
                 <button type="button" id="btnRight" class="btn btn-default">
                     <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="col-md-4 form-group">
-                <label class="control-label">Összes Diagnosztika</label>
+                <label class="control-label">Összes Hiba</label>
                 @Html.ListBox("NotSelectedDiag", (MultiSelectList)ViewBag.NotSelectedDiag, new { @class = "form-control" })
                 <button type="button" id="btnLeft" class="btn btn-default">
                     <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
