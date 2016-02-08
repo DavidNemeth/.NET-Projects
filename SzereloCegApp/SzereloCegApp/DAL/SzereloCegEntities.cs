@@ -10,6 +10,9 @@ namespace SzereloCegApp.DAL
 {
     public class SzereloCegEntities : DbContext
     {
+        public SzereloCegEntities() : base("SzereloCegEntities")
+        {
+        }
         public DbSet<Szerelo> Szerelok { get; set; }
         public DbSet<Ugyfel> Ugyfelek { get; set; }
         public DbSet<Diagnosztika> Diagnosztikák { get; set; }
@@ -17,13 +20,10 @@ namespace SzereloCegApp.DAL
         public DbSet<Post> Posts { get; set; }
 
 
-
-        //
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {                     
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Properties<decimal>().Configure(c => c.HasPrecision(18, 0));
-            //TODO: ErrorHandling -> controller(fkey adatbázispusztulásos)
+            modelBuilder.Properties<decimal>().Configure(c => c.HasPrecision(18, 0));            
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
     }

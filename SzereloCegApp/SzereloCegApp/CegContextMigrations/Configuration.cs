@@ -1,4 +1,4 @@
-namespace SzereloCegApp.Migrations
+namespace SzereloCegApp.CegContextMigrations
 {
     using Models;
     using System;
@@ -12,6 +12,7 @@ namespace SzereloCegApp.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            MigrationsDirectory = @"CegContextMigrations";
         }
 
         protected override void Seed(SzereloCegApp.DAL.SzereloCegEntities context)
@@ -68,8 +69,8 @@ namespace SzereloCegApp.Migrations
                 new GepJarmu { Marka = "Audi", Tipus = "R8", GyartasiEv = DateTime.Parse("2015-01-01"),  Rendszam = "MEW-373", UgyfelID = 6},
                 new GepJarmu { Marka = "BMW", Tipus = "X5", GyartasiEv = DateTime.Parse("2015-01-01"),  Rendszam = "MEW-615", UgyfelID = 6},
                 new GepJarmu { Marka = "Opel", Tipus = "Vectra", GyartasiEv = DateTime.Parse("1990-01-01"),  Rendszam = "HWW-723", UgyfelID = 7}
-            };            
-            gepjarmuvek.ForEach(s => context.GepJarmuvek.AddOrUpdate(a => a.Rendszam, s));            
+            };
+            gepjarmuvek.ForEach(s => context.GepJarmuvek.AddOrUpdate(a => a.Rendszam, s));
             context.SaveChanges();
             var posts = new List<Post>
             {

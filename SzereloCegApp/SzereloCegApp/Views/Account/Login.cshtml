@@ -1,0 +1,21 @@
+﻿@using SzereloCegApp.Models
+@model Login
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Kérem jelentkezzen be</h2>
+<br />
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <label>Felhasználóinév:</label>
+        @Html.TextBoxFor(m => m.Username,new {@class="form-control" })
+        <label>Jelszó:</label>
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })     
+        <br />
+        <button class="btn btn-primary">Bejelentkezés</button>
+    }
+</div>
+

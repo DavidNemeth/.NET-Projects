@@ -49,6 +49,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebHelpers.3.2.3\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
       <Private>True</Private>
@@ -118,6 +122,13 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Stack 5\Packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Stack 5\Packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -173,27 +184,36 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CegContextMigrations\201602082257462_initial.cs" />
+    <Compile Include="CegContextMigrations\201602082257462_initial.Designer.cs">
+      <DependentUpon>201602082257462_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CegContextMigrations\Configuration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DiagnosztikakController.cs" />
     <Compile Include="Controllers\GepJarmuvekController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\SzerelokController.cs" />
     <Compile Include="Controllers\UgyfelekController.cs" />
+    <Compile Include="DAL\RoleProvider.cs" />
     <Compile Include="DAL\SzereloCegEntities.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602061819233_fix.cs" />
-    <Compile Include="Migrations\201602061819233_fix.Designer.cs">
-      <DependentUpon>201602061819233_fix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Diagnosztika.cs" />
     <Compile Include="Models\GepJarmu.cs" />
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\Register.cs" />
     <Compile Include="Models\Ugyfel.cs" />
     <Compile Include="Models\Szerelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolesContextMigrations\201602082256140_initial.cs" />
+    <Compile Include="RolesContextMigrations\201602082256140_initial.Designer.cs">
+      <DependentUpon>201602082256140_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RolesContextMigrations\Configuration.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\JarmuDiagnosztikaViewModel.cs" />
   </ItemGroup>
@@ -314,7 +334,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -355,6 +377,7 @@
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Posts\Posts.cshtml" />
     <Content Include="Views\GepJarmuvek\Szamla.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -365,8 +388,14 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602061819233_fix.resx">
-      <DependentUpon>201602061819233_fix.cs</DependentUpon>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CegContextMigrations\201602082257462_initial.resx">
+      <DependentUpon>201602082257462_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RolesContextMigrations\201602082256140_initial.resx">
+      <DependentUpon>201602082256140_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
