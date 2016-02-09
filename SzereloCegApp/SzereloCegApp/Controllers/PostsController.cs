@@ -12,6 +12,7 @@ using SzereloCegApp.Models;
 
 namespace SzereloCegApp.Controllers
 {
+    [Authorize]
     public class PostsController : Controller
     {
         private SzereloCegEntities db = new SzereloCegEntities();

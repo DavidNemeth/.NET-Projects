@@ -5,7 +5,7 @@ namespace SzereloCegApp.RolesContextMigrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<SzereloCegApp.DAL.RoleProvider>
+    internal sealed class Configuration : DbMigrationsConfiguration<SzereloCegApp.DAL.SimpleMembershipProvider>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace SzereloCegApp.RolesContextMigrations
             MigrationsDirectory = @"RolesContextMigrations";
         }
 
-        protected override void Seed(SzereloCegApp.DAL.RoleProvider context)
+        protected override void Seed(SzereloCegApp.DAL.SimpleMembershipProvider context)
         {
             //  This method will be called after migrating to the latest version.
 

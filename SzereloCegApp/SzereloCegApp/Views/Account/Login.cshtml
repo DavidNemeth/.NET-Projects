@@ -10,6 +10,7 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
         <label>Felhasználóinév:</label>
         @Html.TextBoxFor(m => m.Username,new {@class="form-control" })
         <label>Jelszó:</label>

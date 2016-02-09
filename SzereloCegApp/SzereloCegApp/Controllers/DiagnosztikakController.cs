@@ -40,7 +40,7 @@ namespace SzereloCegApp.Controllers
             }
             return View(diagnosztika);
         }
-
+        [Authorize(Roles = "Admin,Normál")]
         // GET: Diagnosztikak/Create
         public ActionResult Create()
         {
@@ -63,7 +63,7 @@ namespace SzereloCegApp.Controllers
 
             return View(diagnosztika);
         }
-
+        [Authorize(Roles = "Admin,Normál")]
         // GET: Diagnosztikak/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -94,7 +94,7 @@ namespace SzereloCegApp.Controllers
             }
             return View(diagnosztika);
         }
-
+        [Authorize(Roles = "Admin,Normál")]
         // GET: Diagnosztikak/Delete/5
         public ActionResult Delete(int? id)
         {

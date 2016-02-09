@@ -12,6 +12,7 @@ using SzereloCegApp.ViewModels;
 
 namespace SzereloCegApp.Controllers
 {
+    [Authorize]
     public class GepJarmuvekController : Controller
     {
         private SzereloCegEntities db = new SzereloCegEntities();
@@ -60,7 +61,7 @@ namespace SzereloCegApp.Controllers
             }
             return View(gepJarmu);
         }
-
+        [Authorize(Roles = "Admin,Normál")]
         // GET Create1
         public ActionResult Create()
         {
@@ -97,7 +98,7 @@ namespace SzereloCegApp.Controllers
             return View(gepJarmu);
         }
 
-
+        [Authorize(Roles = "Admin,Normál")]
         // GET Edit1
         public ActionResult Edit(int? id)
         {
@@ -148,7 +149,7 @@ namespace SzereloCegApp.Controllers
             TulajdonosDropDown(gepJarmuEdit.UgyfelID);
             return View(gepJarmuEdit);
         }
-
+        [Authorize(Roles = "Admin,Normál")]
         // GET Delete1
         public ActionResult Delete(int? id)
         {
@@ -163,7 +164,7 @@ namespace SzereloCegApp.Controllers
             }
             return View(gepJarmu);
         }
-
+        
         // POST Delete1
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -175,7 +176,7 @@ namespace SzereloCegApp.Controllers
             return RedirectToAction("Index", "Ugyfelek");
         }
 
-
+        [Authorize(Roles = "Admin,Normál")]
         //Get Delete2
         public ActionResult DeleteFor(int? id)
         {

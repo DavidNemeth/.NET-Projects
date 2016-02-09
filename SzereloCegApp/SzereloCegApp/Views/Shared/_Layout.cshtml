@@ -17,13 +17,27 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Adatbázis", "Index", "Ugyfelek", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Car Tech", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })   
             </div>
             <div class="navbar-collapse collapse">
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Normál"))
+{
                 <ul class="nav navbar-nav">                    
-                    <li>@Html.ActionLink("Ügyfél Felvétel", "Create", "Ugyfelek", new object { },null)</li>   
-                </ul>
-                @*@Html.Partial("_LoginPartial")*@
+                    <li>@Html.ActionLink("Ügyfél Felvétel", "Create", "Ugyfelek", new object { }, null)</li>   
+                </ul>    
+}
+                <ul class="nav navbar-nav pull-right">
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Admin"))
+                            {
+                                <li>@Html.ActionLink("Új Felhasználó", "Register", "Account")</li>
+                            }
+                            <li>@Html.ActionLink("Kijelentkezés","Logout","Account")</li>
+                        }
+                    }                   
+                </ul>              
             </div>
         </div>
     </div>
@@ -32,9 +46,11 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
+                @if (User.Identity.IsAuthenticated)
+                {
                 <li class="sidebar-brand">
-                    @Html.ActionLink("Car Tech", "Index", "Home")
-                </li>
+                    @Html.ActionLink(@User.Identity.Name, "Index", "Ugyfelek")                    
+                </li>        
                 <li>
                     @Html.ActionLink("Ügyfelek", "Index", "Ugyfelek")
                 </li>
@@ -46,7 +62,8 @@
                 </li>
                 <li>
                     @Html.ActionLink("Bejegyzések", "Index", "Posts")
-                </li>                
+                </li>   
+               }
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->

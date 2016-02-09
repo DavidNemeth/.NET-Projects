@@ -21,7 +21,9 @@ namespace SzereloCegApp.DAL
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {                     
+        {
+            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.ProxyCreationEnabled = true;
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Properties<decimal>().Configure(c => c.HasPrecision(18, 0));            
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();

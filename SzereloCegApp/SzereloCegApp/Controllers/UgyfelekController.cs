@@ -12,6 +12,7 @@ using SzereloCegApp.Models;
 
 namespace SzereloCegApp.Controllers
 {
+    [Authorize(Roles ="Admin,Normál,Alacsony")]
     public class UgyfelekController : Controller
     {
         private SzereloCegEntities db = new SzereloCegEntities();
@@ -21,21 +22,18 @@ namespace SzereloCegApp.Controllers
         {            
             SzereloDropDown();
             UgyfelDropDown();
-            //TODO: Sorting/ordering
+            
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "név csökkenő" : "";
             ViewBag.FelvetelSort = sortOrder == "FelvetelIdeje" ? "FelvetelIdeje csökkenő" : "FelvetelIdeje";
             ViewBag.SzulSort = sortOrder == "Szulido" ? "Szulido csökkenő" : "Szulido";
             ViewBag.Gepjarmu = sortOrder == "Gepjarmu" ? "Gepjarmu desc" : "Gepjarmu";
             ViewBag.SzereloSort = sortOrder == "Szerelo" ? "Szerelo desc" : "Szerelo";
-            //TODO: filtering
+            
             var ugyfelek = db.Ugyfelek
                 .Include(u => u.Szerelo)
                 .Include(u => u.GepJarmu);  
-            //if (HibaID.HasValue)
-            //{
-            //    ugyfelek = ugyfelek.Where(u => u.GepJarmu.ContainsSzereloID);
-            //}
+            
             if (searchString != null)
             {
                 page = 1;
@@ -122,7 +120,7 @@ namespace SzereloCegApp.Controllers
             }
             return View(ugyfel);
         }
-
+        [Authorize(Roles = "Admin,Normál")]
         // GET: Ugyfelek/Create
         public ActionResult Create()
         {
@@ -147,7 +145,7 @@ namespace SzereloCegApp.Controllers
             SzereloDropDown(ugyfel.SzereloID);
             return View(ugyfel);
         }
-
+        [Authorize(Roles = "Admin,Normál")]
         // GET: Ugyfelek/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -182,7 +180,7 @@ namespace SzereloCegApp.Controllers
             SzereloDropDown(ugyfel.SzereloID);
             return View(ugyfel);
         }
-
+        [Authorize(Roles = "Admin,Normál")]
         // GET: Ugyfelek/Delete/5
         public ActionResult Delete(int? id)
         {

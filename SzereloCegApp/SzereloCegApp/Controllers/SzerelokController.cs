@@ -12,6 +12,7 @@ using SzereloCegApp.Models;
 
 namespace SzereloCegApp.Controllers
 {
+    [Authorize]
     public class SzerelokController : Controller
     {
         private SzereloCegEntities db = new SzereloCegEntities();
@@ -43,7 +44,7 @@ namespace SzereloCegApp.Controllers
             }
             return View(szerelo);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Szerelok/Create
         public ActionResult Create()
         {
@@ -66,7 +67,7 @@ namespace SzereloCegApp.Controllers
 
             return View(szerelo);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Szerelok/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -97,7 +98,7 @@ namespace SzereloCegApp.Controllers
             }
             return View(szerelo);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Szerelok/Delete/5
         public ActionResult Delete(int? id)
         {
