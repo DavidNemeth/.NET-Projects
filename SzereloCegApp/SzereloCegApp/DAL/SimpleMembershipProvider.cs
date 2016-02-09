@@ -10,7 +10,7 @@ namespace SzereloCegApp.DAL
     {
         public SimpleMembershipProvider() : base("SimpleMembershipProvider")
         {
-        }
+        }        
         public static SimpleMembershipProvider Create()
         {
             return new SimpleMembershipProvider();
