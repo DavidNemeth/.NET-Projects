@@ -18,7 +18,7 @@ namespace SzereloCegApp.Models
         public DateTime? Szulido { get; set; }        
         [Display(Name ="Felvétel Dátuma")]
         [Required(ErrorMessage ="Kérem adja meg a felvétel idejét")]        
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime FelvetelIdeje { get; set; }
         [Display(Name ="Fizetve")]            
         public bool Fizetve { get; set; }

@@ -75,7 +75,7 @@ namespace SzereloCegApp.Controllers
         // POST Create1
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Marka,Tipus,Rendszam,GyartasiEv,UgyfelID")] GepJarmu gepJarmu, string[] SelectedDiag, string[] NotSelectedDia)
+        public ActionResult Create([Bind(Include = "ID,Marka,Tipus,Rendszam,GyartasiEv,UgyfelID")] GepJarmu gepJarmu, string[] SelectedDiag, string[] NotSelectedDiag)
         {
             if (SelectedDiag != null)
             {
@@ -230,11 +230,11 @@ namespace SzereloCegApp.Controllers
         //AUTI-DIAGNOSZTIKA Double ListBox
         private void AutoDiagnosztikai(GepJarmu gepjarmu)
         {
-            var allHiba = db.Diagnosztikák; //minden diag
-            var autoHibak = new HashSet<int>(gepjarmu.Diagnosztikák.Select(d => d.ID)); //auto diagok
-            var viewModelNotSelected = new List<JarmuDiagnosztikaViewModel>();
-            var viewModelSelected = new List<JarmuDiagnosztikaViewModel>();
-            foreach (var hiba in allHiba) //viewmodel feltöltés
+            var allHiba = db.Diagnosztikák; //minden meghibásodás
+            var autoHibak = new HashSet<int>(gepjarmu.Diagnosztikák.Select(d => d.ID)); //auto meghibásodások
+            var viewModelNotSelected = new List<JarmuDiagnosztikaViewModel>();//nem kiválasztott hibák
+            var viewModelSelected = new List<JarmuDiagnosztikaViewModel>();//kiválasztott hibák
+            foreach (var hiba in allHiba) //viewmodel feltöltése
             {
                 if (autoHibak.Contains(hiba.ID))
                 {
@@ -266,7 +266,7 @@ namespace SzereloCegApp.Controllers
                 GepJarmuToUpdate.Diagnosztikák = new List<Diagnosztika>();
                 return;
             }
-            var selectedHibakHash = new HashSet<string>(selectedHibak); //checkbox diagok
+            var selectedHibakHash = new HashSet<string>(selectedHibak); //checkbox hibák
             var autoHibak = new HashSet<int>(GepJarmuToUpdate.Diagnosztikák.Select(g => g.ID));
             foreach (var hiba in db.Diagnosztikák)
             {
