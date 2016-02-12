@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a66dc97f8c874ec495f33bdb77c15c36" Name="Diagram1">
+        <EntityTypeShape EntityType="KiskerDbModel.AruKategoria" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KiskerDbModel.AruKeszlet" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="KiskerDbModel.Ertekesites" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KiskerDbModel.ErtekesitesReszlet" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="KiskerDbModel.FK_AruKeszlet_ToAruKategoria" ManuallyRouted="false" />
+        <AssociationConnector Association="KiskerDbModel.FK_ErtekesitesReszletek_Keszlet" ManuallyRouted="false" />
+        <AssociationConnector Association="KiskerDbModel.FK_ErtekesitesReszletek_Ertekesites" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

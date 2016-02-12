@@ -127,7 +127,7 @@
           </Key>
           <Property Name="ErtekesitesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ErtekesitesDatum" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="ErtekesitesReszletek" Relationship="KiskerDbModel.FK_ErtekesitesReszletek_Ertekesitesek" FromRole="Ertekesitesek" ToRole="ErtekesitesReszletek" />
+          <NavigationProperty Name="ErtekesitesReszletek" Relationship="Self.FK_ErtekesitesReszletek_Ertekesites" FromRole="Ertekesites" ToRole="ErtekesitesReszlet" />
         </EntityType>
         <EntityType Name="ErtekesitesReszlet">
           <Key>
@@ -138,7 +138,7 @@
           <Property Name="ErtekesitesID" Type="Int32" Nullable="false" />
           <Property Name="AruMennyiseg" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="AruKeszlet" Relationship="Self.FK_ErtekesitesReszletek_Keszlet" FromRole="ErtekesitesReszlet" ToRole="AruKeszlet" />
-          <NavigationProperty Name="Ertekesites" Relationship="KiskerDbModel.FK_ErtekesitesReszletek_Ertekesitesek" FromRole="ErtekesitesReszletek" ToRole="Ertekesitesek" />
+          <NavigationProperty Name="Ertekesite" Relationship="Self.FK_ErtekesitesReszletek_Ertekesites" FromRole="ErtekesitesReszlet" ToRole="Ertekesites" />
         </EntityType>
         <Association Name="FK_AruKeszlet_ToAruKategoria">
           <End Role="AruKategoria" Type="Self.AruKategoria" Multiplicity="1" />
@@ -164,14 +164,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ErtekesitesReszletek_Ertekesitesek">
-          <End Role="Ertekesitesek" Type="KiskerDbModel.Ertekesites" Multiplicity="1" />
-          <End Role="ErtekesitesReszletek" Type="KiskerDbModel.ErtekesitesReszlet" Multiplicity="*" />
+        <Association Name="FK_ErtekesitesReszletek_Ertekesites">
+          <End Role="Ertekesites" Type="KiskerDbModel.Ertekesites" Multiplicity="1" />
+          <End Role="ErtekesitesReszlet" Type="KiskerDbModel.ErtekesitesReszlet" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Ertekesitesek">
+            <Principal Role="Ertekesites">
               <PropertyRef Name="ErtekesitesID" />
             </Principal>
-            <Dependent Role="ErtekesitesReszletek">
+            <Dependent Role="ErtekesitesReszlet">
               <PropertyRef Name="ErtekesitesID" />
             </Dependent>
           </ReferentialConstraint>
@@ -189,9 +189,9 @@
             <End Role="AruKeszlet" EntitySet="AruKeszletek" />
             <End Role="ErtekesitesReszlet" EntitySet="ErtekesitesReszletek" />
           </AssociationSet>
-          <AssociationSet Name="FK_ErtekesitesReszletek_Ertekesitesek" Association="KiskerDbModel.FK_ErtekesitesReszletek_Ertekesitesek">
-            <End Role="Ertekesitesek" EntitySet="Ertekesitesek" />
-            <End Role="ErtekesitesReszletek" EntitySet="ErtekesitesReszletek" />
+          <AssociationSet Name="FK_ErtekesitesReszletek_Ertekesites" Association="Self.FK_ErtekesitesReszletek_Ertekesites">
+            <End Role="Ertekesites" EntitySet="Ertekesitesek" />
+            <End Role="ErtekesitesReszlet" EntitySet="ErtekesitesReszletek" />
           </AssociationSet>
         </EntityContainer>
       </Schema>

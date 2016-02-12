@@ -7,23 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data
+namespace Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AruKategoria
+    public partial class Ertekesites
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AruKategoria()
+        public Ertekesites()
         {
-            this.AruKeszletek = new HashSet<AruKeszlet>();
+            this.ErtekesitesReszletek = new HashSet<ErtekesitesReszlet>();
         }
     
-        public int AruKategoriaID { get; set; }
-        public string AruKategoriaMegnevezes { get; set; }
+        public int ErtekesitesID { get; set; }
+        public System.DateTime ErtekesitesDatum { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AruKeszlet> AruKeszletek { get; set; }
+        public virtual ICollection<ErtekesitesReszlet> ErtekesitesReszletek { get; set; }
     }
 }

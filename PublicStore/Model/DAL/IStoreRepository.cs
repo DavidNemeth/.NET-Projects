@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.DAL
+namespace Model.DAL
 {
     public interface IStoreRepository : IDisposable
     {
@@ -13,7 +13,7 @@ namespace Data.DAL
         IList<Ertekesites> GetErtekesitesek();
         IList<ErtekesitesReszlet> GetErtekesitesReszletek();
         IList<AruKeszlet> KeszletForCategory(int CategoryID);
-        IList<ErtekesitesReszlet> GetAruErtekesitesReszletek(AruKeszlet reszletek);
+        IList<ErtekesitesReszlet> GetErtekesitesireszletForAru(AruKeszlet reszletek);
         IList<AruKeszlet> GetArukForCategory(AruKategoria aruk);
         IList<ErtekesitesReszlet> GetErtekesitesreszletForErtekesites(Ertekesites ertekesites);
 
