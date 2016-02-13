@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+namespace PublicStore.Model
 {
     using System;
     using System.Collections.Generic;

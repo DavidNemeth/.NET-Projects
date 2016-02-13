@@ -1,18 +1,22 @@
-﻿using System;
+﻿using PublicStore.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.DAL
+namespace PublicStore.Repository
 {
     public class StoreRepository : IStoreRepository, IDisposable
     {
-        public KiskerDbEntities context;
+        public KiskerDbEntities context;        
         public StoreRepository(KiskerDbEntities _context)
         {
             _context = context;
         }
+        ObservableCollection<AruKeszlet> Arukeszletek = new ObservableCollection<AruKeszlet>();
+
         public IList<AruKeszlet> GetAruKeszletek()
         {
             return context.AruKeszletek.ToList();
@@ -21,9 +25,9 @@ namespace Model.DAL
         {
             return context.ErtekesitesReszletek.ToList();
         }
-        public IList<Ertekesites> GetErtekesitesek()
+        public IEnumerable<Ertekesites> GetErtekesitesek()
         {
-            return context.Ertekesitesek.ToList();
+            return context.Ertekesitesek;
         }
 
         public IList<AruKategoria> GetCategories()

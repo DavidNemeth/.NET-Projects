@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a66dc97f8c874ec495f33bdb77c15c36" Name="Diagram1">
+      <Diagram DiagramId="98767328e830440cb1cd2c19a3c4a3a9" Name="Diagram1">
         <EntityTypeShape EntityType="KiskerDbModel.AruKategoria" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="KiskerDbModel.AruKeszlet" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="KiskerDbModel.Ertekesites" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />

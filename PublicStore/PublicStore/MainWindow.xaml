@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PublicStore"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+    <Grid DataContext="{Binding Arukategoriak}">
+        <ListBox DataContext="{Binding Arukategoriak}" x:Name="listBox" HorizontalAlignment="Left" Height="246" Margin="82,27,0,0" VerticalAlignment="Top" Width="330"/>
     </Grid>
 </Window>

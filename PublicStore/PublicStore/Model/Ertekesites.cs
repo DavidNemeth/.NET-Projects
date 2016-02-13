@@ -7,28 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+namespace PublicStore.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AruKeszlet
+    public partial class Ertekesites
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AruKeszlet()
+        public Ertekesites()
         {
             this.ErtekesitesReszletek = new HashSet<ErtekesitesReszlet>();
         }
     
-        public int AruID { get; set; }
-        public int AruKategoriaID { get; set; }
-        public string AruMegnevezes { get; set; }
-        public int MertekegysegAzon { get; set; }
-        public string Mertekegyseg { get; set; }
-        public decimal EgysegAr { get; set; }
-        public decimal Raktarkeszlet { get; set; }
+        public int ErtekesitesID { get; set; }
+        public System.DateTime ErtekesitesDatum { get; set; }
     
-        public virtual AruKategoria AruKategoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ErtekesitesReszlet> ErtekesitesReszletek { get; set; }
     }

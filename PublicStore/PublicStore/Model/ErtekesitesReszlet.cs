@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model
+namespace PublicStore.Model
 {
     using System;
     using System.Collections.Generic;
@@ -19,6 +19,6 @@ namespace Model
         public decimal AruMennyiseg { get; set; }
     
         public virtual AruKeszlet AruKeszlet { get; set; }
-        public virtual Ertekesites Ertekesite { get; set; }
+        public virtual Ertekesites Ertekesites { get; set; }
     }
 }

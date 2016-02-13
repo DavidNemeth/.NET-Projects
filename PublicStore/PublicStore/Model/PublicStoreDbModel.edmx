@@ -119,7 +119,7 @@
           <Property Name="EgysegAr" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Raktarkeszlet" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="AruKategoria" Relationship="Self.FK_AruKeszlet_ToAruKategoria" FromRole="AruKeszlet" ToRole="AruKategoria" />
-          <NavigationProperty Name="ErtekesitesReszletek" Relationship="Self.FK_ErtekesitesReszletek_Keszlet" FromRole="AruKeszlet" ToRole="ErtekesitesReszlet" />
+          <NavigationProperty Name="ErtekesitesReszletek" Relationship="Self.FK_ErtekesitesReszletek_Keszlet" FromRole="AruKeszlet" ToRole="ErtekesitesReszletek" />
         </EntityType>
         <EntityType Name="Ertekesites">
           <Key>
@@ -127,7 +127,7 @@
           </Key>
           <Property Name="ErtekesitesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ErtekesitesDatum" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="ErtekesitesReszletek" Relationship="Self.FK_ErtekesitesReszletek_Ertekesites" FromRole="Ertekesites" ToRole="ErtekesitesReszlet" />
+          <NavigationProperty Name="ErtekesitesReszletek" Relationship="Self.FK_ErtekesitesReszletek_Ertekesites" FromRole="Ertekesitesek" ToRole="ErtekesitesReszletek" />
         </EntityType>
         <EntityType Name="ErtekesitesReszlet">
           <Key>
@@ -137,8 +137,8 @@
           <Property Name="AruID" Type="Int32" Nullable="false" />
           <Property Name="ErtekesitesID" Type="Int32" Nullable="false" />
           <Property Name="AruMennyiseg" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <NavigationProperty Name="AruKeszlet" Relationship="Self.FK_ErtekesitesReszletek_Keszlet" FromRole="ErtekesitesReszlet" ToRole="AruKeszlet" />
-          <NavigationProperty Name="Ertekesite" Relationship="Self.FK_ErtekesitesReszletek_Ertekesites" FromRole="ErtekesitesReszlet" ToRole="Ertekesites" />
+          <NavigationProperty Name="AruKeszlet" Relationship="Self.FK_ErtekesitesReszletek_Keszlet" FromRole="ErtekesitesReszletek" ToRole="AruKeszlet" />
+          <NavigationProperty Name="Ertekesites" Relationship="Self.FK_ErtekesitesReszletek_Ertekesites" FromRole="ErtekesitesReszletek" ToRole="Ertekesitesek" />
         </EntityType>
         <Association Name="FK_AruKeszlet_ToAruKategoria">
           <End Role="AruKategoria" Type="Self.AruKategoria" Multiplicity="1" />
@@ -154,24 +154,24 @@
         </Association>
         <Association Name="FK_ErtekesitesReszletek_Keszlet">
           <End Role="AruKeszlet" Type="Self.AruKeszlet" Multiplicity="1" />
-          <End Role="ErtekesitesReszlet" Type="KiskerDbModel.ErtekesitesReszlet" Multiplicity="*" />
+          <End Role="ErtekesitesReszletek" Type="KiskerDbModel.ErtekesitesReszlet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AruKeszlet">
               <PropertyRef Name="AruID" />
             </Principal>
-            <Dependent Role="ErtekesitesReszlet">
+            <Dependent Role="ErtekesitesReszletek">
               <PropertyRef Name="AruID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ErtekesitesReszletek_Ertekesites">
-          <End Role="Ertekesites" Type="KiskerDbModel.Ertekesites" Multiplicity="1" />
-          <End Role="ErtekesitesReszlet" Type="KiskerDbModel.ErtekesitesReszlet" Multiplicity="*" />
+          <End Role="Ertekesitesek" Type="KiskerDbModel.Ertekesites" Multiplicity="1" />
+          <End Role="ErtekesitesReszletek" Type="KiskerDbModel.ErtekesitesReszlet" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Ertekesites">
+            <Principal Role="Ertekesitesek">
               <PropertyRef Name="ErtekesitesID" />
             </Principal>
-            <Dependent Role="ErtekesitesReszlet">
+            <Dependent Role="ErtekesitesReszletek">
               <PropertyRef Name="ErtekesitesID" />
             </Dependent>
           </ReferentialConstraint>
@@ -187,11 +187,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_ErtekesitesReszletek_Keszlet" Association="Self.FK_ErtekesitesReszletek_Keszlet">
             <End Role="AruKeszlet" EntitySet="AruKeszletek" />
-            <End Role="ErtekesitesReszlet" EntitySet="ErtekesitesReszletek" />
+            <End Role="ErtekesitesReszletek" EntitySet="ErtekesitesReszletek" />
           </AssociationSet>
           <AssociationSet Name="FK_ErtekesitesReszletek_Ertekesites" Association="Self.FK_ErtekesitesReszletek_Ertekesites">
-            <End Role="Ertekesites" EntitySet="Ertekesitesek" />
-            <End Role="ErtekesitesReszlet" EntitySet="ErtekesitesReszletek" />
+            <End Role="Ertekesitesek" EntitySet="Ertekesitesek" />
+            <End Role="ErtekesitesReszletek" EntitySet="ErtekesitesReszletek" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
