@@ -23,9 +23,8 @@ namespace PublicStore
     {
         public MainWindow()
         {
-            var lol = new NapiErtekesitesViewModel();
-            InitializeComponent();
-            DataContext = lol.Arukategoriak();
+            this.DataContext = new NapiErtekesitesViewModel();
+            InitializeComponent();            
         }
     }
 }

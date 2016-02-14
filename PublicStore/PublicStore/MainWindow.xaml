@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PublicStore"
         mc:Ignorable="d"
+        xmlns:kategoriak="clr-namespace:PublicStore.ViewModel"
         Title="MainWindow" Height="350" Width="525">
-    <Grid DataContext="{Binding Arukategoriak}">
-        <ListBox DataContext="{Binding Arukategoriak}" x:Name="listBox" HorizontalAlignment="Left" Height="246" Margin="82,27,0,0" VerticalAlignment="Top" Width="330"/>
+    <Grid>
+        <ComboBox ItemsSource="{Binding AruKategoriak}" DisplayMemberPath="AruKategoriaMegnevezes" x:Name="comboBox" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="120"/>
+
     </Grid>
 </Window>

@@ -11,24 +11,11 @@ namespace PublicStore.ViewModel
 {
     public class NapiErtekesitesViewModel : BaseViewModel
     {
-        private IStoreRepository context;
-        //private Ertekesites Ertekesites
-        //private AruKeszlet Arukeszlet;
-        //private AruKategoria Arukategoria;
-        //private ErtekesitesReszlet ErtekesitesReszlet;
+        private IStoreRepository repo = new StoreRepository();
+        public ObservableCollection<AruKategoria> AruKategoriak { get; set; }
         public NapiErtekesitesViewModel()
         {
-            this.context = new StoreRepository(new KiskerDbEntities());
-        }
-        public ObservableCollection<string> Arukategoriak()
-        {
-            var kategoriak = new ObservableCollection<string>();
-            //foreach (var item in context.GetCategories())
-            //{
-            //    kategoriak.Add(item.AruKategoriaMegnevezes);
-            //}
-            kategoriak.Add("LOL");
-            return kategoriak;
-        }        
+             AruKategoriak = new ObservableCollection<AruKategoria>(repo.GetAruKategoriak().Result);
+        }         
     }
 }

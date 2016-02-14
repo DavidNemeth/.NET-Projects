@@ -10,13 +10,6 @@ namespace PublicStore.Repository
 {
     public interface IStoreRepository : IDisposable
     {
-        IList<AruKategoria> GetCategories();
-        IList<AruKeszlet> GetAruKeszletek();
-        IEnumerable<Ertekesites> GetErtekesitesek();
-        IList<ErtekesitesReszlet> GetErtekesitesReszletek();
-        IList<AruKeszlet> KeszletForCategory(int CategoryID);
-        IList<ErtekesitesReszlet> GetErtekesitesireszletForAru(AruKeszlet reszletek);
-        IList<AruKeszlet> GetArukForCategory(AruKategoria aruk);
-        IList<ErtekesitesReszlet> GetErtekesitesreszletForErtekesites(Ertekesites ertekesites);
+        Task<List<AruKategoria>> GetAruKategoriak();
     }
 }
