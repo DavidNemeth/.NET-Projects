@@ -1,2 +1,2 @@
 # .NET-learning-projects
-Simple asp.net project using mcv / mvvm pattern, mostly for learning purposes.
+Simple asp.net project using mcv / mvvm pattern, mostly for learning purpose.
