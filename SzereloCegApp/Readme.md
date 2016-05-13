@@ -6,18 +6,15 @@ but the main intention was to make it flexible, so with a few changes it is easy
 
 Functionalities:
 
-  -add-edit-remove-assign employees clients, manage workflow
-  -multi-level login & access
-  -blog style communication extension
-  -automated invoice
-  -product / service management(includes pricing)
+  -add-edit-remove-assign employees clients, manage workflow  
+  -multi-level login & access  
+  -blog style communication extension  
+  -automated invoice 
+  -product / service management(includes pricing) 
   
-The app can be run after creating the two database files:
+The app can be run after creating the two database files:  
+⦁	Update-Database –ConfigurationTypeName SzereloCegApp.CegContextMigrations.Configuration  
+⦁	Update-Database -ConfigurationTypeName SzereloCegApp.RolesContextMigrations.Configuration 
 
-⦁	Update-Database –ConfigurationTypeName SzereloCegApp.CegContextMigrations.Configuration
-
-⦁	Update-Database -ConfigurationTypeName SzereloCegApp.RolesContextMigrations.Configuration
-
-If you encounter error with simplemembership provider, you might need to update webhelpers:
-
+If you encounter error with simplemembership provider, you might need to update webhelpers:  
 ⦁ Update-Package –reinstall Microsoft.AspNet.WebHelpers
