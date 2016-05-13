@@ -19,4 +19,5 @@ The app can be run after creating the two database files:
 ⦁	Update-Database -ConfigurationTypeName SzereloCegApp.RolesContextMigrations.Configuration
 
 If you encounter error with simplemembership provider, you might need to update webhelpers:
+
 ⦁ Update-Package –reinstall Microsoft.AspNet.WebHelpers
