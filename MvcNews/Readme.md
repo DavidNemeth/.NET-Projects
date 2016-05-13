@@ -1,4 +1,4 @@
-Shell for making news site.  
+Shell for making newssite.  
 
 -mvc  
 -entity framework  
