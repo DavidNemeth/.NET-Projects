@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KiskerModelStoreContainer" CdmEntityContainer="KiskerEntities">
+    <EntitySetMapping Name="AruKategoriak">
+      <EntityTypeMapping TypeName="KiskerModel.AruKategoria">
+        <MappingFragment StoreEntitySet="AruKategoria">
+          <ScalarProperty Name="AruKategoriaID" ColumnName="AruKategoriaID" />
+          <ScalarProperty Name="AruKategoriaMegnevezes" ColumnName="AruKategoriaMegnevezes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AruKeszletek">
+      <EntityTypeMapping TypeName="KiskerModel.AruKeszlet">
+        <MappingFragment StoreEntitySet="AruKeszlet">
+          <ScalarProperty Name="AruID" ColumnName="AruID" />
+          <ScalarProperty Name="AruKategoriaID" ColumnName="AruKategoriaID" />
+          <ScalarProperty Name="AruMegnevezes" ColumnName="AruMegnevezes" />
+          <ScalarProperty Name="MertekegysegAzon" ColumnName="MertekegysegAzon" />
+          <ScalarProperty Name="Mertekegyseg" ColumnName="Mertekegyseg" />
+          <ScalarProperty Name="EgysegAr" ColumnName="EgysegAr" />
+          <ScalarProperty Name="Raktarkeszlet" ColumnName="Raktarkeszlet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ertekesitesek">
+      <EntityTypeMapping TypeName="KiskerModel.Ertekesites">
+        <MappingFragment StoreEntitySet="Ertekesites">
+          <ScalarProperty Name="ErtekesitesID" ColumnName="ErtekesitesID" />
+          <ScalarProperty Name="ErtekesitesDatum" ColumnName="ErtekesitesDatum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErtekesitesReszletek">
+      <EntityTypeMapping TypeName="KiskerModel.ErtekesitesReszlet">
+        <MappingFragment StoreEntitySet="ErtekesitesReszletek">
+          <ScalarProperty Name="AruID" ColumnName="AruID" />
+          <ScalarProperty Name="ErtekesitesID" ColumnName="ErtekesitesID" />
+          <ScalarProperty Name="AruMennyiseg" ColumnName="AruMennyiseg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

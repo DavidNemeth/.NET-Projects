@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KiskerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AruKategoria">
+    <Key>
+      <PropertyRef Name="AruKategoriaID" />
+    </Key>
+    <Property Name="AruKategoriaID" Type="Int32" Nullable="false" />
+    <Property Name="AruKategoriaMegnevezes" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AruKeszletek" Relationship="Self.FK_AruKeszlet_ToAruKategoria" FromRole="AruKategoriak" ToRole="AruKeszlet" />
+  </EntityType>
+  <EntityType Name="AruKeszlet">
+    <Key>
+      <PropertyRef Name="AruID" />
+    </Key>
+    <Property Name="AruID" Type="Int32" Nullable="false" />
+    <Property Name="AruKategoriaID" Type="Int32" Nullable="false" />
+    <Property Name="AruMegnevezes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MertekegysegAzon" Type="Int32" Nullable="false" />
+    <Property Name="Mertekegyseg" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="EgysegAr" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Raktarkeszlet" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="AruKategoria" Relationship="Self.FK_AruKeszlet_ToAruKategoria" FromRole="AruKeszlet" ToRole="AruKategoriak" />
+    <NavigationProperty Name="ErtekesitesReszletek" Relationship="Self.FK_ErtekesitesReszletek_Keszlet" FromRole="AruKeszletek" ToRole="ErtekesitesReszlet" />
+  </EntityType>
+  <EntityType Name="Ertekesites">
+    <Key>
+      <PropertyRef Name="ErtekesitesID" />
+    </Key>
+    <Property Name="ErtekesitesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ErtekesitesDatum" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="ErtekesitesReszletek" Relationship="Self.FK_ErtekesitesReszletek_Ertekesites" FromRole="Ertekesitesek" ToRole="ErtekesitesReszlet" />
+  </EntityType>
+  <EntityType Name="ErtekesitesReszlet">
+    <Key>
+      <PropertyRef Name="AruID" />
+      <PropertyRef Name="ErtekesitesID" />
+    </Key>
+    <Property Name="AruID" Type="Int32" Nullable="false" />
+    <Property Name="ErtekesitesID" Type="Int32" Nullable="false" />
+    <Property Name="AruMennyiseg" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="AruKeszlet" Relationship="Self.FK_ErtekesitesReszletek_Keszlet" FromRole="ErtekesitesReszlet" ToRole="AruKeszletek" />
+    <NavigationProperty Name="Ertekesites" Relationship="Self.FK_ErtekesitesReszletek_Ertekesites" FromRole="ErtekesitesReszlet" ToRole="Ertekesitesek" />
+  </EntityType>
+  <Association Name="FK_AruKeszlet_ToAruKategoria">
+    <End Role="AruKategoriak" Type="Self.AruKategoria" Multiplicity="1" />
+    <End Role="AruKeszlet" Type="Self.AruKeszlet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AruKategoriak">
+        <PropertyRef Name="AruKategoriaID" />
+      </Principal>
+      <Dependent Role="AruKeszlet">
+        <PropertyRef Name="AruKategoriaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ErtekesitesReszletek_Keszlet">
+    <End Role="AruKeszletek" Type="Self.AruKeszlet" Multiplicity="1" />
+    <End Role="ErtekesitesReszlet" Type="KiskerModel.ErtekesitesReszlet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AruKeszletek">
+        <PropertyRef Name="AruID" />
+      </Principal>
+      <Dependent Role="ErtekesitesReszlet">
+        <PropertyRef Name="AruID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ErtekesitesReszletek_Ertekesites">
+    <End Role="Ertekesitesek" Type="KiskerModel.Ertekesites" Multiplicity="1" />
+    <End Role="ErtekesitesReszlet" Type="KiskerModel.ErtekesitesReszlet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ertekesitesek">
+        <PropertyRef Name="ErtekesitesID" />
+      </Principal>
+      <Dependent Role="ErtekesitesReszlet">
+        <PropertyRef Name="ErtekesitesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KiskerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AruKategoriak" EntityType="Self.AruKategoria" />
+    <EntitySet Name="AruKeszletek" EntityType="Self.AruKeszlet" />
+    <EntitySet Name="Ertekesitesek" EntityType="KiskerModel.Ertekesites" />
+    <EntitySet Name="ErtekesitesReszletek" EntityType="KiskerModel.ErtekesitesReszlet" />
+    <AssociationSet Name="FK_AruKeszlet_ToAruKategoria" Association="Self.FK_AruKeszlet_ToAruKategoria">
+      <End Role="AruKategoriak" EntitySet="AruKategoriak" />
+      <End Role="AruKeszlet" EntitySet="AruKeszletek" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ErtekesitesReszletek_Keszlet" Association="Self.FK_ErtekesitesReszletek_Keszlet">
+      <End Role="AruKeszletek" EntitySet="AruKeszletek" />
+      <End Role="ErtekesitesReszlet" EntitySet="ErtekesitesReszletek" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ErtekesitesReszletek_Ertekesites" Association="Self.FK_ErtekesitesReszletek_Ertekesites">
+      <End Role="Ertekesitesek" EntitySet="Ertekesitesek" />
+      <End Role="ErtekesitesReszlet" EntitySet="ErtekesitesReszletek" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
