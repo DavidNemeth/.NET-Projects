@@ -1,5 +1,5 @@
-Shell for making news site.
+Shell for making news site.  
 
--mvc
--entity framework
--c#
+-mvc  
+-entity framework  
+-c#  
