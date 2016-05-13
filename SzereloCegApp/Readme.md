@@ -13,6 +13,7 @@ Functionalities:
   -product / service management(includes pricing)
   
 The app can be run after creating the two database files:
+
 ⦁	Update-Database –ConfigurationTypeName SzereloCegApp.CegContextMigrations.Configuration
 
 ⦁	Update-Database -ConfigurationTypeName SzereloCegApp.RolesContextMigrations.Configuration
