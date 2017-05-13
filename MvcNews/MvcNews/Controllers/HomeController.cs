@@ -37,7 +37,7 @@ namespace MvcNews.Controllers
             var tags = repo.GetAllTags();           
            
             newsList.Clear();
-            //viewmodel feltöltés
+            
             foreach (var post in news)
             {
                 newsList.Add(new NewsViewModel()
@@ -56,14 +56,14 @@ namespace MvcNews.Controllers
                         AllTags = tags
                 });
             }
-            //keresés
+            
             if (!String.IsNullOrEmpty(searchString))
             {
                 newsList = newsList.Where(n => n.Tittle.ToLower().Contains(searchString.ToLower())
                 || n.Description.ToLower().Contains(searchString.ToLower())
                 || n.Category.CategoryName.ToLower().Contains(searchString.ToLower())).ToList();
             }
-            //cat filter
+            //category filter
             if (CatId != null)
             {
                 newsList.Clear();
