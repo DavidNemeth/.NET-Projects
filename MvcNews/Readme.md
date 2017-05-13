@@ -1,7 +1,3 @@
-Shell for making newssite.  
+Shell for making blog-news site.
 
--mvc  
--entity framework  
--c#  
-
-Resources not included.
+Improvements todo: Better abstraction on controllers via dependency injection.
