@@ -1,4 +1,4 @@
-Project I made for school, just for fun.  
+Project i made for school.
 Small business application to keep track of employers and clients.  
 The application in it self is specific to be used for a car-mechanic business,  
 but the main intention was to make it flexible, so with a few changes it is easy to make it work for any type of enterprise.
@@ -18,3 +18,7 @@ The app can be run after creating the two database files:
 
 If you encounter error with simplemembership provider, you might need to update webhelpers:  
 ⦁ Update-Package –reinstall Microsoft.AspNet.WebHelpers
+
+Todo: -Abstraction with interfaces
+      -Dependency injection in controllers
+      -Repository pattern to improve Data Access layer for better reuseability
