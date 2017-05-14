@@ -10,7 +10,7 @@ Functionalities:
   -multi-level login & access  
   -blog style communication extension  
   -automated invoice 
-  -product / service management(includes pricing) 
+  -product / service management
   
 The app can be run after creating the two database files:  
 ⦁	Update-Database –ConfigurationTypeName SzereloCegApp.CegContextMigrations.Configuration  
