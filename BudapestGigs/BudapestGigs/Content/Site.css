@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 100px;
+    padding-top: 90px;
     padding-bottom: 20px;
 }
 
@@ -28,39 +28,61 @@ span.field-validation-error {
     font-weight: bold;
 }
 
-/*Bootstrap Overrides*/
+.voffset {
+    margin-top: 2px;
+}
+
+.voffset1 {
+    margin-top: 5px;
+}
+
+.voffset2 {
+    margin-top: 10px;
+}
+
+.voffset3 {
+    margin-top: 20px;
+}
+
+.voffset4 {
+    margin-top: 40px;
+}
+
+.voffset5 {
+    margin-top: 80px;
+}
+
+/* Bootstrap Overrides */
 .navbar-inverse {
     background-color: #ff4342;
     border-color: #ff4342;
 }
 
-    .navbar-inverse .navbar-brand {
-        color: #ffffff;
+    .navbar-inverse .navbar-nav > li > a {
+        color: #fff;
     }
 
-    .navbar-inverse .navbar-nav > li > a {
-        color: #ffffff;
+    .navbar-inverse .navbar-brand {
+        color: #fff;
     }
 
     .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-        color: #ffffff;
-        background-color: rgba(205,40,39,0.55);
+        background-color: rgba(205, 40, 39, 0.55);
     }
-
-    .navbar-inverse .navbar-nav > .dropdown > a .caret {
-        border-top-color: #ffffff;
-        border-bottom-color: #ffffff;
-    }
-
-.navbar-brand {
-    font-weight: 700;
-}
 
 .dropdown-menu {
     box-shadow: none;
     -webkit-box-shadow: none;
 }
 
+.navbar-inverse .navbar-nav > .dropdown > a .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
 
 body {
     font-size: 17px;
@@ -88,13 +110,14 @@ h6,
 
 .form-control {
     font-size: 17px;
+    padding: 20px 15px;
     -ms-border-radius: 9px;
     border-radius: 9px;
 }
 
 .btn {
-    font-size: 17px;
-    padding: 7px 20px;
+    /*font-size: 17px;
+    padding: 7px 20px;*/
     border-radius: 9px;
 }
 
@@ -107,6 +130,26 @@ h6,
 
 /* Page-level styles */
 
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    font-size: 17px;
+    padding: 20px 15px;
+    -ms-border-radius: 9px;
+    border-radius: 9px;
+}
+
+
+.btn {
+    /*font-size: 17px;
+    padding: 7px 20px;*/
+    -ms-border-radius: 9px;
+    border-radius: 9px;
+}
+
+/* Page-level styles */
 .gigs {
     list-style: none;
 }
@@ -116,17 +159,12 @@ h6,
         margin-bottom: 30px;
     }
 
-        .gigs > li .details {
-            position: absolute;
-            top: 0;
-            left: 70px;
-        }
-
         .gigs > li .date {
             background: red;
             color: white;
             text-align: center;
             width: 60px;
+            -ms-border-radius: 8px;
             border-radius: 8px;
         }
 
@@ -144,11 +182,17 @@ h6,
                 padding: 6px 12px;
             }
 
-        .gigs > li .details .artist {
-            font-weight: bold;
-            display: block;
+        .gigs > li .details {
+            position: absolute;
+            top: 0;
+            left: 70px;
         }
 
-        .gigs > li .details .genre {
-            font-size: 15px;
-        }
+            .gigs > li .details .artist {
+                font-weight: bold;
+                display: block;
+            }
+
+            .gigs > li .details .genre {
+                font-size: 15px;
+            }
