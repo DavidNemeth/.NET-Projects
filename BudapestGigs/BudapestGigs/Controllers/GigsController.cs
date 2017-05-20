@@ -1,6 +1,7 @@
 ﻿using BudapestGigs.Models;
 using BudapestGigs.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -16,12 +17,35 @@ namespace BudapestGigs.Controllers
         }
 
         [Authorize]
+        public ActionResult Attending()
+        {
+            var userId = User.Identity.GetUserId();
+            var gigs = _context.Attendances
+                .Where(a => a.AttendeeId == userId)
+                .Select(a => a.Gig)
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .ToList();
+
+            var viewModel = new GigsViewModel()
+            {
+                UpcomingGigs = gigs,
+                ShowActions = User.Identity.IsAuthenticated,
+                Heading = "Gigs I'm Attending"
+            };
+
+            return View("Gigs", viewModel);
+        }
+
+
+        [Authorize]
         public ActionResult Create()
         {
             var viewModel = new GigFormViewModel
             {
                 Genres = _context.Genres.ToList()
             };
+
             return View(viewModel);
         }
 

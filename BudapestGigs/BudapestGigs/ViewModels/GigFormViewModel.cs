@@ -11,7 +11,6 @@ namespace BudapestGigs.ViewModels
         public string Venue { get; set; }
 
         [Required]
-        [FutureDate]
         public string Date { get; set; }
 
         [Required]
@@ -21,7 +20,6 @@ namespace BudapestGigs.ViewModels
         [Required]
         public byte Genre { get; set; }
 
-        [Required]
         public IEnumerable<Genre> Genres { get; set; }
 
         public DateTime GetDateTime()

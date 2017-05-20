@@ -25,8 +25,8 @@ namespace BudapestGigs.Controllers
 
             var following = new Following
             {
-                FolloweeId = userId,
-                FollowerId = dto.FolloweeId
+                FollowerId = userId,
+                FolloweeId = dto.FolloweeId
             };
             _context.Followings.Add(following);
             _context.SaveChanges();
@@ -35,3 +35,4 @@ namespace BudapestGigs.Controllers
         }
     }
 }
+

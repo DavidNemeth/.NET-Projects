@@ -9,8 +9,8 @@ namespace BudapestGigs.ViewModels
         public override bool IsValid(object value)
         {
             DateTime dateTime;
-            bool isValid = DateTime.TryParseExact(Convert.ToString(value),
-                "dd MM yyyy",
+            var isValid = DateTime.TryParseExact(Convert.ToString(value),
+                "d mm yyyy",
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.None,
                 out dateTime);
