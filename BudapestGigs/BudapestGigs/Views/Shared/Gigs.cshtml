@@ -1,9 +1,9 @@
-﻿@model BudapestGigs.ViewModels.HomeViewModel
+﻿@model BudapestGigs.ViewModels.GigsViewModel
 @{
     ViewBag.Title = "Home Page";
 }
-
-<ul class="gigs">
+<h1>@Model.Heading</h1>
+<ul class="gigs voffset4">
     @foreach (var gig in Model.UpcomingGigs)
     {
         <li>
@@ -18,10 +18,10 @@
             <div class="details">
                 <span class="artist">
                     @gig.Artist.Name
+
                     @if (Model.ShowActions)
                     {
                         <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@gig.ArtistId">Follow</button>
-
                     }
                 </span>
                 <span class="genre">
@@ -35,7 +35,6 @@
         </li>
     }
 </ul>
-
 @section scripts
 {
     <script>

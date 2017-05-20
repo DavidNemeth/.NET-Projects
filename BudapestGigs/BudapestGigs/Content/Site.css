@@ -109,34 +109,7 @@ h6,
 }
 
 .form-control {
-    font-size: 17px;
-    padding: 20px 15px;
-    -ms-border-radius: 9px;
-    border-radius: 9px;
-}
-
-.btn {
-    /*font-size: 17px;
-    padding: 7px 20px;*/
-    border-radius: 9px;
-}
-
-.form-control:focus {
-    border-color: #e9669c;
-    outline: 0;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-}
-
-/* Page-level styles */
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-control {
-    font-size: 17px;
-    padding: 20px 15px;
+    font-size: 17px;    
     -ms-border-radius: 9px;
     border-radius: 9px;
 }
